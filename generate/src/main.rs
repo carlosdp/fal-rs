@@ -59,6 +59,7 @@ enum Node {
         fn_name: String,
         definition: serde_json::Value,
         output_type: serde_json::Value,
+        docs: String,
     },
 }
 
@@ -70,6 +71,7 @@ impl Node {
         fn_name: &str,
         definition: serde_json::Value,
         output_type: serde_json::Value,
+        docs: String,
     ) {
         match self {
             Node::Module { children, .. } => {
@@ -79,6 +81,7 @@ impl Node {
                         fn_name: fn_name.to_string(),
                         definition,
                         output_type,
+                        docs,
                     });
                     return;
                 }
@@ -91,13 +94,20 @@ impl Node {
                     Node::Module { name, .. } => name == current,
                     _ => false,
                 }) {
-                    child.insert_path(remaining, endpoint, fn_name, definition, output_type);
+                    child.insert_path(remaining, endpoint, fn_name, definition, output_type, docs);
                 } else {
                     let mut new_module = Node::Module {
                         name: current.to_string(),
                         children: Vec::new(),
                     };
-                    new_module.insert_path(remaining, endpoint, fn_name, definition, output_type);
+                    new_module.insert_path(
+                        remaining,
+                        endpoint,
+                        fn_name,
+                        definition,
+                        output_type,
+                        docs,
+                    );
                     children.push(new_module);
                 }
             }
@@ -222,6 +232,8 @@ async fn main() {
                 app_data.metadata.openapi["components"]["schemas"][type_name].clone()
             };
 
+            let docs = docs_from(&model, params);
+
             // Insert into the tree
             root.insert_path(
                 &full_path_parts,
@@ -229,6 +241,7 @@ async fn main() {
                 &fn_name,
                 params["post"].clone(),
                 output_type,
+                docs,
             );
         }
 
@@ -297,6 +310,7 @@ fn generate_request_module(
             fn_name,
             definition,
             output_type,
+            docs,
         } => {
             let request_type_name = definition["requestBody"]["content"]["application/json"]
                 ["schema"]["$ref"]
@@ -311,10 +325,19 @@ fn generate_request_module(
 
             let output_struct = schema_type_to_rust_type(&output_type, extra_types, false);
 
+            let docs = docs
+                .trim()
+                .split("\n")
+                .map(|line| line.trim())
+                .map(|line| format!("/// {line}"))
+                .collect::<Vec<String>>()
+                .join("\n");
+
             format!(
                 r#"
                 {output_struct}
 
+                {docs}
                 pub fn {fn_name}(params: {request_type_name}) -> FalRequest<{request_type_name}, {return_type}> {{
                     FalRequest::new(
                         "{endpoint}",
@@ -344,8 +367,38 @@ fn schema_type_to_rust_type(
                 format!("pub {k}:")
             };
 
+            let description = v["description"].as_str().unwrap_or("");
+            let examples = v["examples"].as_array();
+
+            let docs = if !description.is_empty() {
+                let description = description
+                    .trim()
+                    .split("\n")
+                    .map(|line| line.trim())
+                    .map(|line| format!("/// {line}"))
+                    .collect::<Vec<String>>()
+                    .join("\n");
+
+                let examples = if let Some(examples) = examples {
+                    let examples = examples
+                        .iter()
+                        .map(|e| serde_json::to_string(e).unwrap())
+                        .map(|line| format!("/// {line}"))
+                        .collect::<Vec<String>>()
+                        .join("\n");
+
+                    format!("\n///\n/// Examples:\n///\n{}", examples)
+                } else {
+                    "".to_string()
+                };
+
+                format!("{description}{examples}\n")
+            } else {
+                "".to_string()
+            };
+
             format!(
-                "{prefix} {}",
+                "{docs}{prefix} {}",
                 schema_property_to_rust_type(
                     v,
                     info["required"]
@@ -526,6 +579,38 @@ fn get_or_build_enum(
 
         enum_name
     }
+}
+
+fn docs_from(model: &Model, openapi_params: &serde_json::Value) -> String {
+    let openapi_description = openapi_params["post"]["description"].as_str().unwrap_or("");
+
+    let title = &model.title;
+    let short_desc = &model.short_description;
+    let category = &model.category;
+    let machine_type = model
+        .machine_type
+        .as_ref()
+        .map(|s| format!("Machine Type: {s}"))
+        .unwrap_or("".to_string());
+    let license_type = model
+        .license_type
+        .as_ref()
+        .map(|s| format!("License Type: {s}"))
+        .unwrap_or("".to_string());
+
+    format!(
+        "
+    {title}
+
+    {short_desc}
+
+    Category: {category}
+    {machine_type}
+    {license_type}
+
+    {openapi_description}
+    "
+    )
 }
 
 fn hardcoded_struct(reference: &str) -> bool {
