@@ -11,11 +11,11 @@ image = ["dep:image", "futures", "base64"]
 fal-derive = { path = "../fal-derive" }
 base64 = { version = "0.22", optional = true }
 image = { version = "0.25", optional = true }
-reqwest = { version = "0.12", features = ["json", "stream", "multipart"] }
-serde = { version = "1", features = ["derive", "rc"] }
-serde_json = "1"
+reqwest = { workspace = true, features = ["json", "stream", "multipart"] }
+serde = { workspace = true, features = ["derive", "rc"] }
+serde_json.workspace = true
 thiserror = "1"
 futures = { version = "0.3", optional = true }
 
 [dev-dependencies]
-tokio = { version = "1", features = ["full"] }
+tokio = { workspace = true, features = ["full"] }
