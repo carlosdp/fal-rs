@@ -12,9 +12,9 @@ pub struct FalRequest<Params: Serialize, Response: DeserializeOwned> {
 }
 
 impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response> {
-    pub fn new(endpoint: String, params: Params) -> Self {
+    pub fn new(endpoint: impl Into<String>, params: Params) -> Self {
         Self {
-            endpoint,
+            endpoint: endpoint.into(),
             params,
             phantom: PhantomData,
         }

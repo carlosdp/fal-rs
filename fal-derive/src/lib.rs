@@ -97,7 +97,7 @@ pub fn endpoint(attr: TokenStream, item: TokenStream) -> TokenStream {
     let fn_def = quote! {
         #vis fn #fn_name(#inputs) -> #crate_ref::request::FalRequest<#struct_name, #return_type> {
             #crate_ref::request::FalRequest::new(
-                #endpoint_str.to_string(),
+                #endpoint_str,
                 #struct_name {
                     #(#param_names: #param_names),*
                 }
