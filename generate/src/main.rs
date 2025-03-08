@@ -296,7 +296,7 @@ fn generate_request_module(
 
                 {output_struct}
 
-                pub async fn {fn_name}(params: {request_type_name}) -> crate::request::FalRequest<{request_type_name}, {return_type}> {{
+                pub fn {fn_name}(params: {request_type_name}) -> crate::request::FalRequest<{request_type_name}, {return_type}> {{
                     FalRequest::new(
                         "{endpoint}",
                         params
