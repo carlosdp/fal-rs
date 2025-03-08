@@ -108,13 +108,13 @@ impl Node {
     fn print_tree(&self, indent: usize) {
         match self {
             Node::Module { name, children } => {
-                println!("{}Module: {}", " ".repeat(indent), name);
+                tracing::trace!("{}Module: {}", " ".repeat(indent), name);
                 for child in children {
                     child.print_tree(indent + 2);
                 }
             }
             Node::Leaf { fn_name, .. } => {
-                println!("{}Function: {}", " ".repeat(indent), fn_name);
+                tracing::trace!("{}Function: {}", " ".repeat(indent), fn_name);
             }
         }
     }
@@ -122,6 +122,8 @@ impl Node {
 
 #[tokio::main]
 async fn main() {
+    tracing_subscriber::fmt::init();
+
     let mut root = Node::Module {
         name: "root".to_string(),
         children: Vec::new(),
@@ -404,7 +406,7 @@ fn schema_property_to_rust_type(
             } else if let Some(all_of) = property["allOf"].as_array() {
                 // fal API uses these to rename types usually, we should be able to just grab the first (only) element
                 if all_of.len() != 1 {
-                    println!("Warning: allOf != 1 element: {:?}", all_of);
+                    tracing::warn!("allOf != 1 element: {:?}", all_of);
                 }
 
                 let first_element = all_of.first().unwrap();
@@ -416,7 +418,7 @@ fn schema_property_to_rust_type(
                     if let Some(title) = property["title"].as_str() {
                         get_or_build_enum(title, one_of, extra_types)
                     } else {
-                        println!("Warning: no title for oneOf: {:?}", property);
+                        tracing::warn!("no title for oneOf: {:?}", property);
                         "serde_json::Value".to_string()
                     }
                 }
@@ -429,12 +431,12 @@ fn schema_property_to_rust_type(
                         // but I don't think this is being used correctly in fal anyways
                         get_or_build_enum(title, any_of, extra_types)
                     } else {
-                        println!("Warning: no title for anyOf: {:?}", property);
+                        tracing::warn!("no title for anyOf: {:?}", property);
                         "serde_json::Value".to_string()
                     }
                 }
             } else {
-                println!("Unsupported type: {:?}", property);
+                tracing::warn!("Unsupported type: {:?}", property);
                 "serde_json::Value".to_string()
             }
         }
@@ -495,7 +497,7 @@ fn get_or_build_enum(
                         } else if let Some(reference) = v["$ref"].as_str() {
                             reference.split("/").last().unwrap().to_string()
                         } else {
-                            println!("Warning: no title for oneOf: {:?}", v);
+                            tracing::warn!("no title for oneOf: {:?}", v);
                             snake_to_upper_camel(v["type"].as_str().expect(
                                 "if you don't have a title, you have to have a basic type =(",
                             ))
