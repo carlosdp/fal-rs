@@ -53,13 +53,7 @@ pub fn endpoint(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     let fn_name = &input_fn.sig.ident;
     let fn_name_str = fn_name.to_string();
-    let camel_case_name = fn_name_str
-        .chars()
-        .next()
-        .unwrap()
-        .to_uppercase()
-        .to_string()
-        + &fn_name_str[1..];
+    let camel_case_name = snake_to_upper_camel(&fn_name_str);
     let struct_name = syn::Ident::new(&format!("{}Params", camel_case_name), fn_name.span());
     let vis = &input_fn.vis;
 
@@ -117,4 +111,22 @@ pub fn endpoint(attr: TokenStream, item: TokenStream) -> TokenStream {
     };
 
     TokenStream::from(expanded)
+}
+
+fn snake_to_upper_camel(input: &str) -> String {
+    let mut result = String::new();
+    let mut capitalize_next = true;
+
+    for c in input.chars() {
+        if c == '_' {
+            capitalize_next = true;
+        } else if capitalize_next {
+            result.push(c.to_ascii_uppercase());
+            capitalize_next = false;
+        } else {
+            result.push(c);
+        }
+    }
+
+    result
 }
