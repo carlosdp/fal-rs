@@ -1,8 +1,19 @@
+#[cfg(feature = "endpoints")]
+pub mod endpoints;
 #[cfg(feature = "image")]
 pub mod image;
 pub mod request;
 
 pub use fal_derive::endpoint;
+
+pub mod prelude {
+    #[cfg(feature = "endpoints")]
+    pub use super::endpoints::*;
+    #[cfg(feature = "image")]
+    pub use super::image::*;
+    pub use super::request::*;
+    pub use super::*;
+}
 
 use serde::{Deserialize, Serialize};
 
@@ -22,8 +33,10 @@ impl From<String> for FalError {
     }
 }
 
-#[derive(Debug, Deserialize, Serialize)]
-pub struct FalFile {
+pub type Image = File;
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct File {
     pub url: String,
     pub content_type: String,
     pub file_name: Option<String>,
@@ -34,10 +47,15 @@ pub struct FalFile {
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct FalSingleImageResponse {
-    pub image: FalFile,
+    pub image: File,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct FalMultiImageResponse {
-    pub images: Vec<FalFile>,
+    pub images: Vec<File>,
+}
+
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct Timings {
+    // todo
 }

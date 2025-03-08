@@ -6,9 +6,9 @@ use std::{
 use base64::prelude::*;
 use image::{DynamicImage, ImageFormat};
 
-use crate::{FalError, FalFile};
+use crate::{FalError, File};
 
-impl FalFile {
+impl File {
     pub fn into_image(self) -> impl Future<Output = Result<image::DynamicImage, FalError>> {
         async move {
             let image_bytes = reqwest::get(&self.url).await?.bytes().await?;

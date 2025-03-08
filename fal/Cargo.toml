@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
-default = ["image"]
+default = ["image", "endpoints"]
 image = ["dep:image", "futures", "base64"]
+endpoints = []
 
 [dependencies]
 fal-derive = { path = "../fal-derive" }
