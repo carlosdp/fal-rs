@@ -23,4 +23,6 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: Run cargo test
+        env:
+          FAL_API_KEY: ${{ secrets.FAL_API_KEY }}
         run: cargo test --all-features --workspace
