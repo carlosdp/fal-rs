@@ -32,6 +32,7 @@ impl Parse for EndpointAttr {
     }
 }
 
+#[doc = include_str!("../README.md")]
 #[proc_macro_attribute]
 pub fn endpoint(attr: TokenStream, item: TokenStream) -> TokenStream {
     let attr =
