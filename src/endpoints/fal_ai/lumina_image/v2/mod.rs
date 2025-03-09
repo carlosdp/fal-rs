@@ -9,7 +9,8 @@ use std::collections::HashMap;
 pub struct ImageOutput {
     /// Whether the generated images contain NSFW concepts.
     pub has_nsfw_concepts: Vec<bool>,
-    /// The generated images/// The generated images/// [{"content_type":"image/jpeg","height":768,"url":"https://v3.fal.media/files/rabbit/pBwaEZysJhnstKWEHGpLc.png","width":1024}]
+    /// The generated images
+    /// [{"content_type":"image/jpeg","height":768,"url":"https://v3.fal.media/files/rabbit/pBwaEZysJhnstKWEHGpLc.png","width":1024}]
     pub images: Vec<Image>,
     /// The prompt used for generating the image.
     pub prompt: String,

@@ -24,7 +24,8 @@ pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TextToVideoOutput {
-    /// The generated video/// The generated video/// {"url":"https://v3.fal.media/files/tiger/83-YzufmOlsnhqq5ed382_output.mp4"}
+    /// The generated video
+    /// {"url":"https://v3.fal.media/files/tiger/83-YzufmOlsnhqq5ed382_output.mp4"}
     pub video: File,
 }
 

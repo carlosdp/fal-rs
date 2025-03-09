@@ -29,7 +29,8 @@ pub mod remix;
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
     pub images: Vec<File>,
-    /// Seed used for the random number generator/// Seed used for the random number generator/// 123456
+    /// Seed used for the random number generator
+    /// 123456
     pub seed: i64,
 }
 

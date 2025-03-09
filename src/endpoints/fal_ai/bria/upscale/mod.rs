@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UpscaleOutput {
-    /// Result Image/// Result Image/// {"content_type":"image/png","file_name":"db12c5f7076844d0bb84df92ab340acd.png","file_size":2494064,"height":1400,"url":"https://v3.fal.media/files/penguin/oHW1CIjw26zf3Jt-YLBTW_db12c5f7076844d0bb84df92ab340acd.png","width":1220}
+    /// Result Image
+    /// {"content_type":"image/png","file_name":"db12c5f7076844d0bb84df92ab340acd.png","file_size":2494064,"height":1400,"url":"https://v3.fal.media/files/penguin/oHW1CIjw26zf3Jt-YLBTW_db12c5f7076844d0bb84df92ab340acd.png","width":1220}
     pub image: Image,
 }
 

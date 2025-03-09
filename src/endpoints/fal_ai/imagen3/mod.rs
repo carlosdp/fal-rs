@@ -41,7 +41,8 @@ pub mod subject_reference;
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
     pub images: Vec<File>,
-    /// Seed used for generation/// Seed used for generation/// 42
+    /// Seed used for generation
+    /// 42
     pub seed: i64,
 }
 

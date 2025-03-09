@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct FrenchOutput {
-    /// The generated music/// The generated music/// {"url":"https://fal.media/files/kangaroo/E_itKJKZKRNaO-QtU77k1_tmpe1qso5xp.wav"}
+    /// The generated music
+    /// {"url":"https://fal.media/files/kangaroo/E_itKJKZKRNaO-QtU77k1_tmpe1qso5xp.wav"}
     pub audio: File,
 }
 

@@ -27,7 +27,8 @@ pub struct ChatOutput {
     /// Error message if an error occurred
     #[serde(skip_serializing_if = "Option::is_none")]
     pub error: Option<ErrorProperty>,
-    /// Generated output/// Generated output/// "The meaning of life is subjective and depends on individual perspectives."
+    /// Generated output
+    /// "The meaning of life is subjective and depends on individual perspectives."
     pub output: String,
     /// Whether the output is partial
     #[serde(skip_serializing_if = "Option::is_none")]

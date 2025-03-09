@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TeedOutput {
-    /// The edge map./// The edge map./// {"content_type":"image/png","height":2048,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/teed_output.png","width":1246}
+    /// The edge map.
+    /// {"content_type":"image/png","height":2048,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/teed_output.png","width":1246}
     pub image: Image,
 }
 

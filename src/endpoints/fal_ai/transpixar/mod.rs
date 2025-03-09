@@ -13,7 +13,8 @@ pub struct Output {
     /// input or the randomly generated that was used in case none was passed.
     pub seed: i64,
     pub timings: Timings,
-    /// The URL to the generated video/// The URL to the generated video/// [{"content_type":"application/octet-stream","file_name":"rgb.mp4","file_size":146468,"url":"https://v3.fal.media/files/kangaroo/G6gkFsuyU5L7sJ55nZUPU_rgb.mp4"},{"content_type":"application/octet-stream","file_name":"alpha.mp4","file_size":106894,"url":"https://v3.fal.media/files/lion/g7PBZfQEH9SoPXYgeyl5P_alpha.mp4"}]
+    /// The URL to the generated video
+    /// [{"content_type":"application/octet-stream","file_name":"rgb.mp4","file_size":146468,"url":"https://v3.fal.media/files/kangaroo/G6gkFsuyU5L7sJ55nZUPU_rgb.mp4"},{"content_type":"application/octet-stream","file_name":"alpha.mp4","file_size":106894,"url":"https://v3.fal.media/files/lion/g7PBZfQEH9SoPXYgeyl5P_alpha.mp4"}]
     pub videos: Vec<File>,
 }
 

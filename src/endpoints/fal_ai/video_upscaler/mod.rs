@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
-    /// The stitched video/// The stitched video/// {"content_type":"video/mp4","url":"https://storage.googleapis.com/falserverless/videos/h0jgPaO6AJAbyrsNYNbGl_upscaled_video.mp4"}
+    /// The stitched video
+    /// {"content_type":"video/mp4","url":"https://storage.googleapis.com/falserverless/videos/h0jgPaO6AJAbyrsNYNbGl_upscaled_video.mp4"}
     pub video: File,
 }
 

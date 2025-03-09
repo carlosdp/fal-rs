@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SubjectReferenceOutput {
-    /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
+    /// The generated video
+    /// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
     pub video: File,
 }
 

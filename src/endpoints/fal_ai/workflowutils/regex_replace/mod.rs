@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TextOutput {
-    /// The output text/// The output text/// "Hello, World!"
+    /// The output text
+    /// "Hello, World!"
     pub text: String,
 }
 

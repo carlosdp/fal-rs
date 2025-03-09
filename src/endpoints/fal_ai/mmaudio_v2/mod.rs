@@ -24,7 +24,8 @@ pub mod text_to_audio;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
-    /// The generated video with the lip sync./// The generated video with the lip sync./// {"content_type":"application/octet-stream","file_name":"mmaudio_input.mp4","file_size":1001342,"url":"https://storage.googleapis.com/falserverless/model_tests/video_models/mmaudio_output.mp4"}
+    /// The generated video with the lip sync.
+    /// {"content_type":"application/octet-stream","file_name":"mmaudio_input.mp4","file_size":1001342,"url":"https://storage.googleapis.com/falserverless/model_tests/video_models/mmaudio_output.mp4"}
     pub video: File,
 }
 

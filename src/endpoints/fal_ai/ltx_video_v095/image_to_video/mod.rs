@@ -9,7 +9,8 @@ use std::collections::HashMap;
 pub struct ImageToVideoOutput {
     /// The seed used for generation.
     pub seed: i64,
-    /// The generated video file./// The generated video file./// {"url":"https://storage.googleapis.com/falserverless/example_outputs/ltx_i2v_output.mp4"}
+    /// The generated video file.
+    /// {"url":"https://storage.googleapis.com/falserverless/example_outputs/ltx_i2v_output.mp4"}
     pub video: File,
 }
 

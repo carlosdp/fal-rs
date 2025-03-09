@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TransparentImageToMaskOutput {
-    /// The mask/// The mask/// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/transparent_image_to_mask_output.png","width":610}
+    /// The mask
+    /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/transparent_image_to_mask_output.png","width":610}
     pub image: Image,
 }
 

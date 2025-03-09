@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct EraserOutput {
-    /// The generated image/// The generated image/// {"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_eraser_res.png"}
+    /// The generated image
+    /// {"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_eraser_res.png"}
     pub image: Image,
 }
 

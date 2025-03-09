@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct OmniZeroOutput {
-    /// The generated image./// The generated image./// {"content_type":"image/png","height":1024,"url":"https://storage.googleapis.com/falserverless/model_tests/omni_zero/result.png","width":1024}
+    /// The generated image.
+    /// {"content_type":"image/png","height":1024,"url":"https://storage.googleapis.com/falserverless/model_tests/omni_zero/result.png","width":1024}
     pub image: Image,
 }
 

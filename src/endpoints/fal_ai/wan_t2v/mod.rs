@@ -9,7 +9,8 @@ use std::collections::HashMap;
 pub struct WanT2VResponse {
     /// The seed used for generation.
     pub seed: i64,
-    /// The generated video file./// The generated video file./// {"url":"https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4"}
+    /// The generated video file.
+    /// {"url":"https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4"}
     pub video: File,
 }
 

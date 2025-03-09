@@ -9,7 +9,8 @@ use std::collections::HashMap;
 pub struct AnimateDiffV2VOutput {
     /// Seed used for generating the video.
     pub seed: i64,
-    /// Generated video file./// Generated video file./// {"url":"https://fal-cdn.batuhan-941.workers.dev/files/koala/5Cb_6P_s9wW8f8-g9c4yj.mp4"}
+    /// Generated video file.
+    /// {"url":"https://fal-cdn.batuhan-941.workers.dev/files/koala/5Cb_6P_s9wW8f8-g9c4yj.mp4"}
     pub video: File,
 }
 

@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TryOnOutput {
-    /// The output image./// The output image./// {"content_type":"image/png","file_name":"result.png","file_size":595094,"height":1024,"url":"https://v3.fal.media/files/panda/Hoy3zhimzVKi3F2uoGBnh_result.png","width":768}
+    /// The output image.
+    /// {"content_type":"image/png","file_name":"result.png","file_size":595094,"height":1024,"url":"https://v3.fal.media/files/panda/Hoy3zhimzVKi3F2uoGBnh_result.png","width":768}
     pub image: Image,
 }
 

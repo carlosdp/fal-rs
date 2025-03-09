@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SkyreelsI2VResponse {
-    /// The seed used for generation/// The seed used for generation/// 42
+    /// The seed used for generation
+    /// 42
     pub seed: i64,
     pub video: File,
 }

@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ProductShotOutput {
-    /// The generated images/// The generated images/// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_product_res.png"}]
+    /// The generated images
+    /// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_product_res.png"}]
     pub images: Vec<Image>,
 }
 

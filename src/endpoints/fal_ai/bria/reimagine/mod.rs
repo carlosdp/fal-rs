@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ReimagineOutput {
-    /// The generated images/// The generated images/// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_reimagine_output.png"}]
+    /// The generated images
+    /// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_reimagine_output.png"}]
     pub images: Vec<Image>,
     /// Seed value used for generation.
     pub seed: i64,

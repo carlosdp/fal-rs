@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MochiT2VOutput {
-    /// The generated video/// The generated video/// {"url":"https://fal.media/files/zebra/GScPi-7ma3Fn8r1O1on4z_output_1729631871.mp4"}
+    /// The generated video
+    /// {"url":"https://fal.media/files/zebra/GScPi-7ma3Fn8r1O1on4z_output_1729631871.mp4"}
     pub video: File,
 }
 

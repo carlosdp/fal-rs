@@ -26,7 +26,8 @@ pub mod v512;
 pub struct SwittiOutput {
     /// Whether the generated images contain NSFW concepts.
     pub has_nsfw_concepts: Vec<bool>,
-    /// The generated images/// The generated images/// [{"content_type":"image/jpeg","height":1024,"url":"https://fal.media/files/lion/JpgBX7w379jHteLeeNsM5.jpeg","width":1024}]
+    /// The generated images
+    /// [{"content_type":"image/jpeg","height":1024,"url":"https://fal.media/files/lion/JpgBX7w379jHteLeeNsM5.jpeg","width":1024}]
     pub images: Vec<Image>,
     /// The prompt used for generating the image.
     pub prompt: String,

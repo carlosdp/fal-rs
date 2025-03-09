@@ -26,7 +26,8 @@ pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct T2VLiveOutput {
-    /// The generated video/// The generated video/// {"url":"https://fal.media/files/monkey/EbJRdZfaJbNiJBUvPta3c_output.mp4"}
+    /// The generated video
+    /// {"url":"https://fal.media/files/monkey/EbJRdZfaJbNiJBUvPta3c_output.mp4"}
     pub video: File,
 }
 

@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct KlingV1I2VOutput {
-    /// The generated video/// The generated video/// {"url":"https://v3.fal.media/files/kangaroo/VUmAU3JvzS7mxwdgSU9zj_output.mp4"}
+    /// The generated video
+    /// {"url":"https://v3.fal.media/files/kangaroo/VUmAU3JvzS7mxwdgSU9zj_output.mp4"}
     pub video: File,
 }
 

@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct BGReplaceOutput {
-    /// The generated images/// The generated images/// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_bg_replace_res.jpg"}]
+    /// The generated images
+    /// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_bg_replace_res.jpg"}]
     pub images: Vec<Image>,
     /// Seed value used for generation.
     pub seed: i64,

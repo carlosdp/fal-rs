@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct I2VDirectorOutput {
-    /// The generated video/// The generated video/// {"url":"https://storage.googleapis.com/falserverless/web-examples/minimax/i2v-01.mp4"}
+    /// The generated video
+    /// {"url":"https://storage.googleapis.com/falserverless/web-examples/minimax/i2v-01.mp4"}
     pub video: File,
 }
 

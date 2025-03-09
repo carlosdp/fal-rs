@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RetoucherOutput {
-    /// The generated image file info./// The generated image file info./// {"url":"https://storage.googleapis.com/falserverless/model_tests/retoucher/retoucher_example_output.png"}
+    /// The generated image file info.
+    /// {"url":"https://storage.googleapis.com/falserverless/model_tests/retoucher/retoucher_example_output.png"}
     pub image: Image,
     /// The seed used for the generation.
     pub seed: i64,

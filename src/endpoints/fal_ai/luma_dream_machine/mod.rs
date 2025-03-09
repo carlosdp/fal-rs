@@ -40,7 +40,8 @@ pub mod ray_2;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct T2VOutput {
-    /// The generated video/// The generated video/// {"url":"https://v2.fal.media/files/807e842c734f4127a36de9262a2d292c_output.mp4"}
+    /// The generated video
+    /// {"url":"https://v2.fal.media/files/807e842c734f4127a36de9262a2d292c_output.mp4"}
     pub video: File,
 }
 

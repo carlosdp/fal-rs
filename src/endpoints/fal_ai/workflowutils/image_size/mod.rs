@@ -7,7 +7,8 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ImageSizeOutput {
-    /// Image size/// Image size/// {"height":700,"width":610}
+    /// Image size
+    /// {"height":700,"width":610}
     pub image_size: HashMap<String, serde_json::Value>,
 }
 

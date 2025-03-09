@@ -610,7 +610,7 @@ fn schema_type_to_rust_type(
                     .collect::<Vec<String>>()
                     .join("\n");
 
-                let examples = if let Some(examples) = examples {
+                if let Some(examples) = examples {
                     let examples = examples
                         .iter()
                         .map(|e| serde_json::to_string(e).unwrap())
@@ -618,12 +618,10 @@ fn schema_type_to_rust_type(
                         .collect::<Vec<String>>()
                         .join("\n");
 
-                    format!("{description}{examples}\n")
+                    format!("{description}\n{examples}\n")
                 } else {
-                    "".to_string()
-                };
-
-                format!("{description}{examples}\n")
+                    format!("{description}\n")
+                }
             } else {
                 "".to_string()
             };

@@ -9,7 +9,8 @@ use std::collections::HashMap;
 pub struct MulticonditioningVideoOutput {
     /// The seed used for generation.
     pub seed: i64,
-    /// The generated video file./// The generated video file./// {"url":"https://storage.googleapis.com/falserverless/gallery/ltx-multicondition.mp4"}
+    /// The generated video file.
+    /// {"url":"https://storage.googleapis.com/falserverless/gallery/ltx-multicondition.mp4"}
     pub video: File,
 }
 
