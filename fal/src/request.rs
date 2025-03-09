@@ -61,6 +61,13 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
         self
     }
 
+    /// Use a specific API key to make requests
+    pub fn with_api_key(mut self, api_key: impl Into<String>) -> Self {
+        self.api_key = Some(api_key.into());
+
+        self
+    }
+
     /// Send the request and wait for the response
     pub async fn send(self) -> Result<Response, FalError> {
         let response = self

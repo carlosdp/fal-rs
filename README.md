@@ -27,7 +27,7 @@ fal = "0.1"
 
 By default, the `endpoints` feature is enabled, and you can use pre-built, fully-typed endpoint functions to call the API:
 
-```rust
+```rust,no_run
 use fal::prelude::*;
 
 #[tokio::main]
@@ -50,7 +50,7 @@ async fn main() {
 
 For long-running operations, you can use the [FAL Queue API](https://docs.fal.ai/model-endpoints/queue):
 
-```rust
+```rust,no_run
 use fal::prelude::*;
 use futures::StreamExt;
 
@@ -82,7 +82,7 @@ async fn main() {
 ## The `#[endpoint]` macro
 You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you disable the `endpoints` feature, or you are using a private model endpoint.
 
-```rust
+```rust,no_run
 use fal::prelude::*;
 use serde::Deserialize;
 
@@ -92,12 +92,9 @@ pub struct FalResponse {
 }
 
 #[endpoint(endpoint="fal-ai/flux/dev")]
-pub fn fal_dev(prompt: String) -> FalResponse;
-```
+pub fn flux_dev(prompt: String) -> FalResponse {}
 
-This endpoint function can now be used to call the fal endpoint:
-
-```rust
+// This endpoint function can now be used to call the fal endpoint:
 #[tokio::main]
 async fn main() {
     let response = flux_dev("an horse riding an astronaut".to_owned())
