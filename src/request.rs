@@ -17,11 +17,13 @@ use crate::{
 ///
 /// #[tokio::main]
 /// async fn main() {
+///     let api_key = std::env::var("FAL_API_KEY").unwrap();
+///
 ///     let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
 ///         prompt: "a majestic horse in a field".to_string(),
 ///         ..Default::default()
 ///     })
-///     .with_api_key("sk-API_KEY_HERE")
+///     .with_api_key(api_key)
 ///     .send()
 ///     .await
 ///     .unwrap();

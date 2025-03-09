@@ -32,12 +32,14 @@ use fal::prelude::*;
 
 #[tokio::main]
 async fn main() {
+    let api_key = std::env::var("FAL_API_KEY").unwrap();
+
     // Use the Flux Pro endpoint to generate an image
     let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
         prompt: "a majestic horse in a field".to_string(),
         ..Default::default()
     })
-    .with_api_key("fal_api_key_here") // If not provided, the FAL_API_KEY environment variable is used
+    .with_api_key(api_key) // If not provided, the FAL_API_KEY environment variable is used
     .send()
     .await
     .unwrap();
