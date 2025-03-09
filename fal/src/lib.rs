@@ -2,8 +2,10 @@
 pub mod endpoints;
 #[cfg(feature = "image")]
 pub mod image;
+pub mod queue;
 pub mod request;
 
+use eventsource_stream::EventStreamError;
 pub use fal_derive::endpoint;
 
 pub mod prelude {
@@ -11,6 +13,7 @@ pub mod prelude {
     pub use super::endpoints::*;
     #[cfg(feature = "image")]
     pub use super::image::*;
+    pub use super::queue::*;
     pub use super::request::*;
     pub use super::*;
 }
@@ -23,6 +26,10 @@ pub enum FalError {
     RequestError(#[from] reqwest::Error),
     #[error("image error: {0}")]
     ImageError(#[from] ::image::ImageError),
+    #[error("serialization error: {0}")]
+    SerializeError(#[from] serde_json::Error),
+    #[error("stream error: {0}")]
+    StreamError(#[from] EventStreamError<reqwest::Error>),
     #[error("error: {0}")]
     Other(String),
 }
