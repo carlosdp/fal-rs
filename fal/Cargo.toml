@@ -10,12 +10,13 @@ endpoints = []
 
 [dependencies]
 fal-derive = { path = "../fal-derive" }
-base64 = { version = "0.22", optional = true }
-image = { version = "0.25", optional = true }
-reqwest = { workspace = true, features = ["json", "stream", "multipart"] }
-serde = { workspace = true, features = ["derive", "rc"] }
+reqwest = { workspace = true, features = ["json", "stream"] }
+serde = { workspace = true, features = ["derive"] }
 serde_json.workspace = true
 thiserror = "1"
+
+base64 = { version = "0.22", optional = true }
+image = { version = "0.25", optional = true }
 futures = { version = "0.3", optional = true }
 
 [dev-dependencies]

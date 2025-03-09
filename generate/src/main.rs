@@ -368,15 +368,19 @@ async fn main() {
 
     // Write initial root mod.rs with module declarations
     let root_mod_content = format!(
-        "use serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\nmod types;\npub use types::*;\n",
+        "{}\n\nmod types;\npub use types::*;\n",
         match &root {
-            Node::Module { children, .. } => children.iter().filter_map(|child| {
-                if let Node::Module { name, .. } = child {
-                    Some(format!("pub mod {};", name))
-                } else {
-                    None
-                }
-            }).collect::<Vec<_>>().join("\n"),
+            Node::Module { children, .. } => children
+                .iter()
+                .filter_map(|child| {
+                    if let Node::Module { name, .. } = child {
+                        Some(format!("pub mod {};", name))
+                    } else {
+                        None
+                    }
+                })
+                .collect::<Vec<_>>()
+                .join("\n"),
             _ => String::new(),
         }
     );
