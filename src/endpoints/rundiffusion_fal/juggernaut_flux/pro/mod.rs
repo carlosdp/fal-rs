@@ -5,7 +5,21 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_image-to-image"
+))]
 pub mod image_to_image;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_redux"
+))]
 pub mod redux;
 
 #[derive(Debug, Serialize, Deserialize)]

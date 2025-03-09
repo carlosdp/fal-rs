@@ -1,6 +1,5 @@
 #![doc = include_str!("../README.md")]
 
-#[cfg(feature = "endpoints")]
 pub mod endpoints;
 #[cfg(feature = "image")]
 pub mod image;
@@ -11,7 +10,6 @@ use eventsource_stream::EventStreamError;
 pub use fal_derive::endpoint;
 
 pub mod prelude {
-    #[cfg(feature = "endpoints")]
     pub use super::endpoints::*;
     #[cfg(feature = "image")]
     pub use super::image::*;

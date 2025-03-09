@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_triposr",
+    feature = "endpoints_fal-ai_triposr_remeshing"
+))]
 pub mod remeshing;
 
 #[derive(Debug, Serialize, Deserialize)]

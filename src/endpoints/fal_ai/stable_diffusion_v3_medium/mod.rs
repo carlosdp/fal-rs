@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_stable-diffusion-v3-medium",
+    feature = "endpoints_fal-ai_stable-diffusion-v3-medium_image-to-image"
+))]
 pub mod image_to_image;
 
 #[derive(Debug, Serialize, Deserialize)]

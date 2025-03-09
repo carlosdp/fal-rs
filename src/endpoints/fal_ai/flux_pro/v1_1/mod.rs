@@ -5,6 +5,13 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_v1-1",
+    feature = "endpoints_fal-ai_flux-pro_v1-1_redux"
+))]
 pub mod redux;
 
 #[derive(Debug, Serialize, Deserialize)]

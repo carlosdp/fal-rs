@@ -5,7 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_moondream-next",
+    feature = "endpoints_fal-ai_moondream-next_batch"
+))]
 pub mod batch;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_moondream-next",
+    feature = "endpoints_fal-ai_moondream-next_detection"
+))]
 pub mod detection;
 
 #[derive(Debug, Serialize, Deserialize)]

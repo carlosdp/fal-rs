@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
+use cargo_manifest::Manifest;
 use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 use serde::Deserialize;
 
@@ -170,7 +171,26 @@ fn write_module_to_files(
                 } = child
                 {
                     has_child_modules = true;
-                    mod_content.push_str(&format!("pub mod {};\n", child_name));
+
+                    let mut path_segments: Vec<String> = module_path
+                        .split('/')
+                        .map(|s| s.replace("_", "-"))
+                        .collect();
+                    path_segments.remove(0); // remove "src"
+                    path_segments.push(child_name.replace("_", "-")); // add the child module name
+                    let features = (1..=path_segments.len())
+                        .map(|i| path_segments[0..i].join("_"))
+                        .collect::<Vec<String>>();
+                    let feature_cfg = format!(
+                        "#[cfg(any({}))]",
+                        features
+                            .into_iter()
+                            .map(|s| format!("feature = \"{}\"", s))
+                            .collect::<Vec<String>>()
+                            .join(",")
+                    );
+
+                    mod_content.push_str(&format!("{}\npub mod {};\n", feature_cfg, child_name));
                 }
             }
 
@@ -202,6 +222,52 @@ fn write_module_to_files(
     }
 
     Ok(())
+}
+
+fn update_manifest_features(manifest: &mut Manifest, node: &Node, parent_path: &str) {
+    // Remove all features that start with "endpoint"
+    if let Some(features) = &mut manifest.features {
+        features.retain(|name, _| !name.starts_with("endpoint"));
+    }
+
+    // Initialize features if not present
+    if manifest.features.is_none() {
+        manifest.features = Some(std::collections::BTreeMap::new());
+    }
+
+    // Add base endpoints feature
+    if let Some(features) = &mut manifest.features {
+        features.insert("endpoints".to_string(), vec![]);
+    }
+
+    // Recursively add features for each module
+    add_module_features(manifest, node, parent_path);
+}
+
+fn add_module_features(manifest: &mut Manifest, node: &Node, parent_path: &str) {
+    match node {
+        Node::Module { name, children } => {
+            let current_path = if parent_path.is_empty() {
+                name.clone()
+            } else {
+                format!("{}_{}", parent_path, name.replace("_", "-"))
+            };
+
+            // Add feature for current module
+            if let Some(features) = &mut manifest.features {
+                let feature_name = current_path.clone();
+                features.insert(feature_name, vec![]);
+            }
+
+            // Recurse into children
+            for child in children {
+                add_module_features(manifest, child, &current_path);
+            }
+        }
+        Node::Leaf { .. } => {
+            // Leaf nodes don't need features
+        }
+    }
 }
 
 #[tokio::main]
@@ -381,6 +447,8 @@ async fn main() {
     )
     .expect("Failed to write module files");
 
+    let mut manifest = Manifest::from_path("Cargo.toml").unwrap();
+
     // Generate and write common types
     let rust_struct_types = req_res_types
         .iter()
@@ -411,7 +479,7 @@ async fn main() {
                 .iter()
                 .filter_map(|child| {
                     if let Node::Module { name, .. } = child {
-                        Some(format!("pub mod {};", name))
+                        Some(format!("#[cfg(any(feature = \"endpoints\", feature = \"endpoints_{}\"))]\npub mod {};", name.replace("_", "-"), name))
                     } else {
                         None
                     }
@@ -423,6 +491,11 @@ async fn main() {
     );
     std::fs::write(format!("{}/mod.rs", base_module_path), root_mod_content)
         .expect("Failed to write root mod.rs");
+
+    update_manifest_features(&mut manifest, &root, "");
+
+    let new_manifest = toml::to_string_pretty(&manifest).unwrap();
+    std::fs::write("Cargo.toml", new_manifest).unwrap();
 }
 
 fn generate_request_module(

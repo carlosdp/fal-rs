@@ -5,7 +5,21 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ideogram",
+    feature = "endpoints_fal-ai_ideogram_v2a",
+    feature = "endpoints_fal-ai_ideogram_v2a_remix"
+))]
 pub mod remix;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ideogram",
+    feature = "endpoints_fal-ai_ideogram_v2a",
+    feature = "endpoints_fal-ai_ideogram_v2a_turbo"
+))]
 pub mod turbo;
 
 #[derive(Debug, Serialize, Deserialize)]

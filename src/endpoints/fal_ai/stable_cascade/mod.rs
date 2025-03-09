@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_stable-cascade",
+    feature = "endpoints_fal-ai_stable-cascade_sote-diffusion"
+))]
 pub mod sote_diffusion;
 
 #[derive(Debug, Serialize, Deserialize)]

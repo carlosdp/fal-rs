@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_animatediff-v2v",
+    feature = "endpoints_fal-ai_animatediff-v2v_turbo"
+))]
 pub mod turbo;
 
 #[derive(Debug, Serialize, Deserialize)]

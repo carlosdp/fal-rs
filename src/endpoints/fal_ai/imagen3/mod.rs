@@ -5,7 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imagen3",
+    feature = "endpoints_fal-ai_imagen3_fast"
+))]
 pub mod fast;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imagen3",
+    feature = "endpoints_fal-ai_imagen3_subject-reference"
+))]
 pub mod subject_reference;
 
 #[derive(Debug, Serialize, Deserialize)]

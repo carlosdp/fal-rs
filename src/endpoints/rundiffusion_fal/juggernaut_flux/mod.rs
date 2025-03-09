@@ -5,8 +5,26 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_base"
+))]
 pub mod base;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning"
+))]
 pub mod lightning;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro"
+))]
 pub mod pro;
 
 #[derive(Debug, Serialize, Deserialize)]

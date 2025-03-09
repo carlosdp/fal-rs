@@ -5,11 +5,47 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_finetuned"
+))]
 pub mod finetuned;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_new"
+))]
 pub mod new;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_v1"
+))]
 pub mod v1;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_v1-1"
+))]
 pub mod v1_1;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_v1-1-ultra"
+))]
 pub mod v1_1_ultra;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro",
+    feature = "endpoints_fal-ai_flux-pro_v1-1-ultra-finetuned"
+))]
 pub mod v1_1_ultra_finetuned;
 
 #[derive(Debug, Serialize, Deserialize)]

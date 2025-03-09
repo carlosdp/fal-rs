@@ -9,6 +9,7 @@ A Rust client for the [fal.ai](https://fal.ai) API, providing easy access to sta
 ## Features
 
 - **Type-safe API**: Strongly typed interfaces for all fal.ai endpoints, generated and kept up-to-date straight from the API itself
+- **Compile Time Efficient**: FAL API Endpoint modules are code generated from the API with granular features, so you only build the set of endpoints you actually use!
 - **Async/Await Support**: Built on top of `reqwest` for efficient async operations
 - **Queue System**: Built-in support for fal.ai's queue system for long-running operations
 - **Image Processing**: Optional image processing capabilities with the `image` feature
@@ -19,13 +20,34 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-fal = "0.1"
+fal = "0.2"
 ```
 
 ## Usage
 ### Using public model endpoints
 
-By default, the `endpoints` feature is enabled, and you can use pre-built, fully-typed endpoint functions to call the API:
+By default, endpoints are disabled. The FAL API has hundreds of endpoints, and are growing in number by the day. In order to prevent compile time bloat, this crate supports fine-grained crate features for enabling endpoints, as you need them. To use pre-built, fully-typed endpoint functions to call the API, you can enable them by enabling the corresponding feature. For example, for the `fal-ai/flux-pro` endpoint, I can enable it like this:
+
+```toml
+# In Cargo.toml
+fal = { version = "0.2", features = ["endpoints_fal-ai_flux-pro"] }
+```
+
+or, I can enable *all* endpoints under the `fal-ai` owner:
+
+```toml
+# In Cargo.toml
+fal = { version = "0.2", features = ["endpoints_fal-ai"] }
+```
+
+or if I'm really crazy, I can just enable all endpoints in the API:
+
+```toml
+# In Cargo.toml
+fal = { version = "0.2", features = ["endpoints"] }
+```
+
+Once enabled, the endpoint can be called like this:
 
 ```rust,no_run
 use fal::prelude::*;
@@ -81,8 +103,8 @@ async fn main() {
 }
 ```
 
-## The `#[endpoint]` macro
-You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you disable the `endpoints` feature, or you are using a private model endpoint.
+### The `#[endpoint]` macro
+You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you are using a private model endpoint, or you really just want control over your types. Otherwise, you should be able to find the endpoint you want to use in the pre-built endpoints module!
 
 ```toml
 # in Cargo.toml
@@ -118,8 +140,8 @@ async fn main() {
 
 The crate comes with several optional features:
 
-- `image` (enabled by default): Provides image processing capabilities using the `image` crate
-- `endpoints` (enabled by default): Includes pre-generated endpoint modules for fal.ai services. FAL has hundreds of endpoints, growing by the day, so disabling this feature will reduce compile time.
+- `image` (enabled by default): Provides image processing helpers using the `image` crate
+- `endpoints_*`: Include pre-generated endpoint modules for fal.ai services. See "Using public model endpoints" above for details.
 
 ## Generating Endpoint Modules
 

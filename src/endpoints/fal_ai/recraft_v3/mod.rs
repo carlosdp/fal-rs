@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_recraft-v3",
+    feature = "endpoints_fal-ai_recraft-v3_create-style"
+))]
 pub mod create_style;
 
 #[derive(Debug, Serialize, Deserialize)]

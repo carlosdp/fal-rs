@@ -5,7 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-lora",
+    feature = "endpoints_fal-ai_flux-lora_image-to-image"
+))]
 pub mod image_to_image;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-lora",
+    feature = "endpoints_fal-ai_flux-lora_inpainting"
+))]
 pub mod inpainting;
 
 #[derive(Debug, Serialize, Deserialize)]

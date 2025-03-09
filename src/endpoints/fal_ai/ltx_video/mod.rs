@@ -5,6 +5,12 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ltx-video",
+    feature = "endpoints_fal-ai_ltx-video_image-to-video"
+))]
 pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

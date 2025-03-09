@@ -5,7 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux",
+    feature = "endpoints_fal-ai_flux_dev"
+))]
 pub mod dev;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux",
+    feature = "endpoints_fal-ai_flux_schnell"
+))]
 pub mod schnell;
 
 #[derive(Debug, Serialize, Deserialize)]
