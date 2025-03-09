@@ -16,5 +16,5 @@ pub struct T2IOutput {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn flash(params: TextToImageRequest) -> FalRequest<TextToImageRequest, T2IOutput> {
-    FalRequest::new("fal-ai/luma-photon", params)
+    FalRequest::new("fal-ai/luma-photon/flash", params)
 }

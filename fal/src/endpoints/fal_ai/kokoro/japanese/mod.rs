@@ -16,5 +16,5 @@ pub struct JapaneseOutput {
 /// Category: text-to-audio
 /// Machine Type: A100
 pub fn japanese(params: JapaneseRequest) -> FalRequest<JapaneseRequest, JapaneseOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/japanese", params)
 }

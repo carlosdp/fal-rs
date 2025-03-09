@@ -25,5 +25,5 @@ pub struct Output {
 /// Machine Type: A100
 /// License Type: research
 pub fn sote_diffusion(params: SoteDiffusionInput) -> FalRequest<SoteDiffusionInput, Output> {
-    FalRequest::new("fal-ai/stable-cascade", params)
+    FalRequest::new("fal-ai/stable-cascade/sote-diffusion", params)
 }

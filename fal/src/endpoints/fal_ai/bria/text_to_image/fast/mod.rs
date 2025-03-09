@@ -19,5 +19,5 @@ pub struct Output {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn fast(params: FastTextToImageRequest) -> FalRequest<FastTextToImageRequest, Output> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/text-to-image/fast", params)
 }

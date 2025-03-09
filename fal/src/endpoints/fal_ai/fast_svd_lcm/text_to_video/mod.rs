@@ -19,5 +19,5 @@ pub struct FastSVDOutput {
 /// Category: image-to-video
 /// Machine Type: A100
 pub fn text_to_video(params: FastSVDTextInput) -> FalRequest<FastSVDTextInput, FastSVDOutput> {
-    FalRequest::new("fal-ai/fast-svd-lcm", params)
+    FalRequest::new("fal-ai/fast-svd-lcm/text-to-video", params)
 }

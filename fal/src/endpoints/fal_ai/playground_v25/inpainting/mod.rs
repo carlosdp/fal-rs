@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: InpaintingPlaygroundv25Input,
 ) -> FalRequest<InpaintingPlaygroundv25Input, Output> {
-    FalRequest::new("fal-ai/playground-v25", params)
+    FalRequest::new("fal-ai/playground-v25/inpainting", params)
 }

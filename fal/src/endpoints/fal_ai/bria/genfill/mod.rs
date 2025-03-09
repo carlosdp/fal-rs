@@ -17,5 +17,5 @@ pub struct GenFillOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn genfill(params: GenFillInput) -> FalRequest<GenFillInput, GenFillOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/genfill", params)
 }

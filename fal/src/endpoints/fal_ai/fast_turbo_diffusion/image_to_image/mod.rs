@@ -24,5 +24,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageTurboInput,
 ) -> FalRequest<ImageToImageTurboInput, Output> {
-    FalRequest::new("fal-ai/fast-turbo-diffusion", params)
+    FalRequest::new("fal-ai/fast-turbo-diffusion/image-to-image", params)
 }

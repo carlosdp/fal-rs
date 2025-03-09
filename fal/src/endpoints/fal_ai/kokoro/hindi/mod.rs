@@ -16,5 +16,5 @@ pub struct HindiOutput {
 /// Category: text-to-audio
 /// Machine Type: A100
 pub fn hindi(params: HindiRequest) -> FalRequest<HindiRequest, HindiOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/hindi", params)
 }

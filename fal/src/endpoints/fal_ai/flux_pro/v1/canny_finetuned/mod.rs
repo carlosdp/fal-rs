@@ -31,5 +31,5 @@ pub struct Output {
 pub fn canny_finetuned(
     params: FluxProCannyControlFinetunedInput,
 ) -> FalRequest<FluxProCannyControlFinetunedInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/v1/canny-finetuned", params)
 }

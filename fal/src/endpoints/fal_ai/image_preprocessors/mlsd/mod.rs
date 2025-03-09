@@ -16,5 +16,5 @@ pub struct MLSDOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn mlsd(params: MLSDInput) -> FalRequest<MLSDInput, MLSDOutput> {
-    FalRequest::new("fal-ai/image-preprocessors/depth-anything/v2", params)
+    FalRequest::new("fal-ai/image-preprocessors/mlsd", params)
 }

@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn inpainting(params: InpaintInput) -> FalRequest<InpaintInput, Output> {
-    FalRequest::new("fal-ai/flux-general", params)
+    FalRequest::new("fal-ai/flux-general/inpainting", params)
 }

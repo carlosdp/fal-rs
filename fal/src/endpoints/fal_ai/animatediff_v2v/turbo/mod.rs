@@ -21,5 +21,5 @@ pub struct AnimateDiffV2VTurboOutput {
 pub fn turbo(
     params: AnimateDiffV2VTurboInput,
 ) -> FalRequest<AnimateDiffV2VTurboInput, AnimateDiffV2VTurboOutput> {
-    FalRequest::new("fal-ai/animatediff-v2v", params)
+    FalRequest::new("fal-ai/animatediff-v2v/turbo", params)
 }

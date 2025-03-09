@@ -20,5 +20,5 @@ pub struct AnimateDiffV2VOutput {
 pub fn video_to_video(
     params: AnimateDiffV2VInput,
 ) -> FalRequest<AnimateDiffV2VInput, AnimateDiffV2VOutput> {
-    FalRequest::new("fal-ai/fast-animatediff/text-to-video", params)
+    FalRequest::new("fal-ai/fast-animatediff/video-to-video", params)
 }

@@ -21,5 +21,5 @@ pub struct Output {
 /// Category: image-to-image
 /// Machine Type: A100
 pub fn birefnet(params: Input) -> FalRequest<Input, Output> {
-    FalRequest::new("fal-ai/birefnet/v2", params)
+    FalRequest::new("fal-ai/birefnet", params)
 }

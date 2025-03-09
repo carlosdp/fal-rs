@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageLightningInput,
 ) -> FalRequest<ImageToImageLightningInput, Output> {
-    FalRequest::new("fal-ai/fast-lightning-sdxl", params)
+    FalRequest::new("fal-ai/fast-lightning-sdxl/image-to-image", params)
 }

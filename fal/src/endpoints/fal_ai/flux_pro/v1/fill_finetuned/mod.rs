@@ -31,5 +31,5 @@ pub struct Output {
 pub fn fill_finetuned(
     params: FluxProFillFinetunedInput,
 ) -> FalRequest<FluxProFillFinetunedInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/v1/fill-finetuned", params)
 }

@@ -31,5 +31,5 @@ pub struct Output {
 pub fn v1_1_ultra_finetuned(
     params: FluxProUltraTextToImageFinetunedInput,
 ) -> FalRequest<FluxProUltraTextToImageFinetunedInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/v1.1-ultra-finetuned", params)
 }

@@ -28,5 +28,5 @@ pub struct ChatOutput {
 ///
 /// Run any vision model with fal, powered by [OpenRouter](https://openrouter.ai).
 pub fn vision(params: VisionInput) -> FalRequest<VisionInput, ChatOutput> {
-    FalRequest::new("fal-ai/any-llm", params)
+    FalRequest::new("fal-ai/any-llm/vision", params)
 }

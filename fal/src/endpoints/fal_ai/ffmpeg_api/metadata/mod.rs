@@ -16,5 +16,5 @@ pub struct MetadataOutput {
 /// Category: video-to-video
 /// Machine Type: L
 pub fn metadata(params: MetadataInput) -> FalRequest<MetadataInput, MetadataOutput> {
-    FalRequest::new("fal-ai/ffmpeg-api/compose", params)
+    FalRequest::new("fal-ai/ffmpeg-api/metadata", params)
 }

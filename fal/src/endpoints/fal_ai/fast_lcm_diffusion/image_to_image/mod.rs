@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A6000
 pub fn image_to_image(params: ImageToImageLCMInput) -> FalRequest<ImageToImageLCMInput, Output> {
-    FalRequest::new("fal-ai/fast-lcm-diffusion", params)
+    FalRequest::new("fal-ai/fast-lcm-diffusion/image-to-image", params)
 }

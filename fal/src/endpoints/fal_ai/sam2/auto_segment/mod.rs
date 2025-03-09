@@ -20,5 +20,5 @@ pub struct SAM2AutomaticSegmentationOutput {
 pub fn auto_segment(
     params: SAM2AutomaticSegmentationInput,
 ) -> FalRequest<SAM2AutomaticSegmentationInput, SAM2AutomaticSegmentationOutput> {
-    FalRequest::new("fal-ai/sam2/image", params)
+    FalRequest::new("fal-ai/sam2/auto-segment", params)
 }

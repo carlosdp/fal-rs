@@ -21,5 +21,5 @@ pub struct I2VDirectorOutput {
 pub fn image_to_video(
     params: ImageToVideoDirectorRequest,
 ) -> FalRequest<ImageToVideoDirectorRequest, I2VDirectorOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/video-01-director/image-to-video", params)
 }

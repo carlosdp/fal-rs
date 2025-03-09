@@ -19,5 +19,5 @@ pub struct DetectionOutput {
 ///
 /// License Type: commercial
 pub fn detection(params: DetectionInput) -> FalRequest<DetectionInput, DetectionOutput> {
-    FalRequest::new("fal-ai/moondream-next", params)
+    FalRequest::new("fal-ai/moondream-next/detection", params)
 }

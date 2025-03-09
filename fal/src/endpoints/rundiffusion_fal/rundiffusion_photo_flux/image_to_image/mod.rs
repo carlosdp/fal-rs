@@ -27,5 +27,8 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn image_to_image(params: PhotoLoraI2IInput) -> FalRequest<PhotoLoraI2IInput, Output> {
-    FalRequest::new("rundiffusion-fal/rundiffusion-photo-flux", params)
+    FalRequest::new(
+        "rundiffusion-fal/rundiffusion-photo-flux/image-to-image",
+        params,
+    )
 }

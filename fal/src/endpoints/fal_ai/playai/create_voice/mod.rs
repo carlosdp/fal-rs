@@ -15,5 +15,5 @@ pub struct CreateVoiceOutput {
 ///
 /// Category: text-to-speech
 pub fn create_voice(params: CreateVoiceInput) -> FalRequest<CreateVoiceInput, CreateVoiceOutput> {
-    FalRequest::new("fal-ai/playai/tts/v3", params)
+    FalRequest::new("fal-ai/playai/create-voice", params)
 }

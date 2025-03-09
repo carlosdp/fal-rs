@@ -18,5 +18,5 @@ pub struct MarigoldDepthMapOutput {
 pub fn marigold_depth(
     params: MarigoldDepthMapInput,
 ) -> FalRequest<MarigoldDepthMapInput, MarigoldDepthMapOutput> {
-    FalRequest::new("fal-ai/imageutils/depth", params)
+    FalRequest::new("fal-ai/imageutils/marigold-depth", params)
 }

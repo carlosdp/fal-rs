@@ -22,5 +22,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A6000
 pub fn inpainting(params: InpaintingTurboInput) -> FalRequest<InpaintingTurboInput, Output> {
-    FalRequest::new("fal-ai/fast-turbo-diffusion", params)
+    FalRequest::new("fal-ai/fast-turbo-diffusion/inpainting", params)
 }

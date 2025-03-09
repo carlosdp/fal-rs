@@ -27,5 +27,5 @@ pub struct SD3Output {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn image_to_image(params: ImageToImageInput) -> FalRequest<ImageToImageInput, SD3Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v3-medium", params)
+    FalRequest::new("fal-ai/stable-diffusion-v3-medium/image-to-image", params)
 }

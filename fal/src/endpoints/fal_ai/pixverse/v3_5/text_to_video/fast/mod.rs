@@ -16,5 +16,5 @@ pub struct VideoOutput {
 /// Category: text-to-video
 /// Machine Type: A100
 pub fn fast(params: FastTextToVideoRequest) -> FalRequest<FastTextToVideoRequest, VideoOutput> {
-    FalRequest::new("fal-ai/pixverse/v3.5/text-to-video", params)
+    FalRequest::new("fal-ai/pixverse/v3.5/text-to-video/fast", params)
 }

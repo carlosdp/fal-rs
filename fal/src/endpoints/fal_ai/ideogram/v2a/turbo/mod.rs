@@ -22,5 +22,5 @@ pub struct Output {
 ///
 /// Faster version of Ideogram 2a. Can be used as an API directly from fal.
 pub fn turbo(params: TextToImageInput) -> FalRequest<TextToImageInput, Output> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/v2a/turbo", params)
 }

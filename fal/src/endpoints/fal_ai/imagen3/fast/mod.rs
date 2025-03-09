@@ -26,5 +26,5 @@ pub struct Output {
 /// - Good prompt understanding
 /// - Reliable text rendering
 pub fn fast(params: TextToImageInput) -> FalRequest<TextToImageInput, Output> {
-    FalRequest::new("fal-ai/imagen3", params)
+    FalRequest::new("fal-ai/imagen3/fast", params)
 }

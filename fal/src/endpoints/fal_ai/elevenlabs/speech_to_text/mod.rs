@@ -30,5 +30,5 @@ pub struct TranscriptionOutput {
 pub fn speech_to_text(
     params: SpeechToTextRequest,
 ) -> FalRequest<SpeechToTextRequest, TranscriptionOutput> {
-    FalRequest::new("fal-ai/elevenlabs/audio-isolation", params)
+    FalRequest::new("fal-ai/elevenlabs/speech-to-text", params)
 }

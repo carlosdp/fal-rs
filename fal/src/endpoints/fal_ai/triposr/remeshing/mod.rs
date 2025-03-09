@@ -21,5 +21,5 @@ pub struct ObjectOutput {
 /// Category: image-to-3d
 /// Machine Type: A6000
 pub fn remeshing(params: RemeshingInput) -> FalRequest<RemeshingInput, ObjectOutput> {
-    FalRequest::new("fal-ai/triposr", params)
+    FalRequest::new("fal-ai/triposr/remeshing", params)
 }

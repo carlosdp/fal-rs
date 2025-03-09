@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: DreamshaperInpaintingInput,
 ) -> FalRequest<DreamshaperInpaintingInput, Output> {
-    FalRequest::new("fal-ai/dreamshaper", params)
+    FalRequest::new("fal-ai/dreamshaper/inpainting", params)
 }

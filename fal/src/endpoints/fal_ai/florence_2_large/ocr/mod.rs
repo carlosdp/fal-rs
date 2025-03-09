@@ -17,5 +17,5 @@ pub struct TextOutput {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn ocr(params: ImageInput) -> FalRequest<ImageInput, TextOutput> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/ocr", params)
 }

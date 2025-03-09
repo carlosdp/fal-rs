@@ -20,5 +20,5 @@ pub struct Output {
 ///
 /// Faster version of Ideogram 2.0 Edit. Can be used as an API directly from fal.
 pub fn edit(params: EditImageInput) -> FalRequest<EditImageInput, Output> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/v2/turbo/edit", params)
 }

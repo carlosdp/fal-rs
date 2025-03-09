@@ -15,5 +15,5 @@ pub struct VideoOutput {
 ///
 /// Category: text-to-video
 pub fn image_to_video(params: ImageToVideoRequest) -> FalRequest<ImageToVideoRequest, VideoOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/image-to-video", params)
 }

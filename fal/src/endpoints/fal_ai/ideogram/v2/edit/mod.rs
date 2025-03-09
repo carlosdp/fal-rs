@@ -20,5 +20,5 @@ pub struct Output {
 ///
 /// Ideogram's state-of-the-art image editing model. Can be used as an API directly from fal.
 pub fn edit(params: EditImageInput) -> FalRequest<EditImageInput, Output> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/v2/edit", params)
 }

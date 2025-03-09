@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageControlNetInput,
 ) -> FalRequest<ImageToImageControlNetInput, Output> {
-    FalRequest::new("fal-ai/sd15-depth-controlnet", params)
+    FalRequest::new("fal-ai/sd15-depth-controlnet/image-to-image", params)
 }

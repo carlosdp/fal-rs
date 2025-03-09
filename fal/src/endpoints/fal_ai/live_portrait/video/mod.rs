@@ -19,5 +19,5 @@ pub struct LivePortraitOutput {
 pub fn video(
     params: LivePortraitVideoInput,
 ) -> FalRequest<LivePortraitVideoInput, LivePortraitOutput> {
-    FalRequest::new("fal-ai/live-portrait", params)
+    FalRequest::new("fal-ai/live-portrait/video", params)
 }

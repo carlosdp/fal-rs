@@ -16,5 +16,5 @@ pub struct CannyOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn canny(params: CannyInput) -> FalRequest<CannyInput, CannyOutput> {
-    FalRequest::new("fal-ai/image-preprocessors/depth-anything/v2", params)
+    FalRequest::new("fal-ai/image-preprocessors/canny", params)
 }

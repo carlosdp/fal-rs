@@ -18,5 +18,5 @@ pub struct SadTalkerOutput {
 pub fn reference(
     params: SadTalkerRefVideoInput,
 ) -> FalRequest<SadTalkerRefVideoInput, SadTalkerOutput> {
-    FalRequest::new("fal-ai/sadtalker", params)
+    FalRequest::new("fal-ai/sadtalker/reference", params)
 }

@@ -22,5 +22,5 @@ pub struct HunyuanT2VResponse {
 pub fn video_to_video(
     params: HunyuanV2VRequest,
 ) -> FalRequest<HunyuanV2VRequest, HunyuanT2VResponse> {
-    FalRequest::new("fal-ai/hunyuan-video", params)
+    FalRequest::new("fal-ai/hunyuan-video/video-to-video", params)
 }

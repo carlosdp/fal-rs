@@ -17,5 +17,5 @@ pub struct MiniCPMV26Output {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn video(params: MiniCPMV26VideoInput) -> FalRequest<MiniCPMV26VideoInput, MiniCPMV26Output> {
-    FalRequest::new("fal-ai/mini-cpm", params)
+    FalRequest::new("fal-ai/mini-cpm/video", params)
 }

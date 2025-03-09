@@ -21,5 +21,5 @@ pub struct VideoOutput {
 ///
 /// Hailuo T2V-01 API: Native high-resolution, high-frame-rate video generation model, supports text-to-video and image-to-video
 pub fn video_01(params: TextToVideoRequest) -> FalRequest<TextToVideoRequest, VideoOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/video-01", params)
 }

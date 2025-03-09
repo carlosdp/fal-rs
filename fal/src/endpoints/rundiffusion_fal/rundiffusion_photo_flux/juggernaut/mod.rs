@@ -30,5 +30,8 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn juggernaut(params: PhotoLoraT2IInput) -> FalRequest<PhotoLoraT2IInput, Output> {
-    FalRequest::new("rundiffusion-fal/rundiffusion-photo-flux", params)
+    FalRequest::new(
+        "rundiffusion-fal/rundiffusion-photo-flux/juggernaut",
+        params,
+    )
 }

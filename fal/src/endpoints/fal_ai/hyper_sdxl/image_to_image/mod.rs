@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageHyperInput,
 ) -> FalRequest<ImageToImageHyperInput, Output> {
-    FalRequest::new("fal-ai/hyper-sdxl", params)
+    FalRequest::new("fal-ai/hyper-sdxl/image-to-image", params)
 }

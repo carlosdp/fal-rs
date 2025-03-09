@@ -22,5 +22,5 @@ pub struct TTSOutput {
 /// Excels in stability, language diversity, and accent accuracy.
 /// Supports 29 languages with high-quality, natural-sounding voices.
 pub fn multilingual_v2(params: TextToSpeechRequest) -> FalRequest<TextToSpeechRequest, TTSOutput> {
-    FalRequest::new("fal-ai/elevenlabs/audio-isolation", params)
+    FalRequest::new("fal-ai/elevenlabs/tts/multilingual-v2", params)
 }

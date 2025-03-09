@@ -19,5 +19,5 @@ pub struct BGReplaceOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn replace(params: BGReplaceInput) -> FalRequest<BGReplaceInput, BGReplaceOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/background/replace", params)
 }

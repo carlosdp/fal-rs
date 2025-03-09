@@ -19,5 +19,5 @@ pub struct VideoEffectsOutput {
 ///
 /// Kling 1.0 (pro) Effects API.
 pub fn effects(params: VideoEffectsRequest) -> FalRequest<VideoEffectsRequest, VideoEffectsOutput> {
-    FalRequest::new("fal-ai/kling-video/v1/standard/text-to-video", params)
+    FalRequest::new("fal-ai/kling-video/v1/pro/effects", params)
 }

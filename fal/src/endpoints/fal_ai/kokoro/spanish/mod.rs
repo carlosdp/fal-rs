@@ -16,5 +16,5 @@ pub struct SpanishOutput {
 /// Category: text-to-audio
 /// Machine Type: A100
 pub fn spanish(params: SpanishRequest) -> FalRequest<SpanishRequest, SpanishOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/spanish", params)
 }

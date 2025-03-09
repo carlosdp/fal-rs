@@ -22,5 +22,5 @@ pub struct TTSOutput {
 /// High quality with lowest latency, ideal for real-time applications.
 /// Supports 32 languages while maintaining natural voice quality.
 pub fn turbo_v2_5(params: TextToSpeechRequest) -> FalRequest<TextToSpeechRequest, TTSOutput> {
-    FalRequest::new("fal-ai/elevenlabs/audio-isolation", params)
+    FalRequest::new("fal-ai/elevenlabs/tts/turbo-v2.5", params)
 }

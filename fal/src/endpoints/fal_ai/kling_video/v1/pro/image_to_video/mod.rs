@@ -21,5 +21,5 @@ pub struct I2VOutput {
 pub fn image_to_video(
     params: V1ImageToVideoRequest,
 ) -> FalRequest<V1ImageToVideoRequest, I2VOutput> {
-    FalRequest::new("fal-ai/kling-video/v1/standard/text-to-video", params)
+    FalRequest::new("fal-ai/kling-video/v1/pro/image-to-video", params)
 }

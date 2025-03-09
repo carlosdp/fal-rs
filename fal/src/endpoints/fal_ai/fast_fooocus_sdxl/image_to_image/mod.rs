@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageFooocusInput,
 ) -> FalRequest<ImageToImageFooocusInput, Output> {
-    FalRequest::new("fal-ai/fast-fooocus-sdxl", params)
+    FalRequest::new("fal-ai/fast-fooocus-sdxl/image-to-image", params)
 }

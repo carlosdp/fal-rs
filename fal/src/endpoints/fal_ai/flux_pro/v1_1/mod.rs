@@ -33,5 +33,5 @@ pub struct Output {
 pub fn v1_1(
     params: FluxProPlusTextToImageInput,
 ) -> FalRequest<FluxProPlusTextToImageInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/v1.1", params)
 }

@@ -19,5 +19,5 @@ pub struct T2VOutput {
 ///
 /// Kling 1.6 (std) Text to Video API.
 pub fn text_to_video(params: TextToVideoRequest) -> FalRequest<TextToVideoRequest, T2VOutput> {
-    FalRequest::new("fal-ai/kling-video/v1/standard/text-to-video", params)
+    FalRequest::new("fal-ai/kling-video/v1.6/standard/text-to-video", params)
 }

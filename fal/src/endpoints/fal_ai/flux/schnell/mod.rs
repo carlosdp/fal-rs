@@ -29,5 +29,5 @@ pub struct Output {
 ///
 /// FLUX.1 [schnell], turbo mode for next generation text-to-image model FLUX.
 pub fn schnell(params: SchnellTextToImageInput) -> FalRequest<SchnellTextToImageInput, Output> {
-    FalRequest::new("fal-ai/flux/dev/image-to-image", params)
+    FalRequest::new("fal-ai/flux/schnell", params)
 }

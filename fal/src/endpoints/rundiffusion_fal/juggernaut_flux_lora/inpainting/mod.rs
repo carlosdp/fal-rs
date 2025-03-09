@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// Juggernaut Flux, finetuned for better image generation with LoRA support
 pub fn inpainting(params: InpaintInput) -> FalRequest<InpaintInput, Output> {
-    FalRequest::new("rundiffusion-fal/juggernaut-flux-lora", params)
+    FalRequest::new("rundiffusion-fal/juggernaut-flux-lora/inpainting", params)
 }

@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: LightningModelsImageToImageInput,
 ) -> FalRequest<LightningModelsImageToImageInput, Output> {
-    FalRequest::new("fal-ai/lightning-models", params)
+    FalRequest::new("fal-ai/lightning-models/image-to-image", params)
 }

@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// FLUX.1 Redux [dev], remix your images with the state-of-the-art FLUX model.
 pub fn redux(params: DevReduxInput) -> FalRequest<DevReduxInput, Output> {
-    FalRequest::new("fal-ai/flux/dev/image-to-image", params)
+    FalRequest::new("fal-ai/flux/dev/redux", params)
 }

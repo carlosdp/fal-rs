@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A6000
 pub fn inpainting(params: InpaintingSD15Input) -> FalRequest<InpaintingSD15Input, Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v15", params)
+    FalRequest::new("fal-ai/stable-diffusion-v15/inpainting", params)
 }

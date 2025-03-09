@@ -22,5 +22,8 @@ pub struct BoundingBoxOutputWithLabels {
 pub fn caption_to_phrase_grounding(
     params: ImageWithTextInput,
 ) -> FalRequest<ImageWithTextInput, BoundingBoxOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new(
+        "fal-ai/florence-2-large/caption-to-phrase-grounding",
+        params,
+    )
 }

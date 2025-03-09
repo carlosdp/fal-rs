@@ -19,5 +19,5 @@ pub struct StyleReferenceOutput {
 pub fn create_style(
     params: StyleReferenceInput,
 ) -> FalRequest<StyleReferenceInput, StyleReferenceOutput> {
-    FalRequest::new("fal-ai/recraft-v3", params)
+    FalRequest::new("fal-ai/recraft-v3/create-style", params)
 }

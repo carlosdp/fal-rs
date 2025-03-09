@@ -17,5 +17,5 @@ pub struct UpscaleOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn upscale(params: UpscaleInput) -> FalRequest<UpscaleInput, UpscaleOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/upscale", params)
 }

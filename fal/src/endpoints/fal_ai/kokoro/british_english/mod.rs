@@ -16,5 +16,5 @@ pub struct BrEngOutput {
 /// Category: text-to-audio
 /// Machine Type: A100
 pub fn british_english(params: BrEnglishRequest) -> FalRequest<BrEnglishRequest, BrEngOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/british-english", params)
 }

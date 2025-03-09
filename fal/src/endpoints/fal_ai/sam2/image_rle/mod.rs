@@ -16,5 +16,5 @@ pub struct SAM2RLEOutput {
 /// Category: image-to-image
 /// Machine Type: A100
 pub fn image_rle(params: SAM2ImageInput) -> FalRequest<SAM2ImageInput, SAM2RLEOutput> {
-    FalRequest::new("fal-ai/sam2/image", params)
+    FalRequest::new("fal-ai/sam2/image-rle", params)
 }

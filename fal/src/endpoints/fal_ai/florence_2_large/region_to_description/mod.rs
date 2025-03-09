@@ -19,5 +19,5 @@ pub struct TextOutput {
 pub fn region_to_description(
     params: ImageWithUserCoordinatesInput,
 ) -> FalRequest<ImageWithUserCoordinatesInput, TextOutput> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/region-to-description", params)
 }

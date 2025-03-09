@@ -16,5 +16,5 @@ pub struct DocResOutput {
 /// Category: image-to-image
 /// Machine Type: A100
 pub fn dewarp(params: DocResInputDewarp) -> FalRequest<DocResInputDewarp, DocResOutput> {
-    FalRequest::new("fal-ai/docres", params)
+    FalRequest::new("fal-ai/docres/dewarp", params)
 }

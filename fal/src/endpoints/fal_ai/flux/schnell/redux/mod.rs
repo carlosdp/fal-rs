@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// FLUX.1 Redux [schnell], remix your images at turbo-speed with FLUX model.
 pub fn redux(params: SchnellReduxInput) -> FalRequest<SchnellReduxInput, Output> {
-    FalRequest::new("fal-ai/flux/dev/image-to-image", params)
+    FalRequest::new("fal-ai/flux/schnell/redux", params)
 }

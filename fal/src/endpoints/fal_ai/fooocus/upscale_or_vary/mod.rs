@@ -22,5 +22,5 @@ pub struct FooocusOutput {
 pub fn upscale_or_vary(
     params: FooocusUpscaleOrVaryInput,
 ) -> FalRequest<FooocusUpscaleOrVaryInput, FooocusOutput> {
-    FalRequest::new("fal-ai/fooocus", params)
+    FalRequest::new("fal-ai/fooocus/upscale-or-vary", params)
 }

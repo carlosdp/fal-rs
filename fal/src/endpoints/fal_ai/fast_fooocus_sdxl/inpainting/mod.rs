@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn inpainting(params: InpaintingFooocusInput) -> FalRequest<InpaintingFooocusInput, Output> {
-    FalRequest::new("fal-ai/fast-fooocus-sdxl", params)
+    FalRequest::new("fal-ai/fast-fooocus-sdxl/inpainting", params)
 }

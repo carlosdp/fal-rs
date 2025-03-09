@@ -22,5 +22,5 @@ pub struct BoundingBoxOutputWithLabels {
 pub fn open_vocabulary_detection(
     params: ImageWithTextInput,
 ) -> FalRequest<ImageWithTextInput, BoundingBoxOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/open-vocabulary-detection", params)
 }

@@ -16,5 +16,5 @@ pub struct GrowMaskOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn grow_mask(params: GrowMaskInput) -> FalRequest<GrowMaskInput, GrowMaskOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/grow-mask", params)
 }

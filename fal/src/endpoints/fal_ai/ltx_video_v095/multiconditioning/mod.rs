@@ -23,5 +23,5 @@ pub struct MulticonditioningVideoOutput {
 pub fn multiconditioning(
     params: MultiConditioningVideoInput,
 ) -> FalRequest<MultiConditioningVideoInput, MulticonditioningVideoOutput> {
-    FalRequest::new("fal-ai/ltx-video-v095", params)
+    FalRequest::new("fal-ai/ltx-video-v095/multiconditioning", params)
 }

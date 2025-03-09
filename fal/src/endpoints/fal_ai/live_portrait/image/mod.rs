@@ -19,5 +19,5 @@ pub struct LivePortraitImageOutput {
 pub fn image(
     params: LivePortraitImageInput,
 ) -> FalRequest<LivePortraitImageInput, LivePortraitImageOutput> {
-    FalRequest::new("fal-ai/live-portrait", params)
+    FalRequest::new("fal-ai/live-portrait/image", params)
 }

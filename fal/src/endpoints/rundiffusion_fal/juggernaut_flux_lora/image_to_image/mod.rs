@@ -27,5 +27,8 @@ pub struct Output {
 ///
 /// Juggernaut Flux, finetuned for better image generation with LoRA support
 pub fn image_to_image(params: ImageToImageInput) -> FalRequest<ImageToImageInput, Output> {
-    FalRequest::new("rundiffusion-fal/juggernaut-flux-lora", params)
+    FalRequest::new(
+        "rundiffusion-fal/juggernaut-flux-lora/image-to-image",
+        params,
+    )
 }

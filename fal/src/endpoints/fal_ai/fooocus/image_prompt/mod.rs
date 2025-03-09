@@ -22,5 +22,5 @@ pub struct FooocusOutput {
 pub fn image_prompt(
     params: FooocusImagePromptInput,
 ) -> FalRequest<FooocusImagePromptInput, FooocusOutput> {
-    FalRequest::new("fal-ai/fooocus", params)
+    FalRequest::new("fal-ai/fooocus/image-prompt", params)
 }

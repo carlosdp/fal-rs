@@ -19,5 +19,5 @@ pub struct Ben2OutputVideo {
 /// Category: image-to-image
 /// Machine Type: A100
 pub fn video(params: Ben2InputVideo) -> FalRequest<Ben2InputVideo, Ben2OutputVideo> {
-    FalRequest::new("fal-ai/ben/v2/image", params)
+    FalRequest::new("fal-ai/ben/v2/video", params)
 }

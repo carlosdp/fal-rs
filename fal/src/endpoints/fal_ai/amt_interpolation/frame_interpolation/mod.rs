@@ -18,5 +18,5 @@ pub struct AMTInterpolationOutput {
 pub fn frame_interpolation(
     params: AMTFrameInterpolationInput,
 ) -> FalRequest<AMTFrameInterpolationInput, AMTInterpolationOutput> {
-    FalRequest::new("fal-ai/amt-interpolation", params)
+    FalRequest::new("fal-ai/amt-interpolation/frame-interpolation", params)
 }

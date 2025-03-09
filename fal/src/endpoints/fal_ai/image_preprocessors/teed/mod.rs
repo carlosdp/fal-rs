@@ -16,5 +16,5 @@ pub struct TeeDOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn teed(params: TeeDInput) -> FalRequest<TeeDInput, TeeDOutput> {
-    FalRequest::new("fal-ai/image-preprocessors/depth-anything/v2", params)
+    FalRequest::new("fal-ai/image-preprocessors/teed", params)
 }

@@ -27,5 +27,8 @@ pub struct Output {
 ///
 /// Finetuned version of FLUX.1 [dev], improving quality while preserving lora support.
 pub fn image_to_image(params: DevImageToImageInput) -> FalRequest<DevImageToImageInput, Output> {
-    FalRequest::new("rundiffusion-fal/juggernaut-flux/base", params)
+    FalRequest::new(
+        "rundiffusion-fal/juggernaut-flux/base/image-to-image",
+        params,
+    )
 }

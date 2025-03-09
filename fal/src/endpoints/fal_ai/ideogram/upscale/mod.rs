@@ -20,5 +20,5 @@ pub struct UpscaleOutput {
 ///
 /// Ideogram's state-of-the-art image upscaling model. Can be used as an API directly from fal.
 pub fn upscale(params: UpscaleImageInput) -> FalRequest<UpscaleImageInput, UpscaleOutput> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/upscale", params)
 }

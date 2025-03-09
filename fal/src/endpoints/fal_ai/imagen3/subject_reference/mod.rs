@@ -30,5 +30,5 @@ pub struct Output {
 pub fn subject_reference(
     params: SubjectCustomizeInput,
 ) -> FalRequest<SubjectCustomizeInput, Output> {
-    FalRequest::new("fal-ai/imagen3", params)
+    FalRequest::new("fal-ai/imagen3/subject-reference", params)
 }

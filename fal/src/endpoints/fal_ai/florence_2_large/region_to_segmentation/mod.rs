@@ -22,5 +22,5 @@ pub struct PolygonOutputWithLabels {
 pub fn region_to_segmentation(
     params: ImageWithUserCoordinatesInput,
 ) -> FalRequest<ImageWithUserCoordinatesInput, PolygonOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/region-to-segmentation", params)
 }

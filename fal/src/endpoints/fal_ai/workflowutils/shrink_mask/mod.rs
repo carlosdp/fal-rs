@@ -16,5 +16,5 @@ pub struct ShrinkMaskOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn shrink_mask(params: ShrinkMaskInput) -> FalRequest<ShrinkMaskInput, ShrinkMaskOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/shrink-mask", params)
 }

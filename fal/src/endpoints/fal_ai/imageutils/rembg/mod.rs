@@ -18,5 +18,5 @@ pub struct RemoveBackgroundOutput {
 pub fn rembg(
     params: RemoveBackgroundInput,
 ) -> FalRequest<RemoveBackgroundInput, RemoveBackgroundOutput> {
-    FalRequest::new("fal-ai/imageutils/depth", params)
+    FalRequest::new("fal-ai/imageutils/rembg", params)
 }

@@ -27,5 +27,5 @@ pub struct OutputParameters {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn inpaint(params: InpaintInput) -> FalRequest<InpaintInput, OutputParameters> {
-    FalRequest::new("fal-ai/lora", params)
+    FalRequest::new("fal-ai/lora/inpaint", params)
 }

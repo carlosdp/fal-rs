@@ -23,5 +23,5 @@ pub struct Output {
 ///
 /// Ideogram 2a - faster, more affordable model with better text accuracy. Can be used as an API directly from fal.
 pub fn v2a(params: TextToImageInput) -> FalRequest<TextToImageInput, Output> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/v2a", params)
 }

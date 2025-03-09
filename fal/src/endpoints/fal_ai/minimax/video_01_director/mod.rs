@@ -23,5 +23,5 @@ pub struct T2VDirectorOutput {
 pub fn video_01_director(
     params: TextToVideoDirectorRequest,
 ) -> FalRequest<TextToVideoDirectorRequest, T2VDirectorOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/video-01-director", params)
 }

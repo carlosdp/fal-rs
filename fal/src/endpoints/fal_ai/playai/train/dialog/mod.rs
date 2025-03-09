@@ -30,5 +30,5 @@ pub struct File {
 ///
 /// Category: text-to-speech
 pub fn dialog(params: TrainingInput) -> FalRequest<TrainingInput, File> {
-    FalRequest::new("fal-ai/playai/tts/v3", params)
+    FalRequest::new("fal-ai/playai/train/dialog", params)
 }

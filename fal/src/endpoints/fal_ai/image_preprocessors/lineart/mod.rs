@@ -16,5 +16,5 @@ pub struct LineartOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn lineart(params: LineartInput) -> FalRequest<LineartInput, LineartOutput> {
-    FalRequest::new("fal-ai/image-preprocessors/depth-anything/v2", params)
+    FalRequest::new("fal-ai/image-preprocessors/lineart", params)
 }

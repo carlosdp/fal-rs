@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: DreamshaperImageToImageInput,
 ) -> FalRequest<DreamshaperImageToImageInput, Output> {
-    FalRequest::new("fal-ai/dreamshaper", params)
+    FalRequest::new("fal-ai/dreamshaper/image-to-image", params)
 }

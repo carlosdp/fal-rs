@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn rf_inversion(params: RFInversionInput) -> FalRequest<RFInversionInput, Output> {
-    FalRequest::new("fal-ai/flux-general", params)
+    FalRequest::new("fal-ai/flux-general/rf-inversion", params)
 }

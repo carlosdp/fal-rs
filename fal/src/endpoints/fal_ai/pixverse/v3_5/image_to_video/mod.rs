@@ -18,5 +18,5 @@ pub struct I2VOutput {
 /// Category: text-to-video
 /// Machine Type: A100
 pub fn image_to_video(params: ImageToVideoRequest) -> FalRequest<ImageToVideoRequest, I2VOutput> {
-    FalRequest::new("fal-ai/pixverse/v3.5/text-to-video", params)
+    FalRequest::new("fal-ai/pixverse/v3.5/image-to-video", params)
 }

@@ -29,5 +29,5 @@ pub struct OutputParameters {
 pub fn image_to_image(
     params: ImageToImageInput,
 ) -> FalRequest<ImageToImageInput, OutputParameters> {
-    FalRequest::new("fal-ai/lora", params)
+    FalRequest::new("fal-ai/lora/image-to-image", params)
 }

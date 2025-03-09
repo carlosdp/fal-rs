@@ -23,5 +23,5 @@ pub struct PoseTransferOutput {
 pub fn pose_transfer(
     params: PoseTransferInput,
 ) -> FalRequest<PoseTransferInput, PoseTransferOutput> {
-    FalRequest::new("fal-ai/leffa/virtual-tryon", params)
+    FalRequest::new("fal-ai/leffa/pose-transfer", params)
 }

@@ -344,10 +344,12 @@ async fn main() {
 
             let docs = docs_from(&model, params);
 
+            let endpoint = format!("{owner}/{alias}{}", if path == "/" { "" } else { path });
+
             // Insert into the tree
             root.insert_path(
                 &full_path_parts,
-                &model.endpoint_id,
+                &endpoint,
                 &fn_name,
                 params["post"].clone(),
                 output_type,

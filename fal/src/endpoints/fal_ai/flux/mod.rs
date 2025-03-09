@@ -30,5 +30,5 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn flux(params: DevTextToImageInput) -> FalRequest<DevTextToImageInput, Output> {
-    FalRequest::new("fal-ai/flux/dev/image-to-image", params)
+    FalRequest::new("fal-ai/flux", params)
 }

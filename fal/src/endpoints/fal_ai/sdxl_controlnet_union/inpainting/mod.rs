@@ -27,5 +27,5 @@ pub struct Output {
 pub fn inpainting(
     params: InpaintingControlNetUnionInput,
 ) -> FalRequest<InpaintingControlNetUnionInput, Output> {
-    FalRequest::new("fal-ai/sdxl-controlnet-union", params)
+    FalRequest::new("fal-ai/sdxl-controlnet-union/inpainting", params)
 }

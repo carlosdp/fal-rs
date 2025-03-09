@@ -38,5 +38,5 @@ pub struct ImageToVideoOutput {
 pub fn image_to_video(
     params: ImageToVideoInput,
 ) -> FalRequest<ImageToVideoInput, ImageToVideoOutput> {
-    FalRequest::new("fal-ai/veo2", params)
+    FalRequest::new("fal-ai/veo2/image-to-video", params)
 }

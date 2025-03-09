@@ -16,5 +16,5 @@ pub struct AudioOutput {
 /// Category: video-to-video
 /// Machine Type: A100
 pub fn text_to_audio(params: AudioInput) -> FalRequest<AudioInput, AudioOutput> {
-    FalRequest::new("fal-ai/mmaudio-v2", params)
+    FalRequest::new("fal-ai/mmaudio-v2/text-to-audio", params)
 }

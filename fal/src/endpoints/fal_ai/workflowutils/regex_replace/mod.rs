@@ -16,5 +16,5 @@ pub struct TextOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn regex_replace(params: RegexReplaceInput) -> FalRequest<RegexReplaceInput, TextOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/regex-replace", params)
 }

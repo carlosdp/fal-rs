@@ -16,5 +16,5 @@ pub struct MandarinOutput {
 /// Category: text-to-audio
 /// Machine Type: A100
 pub fn mandarin_chinese(params: MandarinRequest) -> FalRequest<MandarinRequest, MandarinOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/mandarin-chinese", params)
 }

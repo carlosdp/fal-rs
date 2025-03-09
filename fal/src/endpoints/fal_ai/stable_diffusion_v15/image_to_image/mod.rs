@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A6000
 pub fn image_to_image(params: ImageToImageSD15Input) -> FalRequest<ImageToImageSD15Input, Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v15", params)
+    FalRequest::new("fal-ai/stable-diffusion-v15/image-to-image", params)
 }

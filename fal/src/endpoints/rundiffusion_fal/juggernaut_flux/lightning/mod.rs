@@ -29,5 +29,5 @@ pub struct Output {
 ///
 /// Juggernaut Lightning, for fastest text-to-image generation.
 pub fn lightning(params: SchnellTextToImageInput) -> FalRequest<SchnellTextToImageInput, Output> {
-    FalRequest::new("rundiffusion-fal/juggernaut-flux/base", params)
+    FalRequest::new("rundiffusion-fal/juggernaut-flux/lightning", params)
 }

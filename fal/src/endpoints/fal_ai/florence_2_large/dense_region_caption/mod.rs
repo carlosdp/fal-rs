@@ -22,5 +22,5 @@ pub struct BoundingBoxOutputWithLabels {
 pub fn dense_region_caption(
     params: ImageInput,
 ) -> FalRequest<ImageInput, BoundingBoxOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/dense-region-caption", params)
 }

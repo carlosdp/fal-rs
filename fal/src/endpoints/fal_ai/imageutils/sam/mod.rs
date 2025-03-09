@@ -17,5 +17,5 @@ pub struct SamOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn sam(params: SamInput) -> FalRequest<SamInput, SamOutput> {
-    FalRequest::new("fal-ai/imageutils/depth", params)
+    FalRequest::new("fal-ai/imageutils/sam", params)
 }

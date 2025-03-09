@@ -19,5 +19,5 @@ pub struct ImageChatOutput {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn video(params: VideoInput) -> FalRequest<VideoInput, ImageChatOutput> {
-    FalRequest::new("fal-ai/sa2va/8b/image", params)
+    FalRequest::new("fal-ai/sa2va/8b/video", params)
 }

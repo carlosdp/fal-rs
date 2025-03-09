@@ -20,5 +20,5 @@ pub struct FooocusOutput {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn inpaint(params: FooocusInpaintInput) -> FalRequest<FooocusInpaintInput, FooocusOutput> {
-    FalRequest::new("fal-ai/fooocus", params)
+    FalRequest::new("fal-ai/fooocus/inpaint", params)
 }

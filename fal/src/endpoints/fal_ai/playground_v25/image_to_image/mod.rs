@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImagePlaygroundv25Input,
 ) -> FalRequest<ImageToImagePlaygroundv25Input, Output> {
-    FalRequest::new("fal-ai/playground-v25", params)
+    FalRequest::new("fal-ai/playground-v25/image-to-image", params)
 }

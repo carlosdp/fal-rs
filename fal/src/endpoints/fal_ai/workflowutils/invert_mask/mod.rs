@@ -16,5 +16,5 @@ pub struct InvertMaskOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn invert_mask(params: MaskInput) -> FalRequest<MaskInput, InvertMaskOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/invert-mask", params)
 }

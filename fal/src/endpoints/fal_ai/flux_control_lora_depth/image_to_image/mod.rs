@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn image_to_image(params: ImageToImageInput) -> FalRequest<ImageToImageInput, Output> {
-    FalRequest::new("fal-ai/flux-control-lora-depth", params)
+    FalRequest::new("fal-ai/flux-control-lora-depth/image-to-image", params)
 }

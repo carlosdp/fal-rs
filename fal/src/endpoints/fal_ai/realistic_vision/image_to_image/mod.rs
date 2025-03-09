@@ -26,5 +26,5 @@ pub struct Output {
 pub fn image_to_image(
     params: RealisticVisionImageToImageInput,
 ) -> FalRequest<RealisticVisionImageToImageInput, Output> {
-    FalRequest::new("fal-ai/realistic-vision", params)
+    FalRequest::new("fal-ai/realistic-vision/image-to-image", params)
 }

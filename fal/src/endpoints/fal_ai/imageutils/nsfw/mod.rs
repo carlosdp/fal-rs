@@ -18,5 +18,5 @@ pub struct NSFWImageDetectionOutput {
 pub fn nsfw(
     params: NSFWImageDetectionInput,
 ) -> FalRequest<NSFWImageDetectionInput, NSFWImageDetectionOutput> {
-    FalRequest::new("fal-ai/imageutils/depth", params)
+    FalRequest::new("fal-ai/imageutils/nsfw", params)
 }

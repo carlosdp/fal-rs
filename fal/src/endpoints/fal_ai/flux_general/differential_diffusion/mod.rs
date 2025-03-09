@@ -29,5 +29,5 @@ pub struct Output {
 pub fn differential_diffusion(
     params: DifferentialDiffusionInput,
 ) -> FalRequest<DifferentialDiffusionInput, Output> {
-    FalRequest::new("fal-ai/flux-general", params)
+    FalRequest::new("fal-ai/flux-general/differential-diffusion", params)
 }

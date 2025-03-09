@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A6000
 pub fn inpainting(params: InpaintingLCMInput) -> FalRequest<InpaintingLCMInput, Output> {
-    FalRequest::new("fal-ai/fast-lcm-diffusion", params)
+    FalRequest::new("fal-ai/fast-lcm-diffusion/inpainting", params)
 }

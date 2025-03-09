@@ -16,5 +16,5 @@ pub struct TeedOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn teed(params: TeedInput) -> FalRequest<TeedInput, TeedOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/teed", params)
 }

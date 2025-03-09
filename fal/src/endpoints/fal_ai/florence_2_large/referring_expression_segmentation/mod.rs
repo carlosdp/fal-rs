@@ -22,5 +22,8 @@ pub struct PolygonOutputWithLabels {
 pub fn referring_expression_segmentation(
     params: ImageWithTextInput,
 ) -> FalRequest<ImageWithTextInput, PolygonOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new(
+        "fal-ai/florence-2-large/referring-expression-segmentation",
+        params,
+    )
 }

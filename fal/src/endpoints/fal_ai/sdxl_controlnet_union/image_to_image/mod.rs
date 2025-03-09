@@ -27,5 +27,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageControlNetUnionInput,
 ) -> FalRequest<ImageToImageControlNetUnionInput, Output> {
-    FalRequest::new("fal-ai/sdxl-controlnet-union", params)
+    FalRequest::new("fal-ai/sdxl-controlnet-union/image-to-image", params)
 }

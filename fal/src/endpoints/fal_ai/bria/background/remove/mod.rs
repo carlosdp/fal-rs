@@ -17,5 +17,5 @@ pub struct BGRemoveOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn remove(params: BGRemoveInput) -> FalRequest<BGRemoveInput, BGRemoveOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/background/remove", params)
 }

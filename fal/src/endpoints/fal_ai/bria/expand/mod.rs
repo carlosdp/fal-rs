@@ -21,5 +21,5 @@ pub struct ImageExpansionOutput {
 pub fn expand(
     params: ImageExpansionInput,
 ) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/expand", params)
 }

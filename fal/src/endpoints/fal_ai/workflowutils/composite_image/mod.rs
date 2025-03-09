@@ -18,5 +18,5 @@ pub struct ImageOutput {
 pub fn composite_image(
     params: CompositeImageInput,
 ) -> FalRequest<CompositeImageInput, ImageOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/composite-image", params)
 }

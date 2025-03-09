@@ -18,5 +18,5 @@ pub struct ImageOutput {
 pub fn resize_to_max_pixels(
     params: ResizeToPixelsInput,
 ) -> FalRequest<ResizeToPixelsInput, ImageOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/resize-to-max-pixels", params)
 }

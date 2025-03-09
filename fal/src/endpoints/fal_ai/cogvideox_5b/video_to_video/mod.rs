@@ -25,5 +25,5 @@ pub struct Output {
 ///
 /// Video to video generation using CogVideoX-5B.
 pub fn video_to_video(params: VideoToVideoInput) -> FalRequest<VideoToVideoInput, Output> {
-    FalRequest::new("fal-ai/cogvideox-5b", params)
+    FalRequest::new("fal-ai/cogvideox-5b/video-to-video", params)
 }

@@ -1,8 +1,8 @@
-use fal::prelude::FluxProTextToImageInput;
+use fal::prelude::*;
 
 #[tokio::test]
 async fn test_fal_ai_flux_pro() {
-    let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
+    let response = fal::endpoints::fal_ai::flux::dev::dev(DevTextToImageInput {
         prompt: "a horse".to_string(),
         ..Default::default()
     })

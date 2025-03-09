@@ -16,5 +16,5 @@ pub struct ImageOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn rgba_to_rgb(params: RGBAToRGBImageInput) -> FalRequest<RGBAToRGBImageInput, ImageOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/rgba-to-rgb", params)
 }

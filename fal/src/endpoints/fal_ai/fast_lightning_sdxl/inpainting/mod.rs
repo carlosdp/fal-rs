@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: InpaintingLightningInput,
 ) -> FalRequest<InpaintingLightningInput, Output> {
-    FalRequest::new("fal-ai/fast-lightning-sdxl", params)
+    FalRequest::new("fal-ai/fast-lightning-sdxl/inpainting", params)
 }

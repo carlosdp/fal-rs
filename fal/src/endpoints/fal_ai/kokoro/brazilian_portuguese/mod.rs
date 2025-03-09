@@ -18,5 +18,5 @@ pub struct BrPortugeseOutput {
 pub fn brazilian_portuguese(
     params: BrPortugueseRequest,
 ) -> FalRequest<BrPortugueseRequest, BrPortugeseOutput> {
-    FalRequest::new("fal-ai/kokoro/american-english", params)
+    FalRequest::new("fal-ai/kokoro/brazilian-portuguese", params)
 }

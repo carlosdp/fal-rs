@@ -16,5 +16,5 @@ pub struct ImageOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn resize_image(params: ResizeImageInput) -> FalRequest<ResizeImageInput, ImageOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/resize-image", params)
 }

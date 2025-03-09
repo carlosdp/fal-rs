@@ -24,5 +24,5 @@ pub struct SoundEffectOutput {
 pub fn sound_effects(
     params: SoundEffectRequest,
 ) -> FalRequest<SoundEffectRequest, SoundEffectOutput> {
-    FalRequest::new("fal-ai/elevenlabs/audio-isolation", params)
+    FalRequest::new("fal-ai/elevenlabs/sound-effects", params)
 }

@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn inpainting(params: InpaintingHyperInput) -> FalRequest<InpaintingHyperInput, Output> {
-    FalRequest::new("fal-ai/hyper-sdxl", params)
+    FalRequest::new("fal-ai/hyper-sdxl/inpainting", params)
 }

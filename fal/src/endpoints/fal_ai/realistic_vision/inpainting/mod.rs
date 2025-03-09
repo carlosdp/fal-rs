@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: RealisticVisionInpaintingInput,
 ) -> FalRequest<RealisticVisionInpaintingInput, Output> {
-    FalRequest::new("fal-ai/realistic-vision", params)
+    FalRequest::new("fal-ai/realistic-vision/inpainting", params)
 }

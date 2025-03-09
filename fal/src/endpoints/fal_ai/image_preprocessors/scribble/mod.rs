@@ -16,5 +16,5 @@ pub struct ScribbleOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn scribble(params: ScribbleInput) -> FalRequest<ScribbleInput, ScribbleOutput> {
-    FalRequest::new("fal-ai/image-preprocessors/depth-anything/v2", params)
+    FalRequest::new("fal-ai/image-preprocessors/scribble", params)
 }

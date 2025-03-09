@@ -16,5 +16,5 @@ pub struct UpscaleOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn esrgan(params: UpscaleInput) -> FalRequest<UpscaleInput, UpscaleOutput> {
-    FalRequest::new("fal-ai/imageutils/depth", params)
+    FalRequest::new("fal-ai/imageutils/esrgan", params)
 }

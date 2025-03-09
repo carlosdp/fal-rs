@@ -31,5 +31,5 @@ pub struct Output {
 pub fn depth_finetuned(
     params: FluxProDepthControlFinetunedInput,
 ) -> FalRequest<FluxProDepthControlFinetunedInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/v1/depth-finetuned", params)
 }

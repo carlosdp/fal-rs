@@ -16,5 +16,5 @@ pub struct BlurMaskOutput {
 /// Category: image-to-image
 /// Machine Type: A6000
 pub fn blur_mask(params: BlurMaskInput) -> FalRequest<BlurMaskInput, BlurMaskOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/blur-mask", params)
 }

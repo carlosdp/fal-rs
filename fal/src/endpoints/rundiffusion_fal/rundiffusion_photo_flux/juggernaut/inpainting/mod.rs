@@ -27,5 +27,8 @@ pub struct Output {
 ///
 /// FLUX.1 [dev], next generation text-to-image model.
 pub fn inpainting(params: PhotoLoraInpaintInput) -> FalRequest<PhotoLoraInpaintInput, Output> {
-    FalRequest::new("rundiffusion-fal/rundiffusion-photo-flux", params)
+    FalRequest::new(
+        "rundiffusion-fal/rundiffusion-photo-flux/juggernaut/inpainting",
+        params,
+    )
 }

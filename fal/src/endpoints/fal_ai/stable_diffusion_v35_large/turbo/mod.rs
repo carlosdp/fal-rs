@@ -28,5 +28,5 @@ pub struct Output {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn turbo(params: TextToImageTurboInput) -> FalRequest<TextToImageTurboInput, Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v35-large", params)
+    FalRequest::new("fal-ai/stable-diffusion-v35-large/turbo", params)
 }

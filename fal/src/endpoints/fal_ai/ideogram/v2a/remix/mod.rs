@@ -20,5 +20,5 @@ pub struct Output {
 ///
 /// Ideogram 2a's image remixing model. Can be used as an API directly from fal.
 pub fn remix(params: RemixImageInput) -> FalRequest<RemixImageInput, Output> {
-    FalRequest::new("fal-ai/ideogram/v2", params)
+    FalRequest::new("fal-ai/ideogram/v2a/remix", params)
 }

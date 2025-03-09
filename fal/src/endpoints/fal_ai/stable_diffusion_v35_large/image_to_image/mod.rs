@@ -25,5 +25,5 @@ pub struct Output {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn image_to_image(params: ImageToImageInput) -> FalRequest<ImageToImageInput, Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v35-large", params)
+    FalRequest::new("fal-ai/stable-diffusion-v35-large/image-to-image", params)
 }

@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: InpaintingControlNetInput,
 ) -> FalRequest<InpaintingControlNetInput, Output> {
-    FalRequest::new("fal-ai/sd15-depth-controlnet", params)
+    FalRequest::new("fal-ai/sd15-depth-controlnet/inpainting", params)
 }

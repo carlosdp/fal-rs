@@ -21,5 +21,5 @@ pub struct SubjectReferenceOutput {
 pub fn video_01_subject_reference(
     params: SubjectReferenceRequest,
 ) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/video-01-subject-reference", params)
 }

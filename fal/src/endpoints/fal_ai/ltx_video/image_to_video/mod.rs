@@ -40,5 +40,5 @@ pub struct Output {
 /// * Guidance Scale: Higher values (5-7) for accurate prompt following, lower values (3-5) for more creative freedom
 /// * Inference Steps: More steps (40+) for quality, fewer steps (20-30) for speed
 pub fn image_to_video(params: ImageToVideoInput) -> FalRequest<ImageToVideoInput, Output> {
-    FalRequest::new("fal-ai/ltx-video", params)
+    FalRequest::new("fal-ai/ltx-video/image-to-video", params)
 }

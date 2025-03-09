@@ -25,5 +25,5 @@ pub struct Output {
 /// Machine Type: A6000
 /// License Type: commercial
 pub fn image_to_image(params: KolorsImg2ImgInput) -> FalRequest<KolorsImg2ImgInput, Output> {
-    FalRequest::new("fal-ai/kolors", params)
+    FalRequest::new("fal-ai/kolors/image-to-image", params)
 }

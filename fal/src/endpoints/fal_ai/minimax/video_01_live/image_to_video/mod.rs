@@ -26,5 +26,5 @@ pub struct I2VLiveOutput {
 pub fn image_to_video(
     params: ImageToVideoRequest,
 ) -> FalRequest<ImageToVideoRequest, I2VLiveOutput> {
-    FalRequest::new("fal-ai/minimax/video-01-live", params)
+    FalRequest::new("fal-ai/minimax/video-01-live/image-to-video", params)
 }

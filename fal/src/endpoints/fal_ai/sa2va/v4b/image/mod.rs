@@ -19,5 +19,5 @@ pub struct ImageChatOutput {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn image(params: ImageInput) -> FalRequest<ImageInput, ImageChatOutput> {
-    FalRequest::new("fal-ai/sa2va/8b/image", params)
+    FalRequest::new("fal-ai/sa2va/4b/image", params)
 }

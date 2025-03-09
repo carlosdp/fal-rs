@@ -23,5 +23,5 @@ pub struct Output {
 pub fn inpainting(
     params: InpaintingControlNetInput,
 ) -> FalRequest<InpaintingControlNetInput, Output> {
-    FalRequest::new("fal-ai/fast-sdxl-controlnet-canny", params)
+    FalRequest::new("fal-ai/fast-sdxl-controlnet-canny/inpainting", params)
 }

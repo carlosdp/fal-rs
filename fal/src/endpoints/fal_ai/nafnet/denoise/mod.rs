@@ -16,5 +16,5 @@ pub struct NafnetOutputDenoise {
 /// Category: image-to-image
 /// Machine Type: A100
 pub fn denoise(params: NafnetInputDenoise) -> FalRequest<NafnetInputDenoise, NafnetOutputDenoise> {
-    FalRequest::new("fal-ai/nafnet/deblur", params)
+    FalRequest::new("fal-ai/nafnet/denoise", params)
 }

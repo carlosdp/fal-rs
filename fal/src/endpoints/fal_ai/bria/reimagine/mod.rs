@@ -19,5 +19,5 @@ pub struct ReimagineOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn reimagine(params: ReimagineInput) -> FalRequest<ReimagineInput, ReimagineOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/reimagine", params)
 }

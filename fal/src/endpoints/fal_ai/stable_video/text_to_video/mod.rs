@@ -18,5 +18,5 @@ pub struct VideoOutput {
 /// Category: image-to-video
 /// Machine Type: A100
 pub fn text_to_video(params: TextInput) -> FalRequest<TextInput, VideoOutput> {
-    FalRequest::new("fal-ai/stable-video", params)
+    FalRequest::new("fal-ai/stable-video/text-to-video", params)
 }

@@ -22,5 +22,5 @@ pub struct OCRBoundingBoxOutputWithLabels {
 pub fn ocr_with_region(
     params: ImageInput,
 ) -> FalRequest<ImageInput, OCRBoundingBoxOutputWithLabels> {
-    FalRequest::new("fal-ai/florence-2-large/caption", params)
+    FalRequest::new("fal-ai/florence-2-large/ocr-with-region", params)
 }

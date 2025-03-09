@@ -17,5 +17,5 @@ pub struct EraserOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn eraser(params: EraserInput) -> FalRequest<EraserInput, EraserOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/eraser", params)
 }

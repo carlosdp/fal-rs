@@ -26,5 +26,5 @@ pub struct Output {
 pub fn inpainting(
     params: LightningModelsInpaintingInput,
 ) -> FalRequest<LightningModelsInpaintingInput, Output> {
-    FalRequest::new("fal-ai/lightning-models", params)
+    FalRequest::new("fal-ai/lightning-models/inpainting", params)
 }

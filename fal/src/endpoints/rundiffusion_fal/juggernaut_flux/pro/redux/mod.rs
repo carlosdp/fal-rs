@@ -27,5 +27,5 @@ pub struct Output {
 ///
 /// Finetuned version of FLUX.1 [dev], for superior text-to-image generation.
 pub fn redux(params: DevReduxInput) -> FalRequest<DevReduxInput, Output> {
-    FalRequest::new("rundiffusion-fal/juggernaut-flux/base", params)
+    FalRequest::new("rundiffusion-fal/juggernaut-flux/pro/redux", params)
 }

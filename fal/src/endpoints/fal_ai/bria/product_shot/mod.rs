@@ -17,5 +17,5 @@ pub struct ProductShotOutput {
 /// Machine Type: H100
 /// License Type: commercial
 pub fn product_shot(params: ProductShotInput) -> FalRequest<ProductShotInput, ProductShotOutput> {
-    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+    FalRequest::new("fal-ai/bria/product-shot", params)
 }

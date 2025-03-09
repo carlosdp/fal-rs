@@ -23,5 +23,5 @@ pub struct Output {
 pub fn image_to_image(
     params: ImageToImageControlNetInput,
 ) -> FalRequest<ImageToImageControlNetInput, Output> {
-    FalRequest::new("fal-ai/fast-sdxl-controlnet-canny", params)
+    FalRequest::new("fal-ai/fast-sdxl-controlnet-canny/image-to-image", params)
 }

@@ -29,5 +29,5 @@ pub struct Output {
 ///
 /// All usages of this model must comply with [FLUX.1 PRO Terms of Service](https://blackforestlabs.ai/terms-of-service/).
 pub fn new(params: FluxProTextToImageInput) -> FalRequest<FluxProTextToImageInput, Output> {
-    FalRequest::new("fal-ai/flux-pro/v1.1-ultra", params)
+    FalRequest::new("fal-ai/flux-pro/new", params)
 }

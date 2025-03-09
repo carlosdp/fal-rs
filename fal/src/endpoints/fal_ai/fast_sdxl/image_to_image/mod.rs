@@ -24,5 +24,5 @@ pub struct Output {
 /// Category: text-to-image
 /// Machine Type: A100
 pub fn image_to_image(params: ImageToImageInput) -> FalRequest<ImageToImageInput, Output> {
-    FalRequest::new("fal-ai/fast-sdxl", params)
+    FalRequest::new("fal-ai/fast-sdxl/image-to-image", params)
 }

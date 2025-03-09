@@ -21,5 +21,5 @@ pub struct ExtendVideoOutput {
 ///
 /// Generate a video from a prompt.
 pub fn extend(params: ExtendVideoInput) -> FalRequest<ExtendVideoInput, ExtendVideoOutput> {
-    FalRequest::new("fal-ai/ltx-video-v095", params)
+    FalRequest::new("fal-ai/ltx-video-v095/extend", params)
 }

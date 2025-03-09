@@ -22,5 +22,5 @@ pub struct WaveformOutput {
 /// Category: video-to-video
 /// Machine Type: L
 pub fn waveform(params: WaveformInput) -> FalRequest<WaveformInput, WaveformOutput> {
-    FalRequest::new("fal-ai/ffmpeg-api/compose", params)
+    FalRequest::new("fal-ai/ffmpeg-api/waveform", params)
 }

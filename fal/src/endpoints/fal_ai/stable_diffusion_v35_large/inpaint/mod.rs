@@ -25,5 +25,5 @@ pub struct Output {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn inpaint(params: InpaintInput) -> FalRequest<InpaintInput, Output> {
-    FalRequest::new("fal-ai/stable-diffusion-v35-large", params)
+    FalRequest::new("fal-ai/stable-diffusion-v35-large/inpaint", params)
 }

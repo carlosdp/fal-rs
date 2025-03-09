@@ -25,5 +25,5 @@ pub struct SwittiOutput {
 /// Machine Type: A100
 /// License Type: commercial
 pub fn v512(params: TextToImageInput) -> FalRequest<TextToImageInput, SwittiOutput> {
-    FalRequest::new("fal-ai/switti", params)
+    FalRequest::new("fal-ai/switti/512", params)
 }

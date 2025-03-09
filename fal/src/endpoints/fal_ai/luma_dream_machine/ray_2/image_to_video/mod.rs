@@ -24,5 +24,5 @@ pub struct Ray2I2VOutput {
 pub fn image_to_video(
     params: Ray2ImageToVideoRequest,
 ) -> FalRequest<Ray2ImageToVideoRequest, Ray2I2VOutput> {
-    FalRequest::new("fal-ai/luma-dream-machine/ray-2", params)
+    FalRequest::new("fal-ai/luma-dream-machine/ray-2/image-to-video", params)
 }

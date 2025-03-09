@@ -19,5 +19,5 @@ pub struct BatchMoonDreamOutput {
 ///
 /// License Type: commercial
 pub fn batch(params: BatchQueryInput) -> FalRequest<BatchQueryInput, BatchMoonDreamOutput> {
-    FalRequest::new("fal-ai/moondream-next", params)
+    FalRequest::new("fal-ai/moondream-next/batch", params)
 }

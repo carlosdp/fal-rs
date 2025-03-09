@@ -18,5 +18,5 @@ pub struct TransparentImageToMaskOutput {
 pub fn transparent_image_to_mask(
     params: TransparentImageToMaskInput,
 ) -> FalRequest<TransparentImageToMaskInput, TransparentImageToMaskOutput> {
-    FalRequest::new("fal-ai/workflowutils/canny", params)
+    FalRequest::new("fal-ai/workflowutils/transparent-image-to-mask", params)
 }

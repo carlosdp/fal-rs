@@ -19,5 +19,5 @@ pub struct T2VOutput {
 /// Category: text-to-video
 /// Machine Type: A100
 pub fn luma_dream_machine(params: TextToVideoRequest) -> FalRequest<TextToVideoRequest, T2VOutput> {
-    FalRequest::new("fal-ai/luma-dream-machine/ray-2", params)
+    FalRequest::new("fal-ai/luma-dream-machine", params)
 }

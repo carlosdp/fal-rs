@@ -23,5 +23,5 @@ pub struct ImageToVideoOutput {
 pub fn image_to_video(
     params: ImageToVideoInput,
 ) -> FalRequest<ImageToVideoInput, ImageToVideoOutput> {
-    FalRequest::new("fal-ai/ltx-video-v095", params)
+    FalRequest::new("fal-ai/ltx-video-v095/image-to-video", params)
 }
