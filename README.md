@@ -82,6 +82,12 @@ async fn main() {
 ## The `#[endpoint]` macro
 You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you disable the `endpoints` feature, or you are using a private model endpoint.
 
+```toml
+# in Cargo.toml
+[dependencies]
+fal = { version = "0.1", default-features = false, features = ["image"] }
+```
+
 ```rust,no_run
 use fal::prelude::*;
 use serde::Deserialize;
@@ -111,7 +117,7 @@ async fn main() {
 The crate comes with several optional features:
 
 - `image` (enabled by default): Provides image processing capabilities using the `image` crate
-- `endpoints` (enabled by default): Includes pre-generated endpoint modules for fal.ai services
+- `endpoints` (enabled by default): Includes pre-generated endpoint modules for fal.ai services. FAL has hundreds of endpoints, growing by the day, so disabling this feature will reduce compile time.
 
 ## Generating Endpoint Modules
 
