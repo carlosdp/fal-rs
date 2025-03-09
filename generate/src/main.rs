@@ -269,6 +269,12 @@ async fn main() {
             .unwrap()
             .iter()
         {
+            // TODO: here, we should check if an existing schema is equal, and if not, we need to disambiguate
+            // Create a new name based on what we can infer here, (maybe even use LLM to come up with a name lol)
+            // Then, we need to remap the $refs in this object that reference this.
+            // Actually, we need to use a multi value hashmap, because another endpoint might use the same, alternate type
+            // and we want to be able to look up the existing matching type
+            // Use a Hashmap<String, Vec<(String, serde_json::Value)>
             req_res_types.insert(reference.to_string(), schema.clone());
         }
 
