@@ -6,6 +6,56 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct HTTPValidationError {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub detail: Option<Vec<Option<ValidationError>>>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Image {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub content_type: Option<String>,
+    pub height: i64,
+    pub url: String,
+    pub width: i64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ImageSize {
+    /// The height of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub height: Option<i64>,
+    /// The width of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub width: Option<i64>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct JanusInput {
+    /// Classifier Free Guidance scale - how closely to follow the prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_weight: Option<f64>,
+    /// If set to true, the safety checker will be enabled.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_safety_checker: Option<bool>,
+    /// The size of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image_size: Option<ImageSizeProperty>,
+    /// Number of images to generate in parallel.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_images: Option<i64>,
+    /// The prompt to generate an image from.
+    /// "beautiful girl, inside a house"
+    pub prompt: String,
+    /// Random seed for reproducible generation.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub seed: Option<SeedProperty>,
+    /// Controls randomness in the generation. Higher values make output more random.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub temperature: Option<f64>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
     /// Whether the generated images contain NSFW concepts.
     pub has_nsfw_concepts: Vec<bool>,
@@ -17,6 +67,14 @@ pub struct Output {
     /// input or the randomly generated that was used in case none was passed.
     pub seed: i64,
     pub timings: Timings,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ValidationError {
+    pub loc: Vec<serde_json::Value>,
+    pub msg: String,
+    #[serde(rename = "type")]
+    pub ty: String,
 }
 
 /// DeepSeek Janus-Pro

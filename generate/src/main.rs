@@ -13,6 +13,95 @@ use std::collections::{HashMap, HashSet};
 use cargo_manifest::Manifest;
 use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 
+pub struct CachedType {
+    pub name: String,
+    pub schema: serde_json::Value,
+}
+
+pub struct TypeCache {
+    types: HashMap<String, Vec<CachedType>>,
+}
+
+impl TypeCache {
+    pub fn new() -> Self {
+        Self {
+            types: HashMap::new(),
+        }
+    }
+
+    pub fn get_type(&self, name: &str) -> Option<&serde_json::Value> {
+        for (_, types) in self.types.iter() {
+            for cached_type in types.iter() {
+                if cached_type.name == name {
+                    return Some(&cached_type.schema);
+                }
+            }
+        }
+
+        None
+    }
+
+    pub fn get_type_name(
+        &mut self,
+        original_name: &str,
+        alternate_names: &[String],
+        schema: &serde_json::Value,
+    ) -> String {
+        if let Some(cached_types) = self.types.get_mut(original_name) {
+            for cached_type in cached_types.iter() {
+                if json_eq_ignore_array_order(&cached_type.schema, schema) {
+                    return cached_type.name.clone();
+                }
+            }
+
+            // there is a name conflict, but we have not created a matching type yet
+            let alternate_name = alternate_names
+                .iter()
+                .find(|name| !cached_types.iter().any(|t| t.name == **name))
+                .expect(&format!(
+                    "no viable alternate name found for {} and {}, existing types: {}",
+                    original_name,
+                    alternate_names.join(", "),
+                    cached_types
+                        .iter()
+                        .map(|t| t.name.clone())
+                        .collect::<Vec<_>>()
+                        .join(", ")
+                ));
+
+            cached_types.push(CachedType {
+                name: alternate_name.clone(),
+                schema: schema.clone(),
+            });
+
+            return alternate_name.clone();
+        } else {
+            self.types.insert(
+                original_name.to_string(),
+                vec![CachedType {
+                    name: original_name.to_string(),
+                    schema: schema.clone(),
+                }],
+            );
+
+            original_name.to_string()
+        }
+    }
+
+    pub fn finalize_types(self) -> HashMap<String, serde_json::Value> {
+        self.types
+            .into_iter()
+            .map(|(_, types)| {
+                types
+                    .into_iter()
+                    .map(|ty| (ty.name, ty.schema))
+                    .collect::<Vec<_>>()
+            })
+            .flatten()
+            .collect()
+    }
+}
+
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt::init();
@@ -23,7 +112,7 @@ async fn main() {
         name: "endpoints".to_string(),
         children: Vec::new(),
     };
-    let mut req_res_types: HashMap<String, serde_json::Value> = HashMap::new();
+    let mut type_cache = TypeCache::new();
 
     let client = reqwest::Client::new();
 
@@ -71,21 +160,53 @@ async fn main() {
             .json()
             .await
             .unwrap();
-        let paths = app_data.metadata.openapi["paths"].as_object().unwrap();
+        let mut paths = app_data.metadata.openapi["paths"].clone();
 
-        for (reference, schema) in app_data.metadata.openapi["components"]["schemas"]
-            .as_object()
-            .unwrap()
-            .iter()
-        {
-            // TODO: here, we should check if an existing schema is equal, and if not, we need to disambiguate
-            // Create a new name based on what we can infer here, (maybe even use LLM to come up with a name lol)
-            // Then, we need to remap the $refs in this object that reference this.
-            // Actually, we need to use a multi value hashmap, because another endpoint might use the same, alternate type
-            // and we want to be able to look up the existing matching type
-            // Use a Hashmap<String, Vec<(String, serde_json::Value)>
-            req_res_types.insert(reference.to_string(), schema.clone());
-        }
+        // for (name, schema) in app_data.metadata.openapi["components"]["schemas"]
+        //     .as_object()
+        //     .unwrap()
+        //     .iter()
+        // {
+        //     // TODO: here, we should check if an existing schema is equal, and if not, we need to disambiguate
+        //     // Create a new name based on what we can infer here, (maybe even use LLM to come up with a name lol)
+        //     // Then, we need to remap the $refs in this object that reference this.
+        //     // Actually, we need to use a multi value hashmap, because another endpoint might use the same, alternate type
+        //     // and we want to be able to look up the existing matching type
+        //     // Use a Hashmap<String, Vec<(String, serde_json::Value)>
+        //     let mut alternate_names = app_data.metadata.openapi["paths"]
+        //         .as_object()
+        //         .unwrap()
+        //         .iter()
+        //         .filter(|(_, path_info)| {
+        //             path_info["post"]["requestBody"]["content"]["application/json"]["schema"]
+        //                 ["$ref"]
+        //                 .as_str()
+        //                 .unwrap_or("")
+        //                 .split("/")
+        //                 .last()
+        //                 .unwrap_or("")
+        //                 == name
+        //         })
+        //         .filter_map(|(_, path_info)| {
+        //             path_info["post"]["summary"]
+        //                 .as_str()
+        //                 .map(|s| s.replace(" ", ""))
+        //         })
+        //         .collect::<Vec<_>>();
+        //     alternate_names.push(format!(
+        //         "{}{name}",
+        //         snake_to_upper_camel(&app_data.app_name.replace("-", "_"))
+        //     ));
+
+        //     let type_name = type_cache.get_type_name(name, &alternate_names, schema);
+        //     update_refs(
+        //         &mut paths,
+        //         name,
+        //         &format!("#/components/schemas/{type_name}"),
+        //     );
+        // }
+
+        let paths = paths.as_object().unwrap();
 
         for (path, params) in paths {
             if path == "/health" {
@@ -154,8 +275,32 @@ async fn main() {
 
             let output_type = {
                 let type_name = output_type_ref.split("/").last().unwrap();
-                app_data.metadata.openapi["components"]["schemas"][type_name].clone()
+                println!("type ref: {}", output_type_ref);
+                let schema = if let Some(schema) = app_data
+                    .metadata
+                    .openapi
+                    .pointer(&output_type_ref[1..])
+                    .clone()
+                {
+                    schema.clone()
+                } else {
+                    println!("{:?}", app_data.metadata.openapi);
+                    type_cache
+                        .get_type(type_name)
+                        .expect(&format!(
+                            "type {} not found in component schemas or cache",
+                            type_name
+                        ))
+                        .clone()
+                };
+                schema
             };
+            let input_types = app_data.metadata.openapi["components"]["schemas"]
+                .as_object()
+                .unwrap()
+                .iter()
+                .map(|(_, schema)| schema.clone())
+                .collect::<Vec<_>>();
 
             let docs = docs_from(&model, params);
 
@@ -167,6 +312,7 @@ async fn main() {
                 &endpoint,
                 &fn_name,
                 params["post"].clone(),
+                input_types,
                 output_type,
                 docs,
             );
@@ -179,6 +325,8 @@ async fn main() {
     root.print_tree(0);
 
     let mut extra_types: HashMap<String, (String, String)> = HashMap::new();
+
+    let req_res_types = type_cache.finalize_types();
 
     // Write the module tree to files
     write_module_to_files(

@@ -6,6 +6,79 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct FluxPulidInput {
+    /// If set to true, the safety checker will be enabled.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub enable_safety_checker: Option<bool>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt when looking for a related image to show you.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub guidance_scale: Option<f64>,
+    /// The weight of the ID loss.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub id_weight: Option<f64>,
+    /// The size of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub image_size: Option<ImageSizeProperty>,
+    /// The maximum sequence length for the model.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_sequence_length: Option<String>,
+    /// The prompt to generate an image from.
+    /// "bad quality, worst quality, text, signature, watermark, extra limbs"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
+    /// The number of inference steps to perform.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_inference_steps: Option<i64>,
+    /// The prompt to generate an image from.
+    /// "a woman holding sign with glowing green text 'PuLID for FLUX'"
+    pub prompt: String,
+    /// URL of image to use for inpainting.
+    /// "https://storage.googleapis.com/falserverless/gallery/example_inputs_liuyifei.png"
+    pub reference_image_url: String,
+    /// The same seed and the same prompt given to the same version of the model
+    /// will output the same image every time.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub seed: Option<i64>,
+    /// The number of steps to start the CFG from.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub start_step: Option<i64>,
+    /// If set to true, the function will wait for the image to be generated and uploaded
+    /// before returning the response. This will increase the latency of the function but
+    /// it allows you to get the image directly in the response without going through the CDN.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sync_mode: Option<bool>,
+    /// The weight of the CFG loss.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub true_cfg: Option<f64>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct HTTPValidationError {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub detail: Option<Vec<Option<ValidationError>>>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Image {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub content_type: Option<String>,
+    pub height: i64,
+    pub url: String,
+    pub width: i64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ImageSize {
+    /// The height of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub height: Option<i64>,
+    /// The width of the generated image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub width: Option<i64>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
     /// Whether the generated images contain NSFW concepts.
     pub has_nsfw_concepts: Vec<bool>,
@@ -17,6 +90,14 @@ pub struct Output {
     /// input or the randomly generated that was used in case none was passed.
     pub seed: i64,
     pub timings: Timings,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ValidationError {
+    pub loc: Vec<serde_json::Value>,
+    pub msg: String,
+    #[serde(rename = "type")]
+    pub ty: String,
 }
 
 /// PuLID Flux

@@ -11,6 +11,7 @@ pub enum Node {
         endpoint: String,
         fn_name: String,
         definition: serde_json::Value,
+        input_types: Vec<serde_json::Value>,
         output_type: serde_json::Value,
         docs: String,
     },
@@ -23,6 +24,7 @@ impl Node {
         endpoint: &str,
         fn_name: &str,
         definition: serde_json::Value,
+        input_types: Vec<serde_json::Value>,
         output_type: serde_json::Value,
         docs: String,
     ) {
@@ -33,6 +35,7 @@ impl Node {
                         endpoint: endpoint.to_string(),
                         fn_name: fn_name.to_string(),
                         definition,
+                        input_types,
                         output_type,
                         docs,
                     });
@@ -47,7 +50,15 @@ impl Node {
                     Node::Module { name, .. } => name == current,
                     _ => false,
                 }) {
-                    child.insert_path(remaining, endpoint, fn_name, definition, output_type, docs);
+                    child.insert_path(
+                        remaining,
+                        endpoint,
+                        fn_name,
+                        definition,
+                        input_types,
+                        output_type,
+                        docs,
+                    );
                 } else {
                     let mut new_module = Node::Module {
                         name: current.to_string(),
@@ -58,6 +69,7 @@ impl Node {
                         endpoint,
                         fn_name,
                         definition,
+                        input_types,
                         output_type,
                         docs,
                     );
@@ -203,6 +215,7 @@ pub fn generate_request_module(
             endpoint,
             fn_name,
             definition,
+            input_types,
             output_type,
             docs,
         } => {
@@ -213,11 +226,14 @@ pub fn generate_request_module(
                 .split("/")
                 .last()
                 .unwrap();
-            let request_type = input_types.get(request_type_name).unwrap();
-            let request_type_name = request_type["title"].as_str().unwrap();
             let return_type = output_type["title"].as_str().unwrap();
 
-            let output_struct = schema_type_to_rust_type(&output_type, extra_types, false);
+            let input_structs = input_types
+                .iter()
+                .map(|input_type| schema_type_to_rust_type(input_type, extra_types, false))
+                .collect::<Vec<String>>()
+                .join("\n");
+            // let output_struct = schema_type_to_rust_type(&output_type, extra_types, false);
 
             let docs = docs
                 .trim()
@@ -229,7 +245,7 @@ pub fn generate_request_module(
 
             format!(
                 r#"
-                {output_struct}
+                {input_structs}
 
                 {docs}
                 pub fn {fn_name}(params: {request_type_name}) -> FalRequest<{request_type_name}, {return_type}> {{

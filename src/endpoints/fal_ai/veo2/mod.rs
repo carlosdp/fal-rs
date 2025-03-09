@@ -23,10 +23,78 @@ use std::collections::HashMap;
 pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct File {
+    /// The mime type of the file.
+    /// "image/png"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub content_type: Option<String>,
+    /// File data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_data: Option<String>,
+    /// The name of the file. It will be auto-generated if not provided.
+    /// "z9RV14K95DvU.png"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_name: Option<String>,
+    /// The size of the file in bytes.
+    /// 4404019
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_size: Option<i64>,
+    /// The URL where the file can be downloaded from.
+    pub url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct HTTPValidationError {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub detail: Option<Vec<Option<ValidationError>>>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ImageToVideoInput {
+    /// The aspect ratio of the generated video
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub aspect_ratio: Option<String>,
+    /// URL of the input image to animate. Should be 720p or higher resolution.
+    /// "https://fal.media/files/elephant/6fq8JDSjb1osE_c3J_F2H.png"
+    pub image_url: String,
+    /// The text prompt describing how the image should be animated
+    /// "A lego chef cooking eggs"
+    pub prompt: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ImageToVideoOutput {
+    /// The generated video
+    /// {"url":"https://v3.fal.media/files/zebra/uNu-1qkbNt8be8iHA1hiB_output.mp4"}
+    pub video: File,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TextToVideoInput {
+    /// The aspect ratio of the generated video
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub aspect_ratio: Option<String>,
+    /// The duration of the generated video in seconds
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub duration: Option<String>,
+    /// The text prompt describing the video you want to generate
+    /// "The camera floats gently through rows of pastel-painted wooden beehives, buzzing honeybees gliding in and out of frame. The motion settles on the refined farmer standing at the center, his pristine white beekeeping suit gleaming in the golden afternoon light. He lifts a jar of honey, tilting it slightly to catch the light. Behind him, tall sunflowers sway rhythmically in the breeze, their petals glowing in the warm sunlight. The camera tilts upward to reveal a retro farmhouse with mint-green shutters, its walls dappled with shadows from swaying trees. Shot with a 35mm lens on Kodak Portra 400 film, the golden light creates rich textures on the farmer's gloves, marmalade jar, and weathered wood of the beehives."
+    pub prompt: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct TextToVideoOutput {
     /// The generated video
     /// {"url":"https://v3.fal.media/files/tiger/83-YzufmOlsnhqq5ed382_output.mp4"}
     pub video: File,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ValidationError {
+    pub loc: Vec<serde_json::Value>,
+    pub msg: String,
+    #[serde(rename = "type")]
+    pub ty: String,
 }
 
 /// Veo 2

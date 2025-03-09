@@ -6,6 +6,55 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct BaseInput {
+    /// The target FPS of the video
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub export_fps: Option<i64>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt when looking for a related video to show you.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub guidance_scale: Option<f64>,
+    /// The negative prompt to generate video from
+    /// "Distorted, discontinuous, Ugly, blurry, low resolution, motionless, static, disfigured, disconnected limbs, Ugly faces, incomplete arms"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
+    /// The number of inference steps to perform.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub num_inference_steps: Option<i64>,
+    /// The prompt to generate the video from.
+    /// "A cloud of dust erupting and dispersing like an explosion."
+    pub prompt: String,
+    /// The same seed and the same prompt given to the same version of the model
+    /// will output the same video every time.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub seed: Option<SeedProperty>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct File {
+    /// The mime type of the file.
+    /// "image/png"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub content_type: Option<ContentTypeProperty>,
+    /// The name of the file. It will be auto-generated if not provided.
+    /// "z9RV14K95DvU.png"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_name: Option<FileNameProperty>,
+    /// The size of the file in bytes.
+    /// 4404019
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_size: Option<FileSizeProperty>,
+    /// The URL where the file can be downloaded from.
+    pub url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct HTTPValidationError {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub detail: Option<Vec<Option<ValidationError>>>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Output {
     /// The prompt used for generating the video.
     pub prompt: String,
@@ -16,6 +65,14 @@ pub struct Output {
     /// The URL to the generated video
     /// [{"content_type":"application/octet-stream","file_name":"rgb.mp4","file_size":146468,"url":"https://v3.fal.media/files/kangaroo/G6gkFsuyU5L7sJ55nZUPU_rgb.mp4"},{"content_type":"application/octet-stream","file_name":"alpha.mp4","file_size":106894,"url":"https://v3.fal.media/files/lion/g7PBZfQEH9SoPXYgeyl5P_alpha.mp4"}]
     pub videos: Vec<File>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ValidationError {
+    pub loc: Vec<serde_json::Value>,
+    pub msg: String,
+    #[serde(rename = "type")]
+    pub ty: String,
 }
 
 /// TransPixar
