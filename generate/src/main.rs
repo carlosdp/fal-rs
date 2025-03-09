@@ -130,12 +130,89 @@ impl Node {
     }
 }
 
+fn write_module_to_files(
+    node: &Node,
+    base_path: &str,
+    input_types: &HashMap<String, serde_json::Value>,
+    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    is_root: bool,
+) -> std::io::Result<()> {
+    match node {
+        Node::Module { name, children } => {
+            let module_path = if is_root {
+                base_path.to_string()
+            } else {
+                format!("{}/{}", base_path, name)
+            };
+
+            // Create directory if it doesn't exist
+            std::fs::create_dir_all(&module_path)?;
+
+            // Start with an empty string for mod content
+            let mut mod_content = String::new();
+
+            // Get direct child functions
+            let direct_children: Vec<_> = children
+                .iter()
+                .filter(|c| matches!(c, Node::Leaf { .. }))
+                .collect();
+
+            // Only add use declarations if we have direct leaf nodes (functions/types)
+            if !direct_children.is_empty() {
+                mod_content
+                    .push_str("use serde::{Serialize, Deserialize};\nuse crate::prelude::*;\n\n");
+            }
+
+            // Add pub mod declarations for child modules
+            let mut has_child_modules = false;
+            for child in children.iter() {
+                if let Node::Module {
+                    name: child_name, ..
+                } = child
+                {
+                    has_child_modules = true;
+                    mod_content.push_str(&format!("pub mod {};\n", child_name));
+                }
+            }
+
+            // Add a newline after module declarations if we have both modules and content
+            if has_child_modules && !direct_children.is_empty() {
+                mod_content.push_str("\n");
+            }
+
+            // Add direct child functions and types
+            if !direct_children.is_empty() {
+                for child in direct_children {
+                    mod_content.push_str(&generate_request_module(child, input_types, extra_types));
+                }
+            }
+
+            // Write mod.rs
+            std::fs::write(format!("{}/mod.rs", module_path), mod_content)?;
+
+            // Recursively handle child modules
+            for child in children {
+                if let Node::Module { .. } = child {
+                    write_module_to_files(child, &module_path, input_types, extra_types, false)?;
+                }
+            }
+        }
+        Node::Leaf { .. } => {
+            // Leaf nodes are handled within their parent module's mod.rs
+        }
+    }
+
+    Ok(())
+}
+
 #[tokio::main]
 async fn main() {
     tracing_subscriber::fmt::init();
 
+    let base_module_path = "fal/src/endpoints";
+
     let mut root = Node::Module {
-        name: "root".to_string(),
+        name: "endpoints".to_string(),
         children: Vec::new(),
     };
     let mut req_res_types: HashMap<String, serde_json::Value> = HashMap::new();
@@ -219,6 +296,7 @@ async fn main() {
 
             // Combine parent and module parts for the full path
             let mut full_path_parts = Vec::new();
+            // Don't include the root module name since it's just the container
             full_path_parts.extend(parent_parts.iter().map(String::as_str));
             full_path_parts.extend(module_parts.iter().map(String::as_str));
 
@@ -253,15 +331,17 @@ async fn main() {
 
     let mut extra_types: HashMap<serde_json::Value, (String, String)> = HashMap::new();
 
-    let request_modules = if let Node::Module { children, .. } = &root {
-        children
-            .iter()
-            .map(|child| generate_request_module(child, &req_res_types, &mut extra_types))
-            .collect::<Vec<String>>()
-    } else {
-        panic!("Root is not a module");
-    };
+    // Write the module tree to files
+    write_module_to_files(
+        &root,
+        base_module_path,
+        &req_res_types,
+        &mut extra_types,
+        true,
+    )
+    .expect("Failed to write module files");
 
+    // Generate and write common types
     let rust_struct_types = req_res_types
         .iter()
         .filter(|(k, _)| !hardcoded_struct(k))
@@ -275,12 +355,30 @@ async fn main() {
         .collect::<Vec<String>>()
         .join("\n\n");
 
-    let combined_modules = request_modules.join("\n\n");
-    let combined_file = format!(
-        "use serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{combined_modules}\n\n{rust_struct_types}\n\n{extra_types_str}"
+    // Write common types to types.rs
+    let types_content = format!(
+        "use serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\n{}",
+        rust_struct_types, extra_types_str
     );
+    std::fs::write(format!("{}/types.rs", base_module_path), types_content)
+        .expect("Failed to write types file");
 
-    std::fs::write("fal/src/endpoints.rs", combined_file).unwrap();
+    // Write initial root mod.rs with module declarations
+    let root_mod_content = format!(
+        "use serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\nmod types;\npub use types::*;\n",
+        match &root {
+            Node::Module { children, .. } => children.iter().filter_map(|child| {
+                if let Node::Module { name, .. } = child {
+                    Some(format!("pub mod {};", name))
+                } else {
+                    None
+                }
+            }).collect::<Vec<_>>().join("\n"),
+            _ => String::new(),
+        }
+    );
+    std::fs::write(format!("{}/mod.rs", base_module_path), root_mod_content)
+        .expect("Failed to write root mod.rs");
 }
 
 fn generate_request_module(
@@ -387,7 +485,7 @@ fn schema_type_to_rust_type(
                         .collect::<Vec<String>>()
                         .join("\n");
 
-                    format!("\n///\n/// Examples:\n///\n{}", examples)
+                    format!("{description}{examples}\n")
                 } else {
                     "".to_string()
                 };
