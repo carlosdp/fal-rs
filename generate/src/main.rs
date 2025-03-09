@@ -208,7 +208,7 @@ fn write_module_to_files(
 async fn main() {
     tracing_subscriber::fmt::init();
 
-    let base_module_path = "fal/src/endpoints";
+    let base_module_path = "src/endpoints";
 
     let mut root = Node::Module {
         name: "endpoints".to_string(),
