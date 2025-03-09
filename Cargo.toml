@@ -8,7 +8,6 @@ license = "MIT OR Apache-2.0"
 keywords = ["fal", "ai", "generative-ai"]
 authors = ["Carlos Diaz-Padron"]
 categories = ["api-bindings"]
-readme = "../README.md"
 
 [features]
 default = ["image", "endpoints"]
