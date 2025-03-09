@@ -1,5 +1,11 @@
-use fal::{queue::Status, FalMultiImageResponse};
+use fal::prelude::*;
 use futures::StreamExt;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct FalMultiImageResponse {
+    pub images: Vec<File>,
+}
 
 #[fal::endpoint(endpoint = "fal-ai/flux/dev")]
 fn fal_dev(prompt: String) -> FalMultiImageResponse {}
@@ -27,7 +33,7 @@ async fn test_queue() {
 async fn test_queue_status_stream() {
     let queue = fal_dev("a horse".to_owned()).queue().await.unwrap();
 
-    while let Some(status) = queue.stream().await.unwrap().next().await {
+    while let Some(status) = queue.stream(false).await.unwrap().next().await {
         let status = status.unwrap();
 
         if status.status == Status::Completed {

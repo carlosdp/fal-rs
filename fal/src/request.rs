@@ -9,8 +9,11 @@ use crate::{
 
 #[derive(Debug)]
 pub struct FalRequest<Params: Serialize, Response: DeserializeOwned> {
+    /// The Reqwest Client to use to make requests
     pub client: reqwest::Client,
+    /// The endpoint to make the request to
     pub endpoint: String,
+    /// The parameters to send to the endpoint
     pub params: Params,
     phantom: PhantomData<Response>,
 }
@@ -25,6 +28,14 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
         }
     }
 
+    /// Use a specific Reqwest Client to make requests
+    pub fn with_client(mut self, client: reqwest::Client) -> Self {
+        self.client = client;
+
+        self
+    }
+
+    /// Send the request and wait for the response
     pub async fn send(self) -> Result<Response, FalError> {
         let response = self
             .client
@@ -46,6 +57,11 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
         Ok(response.error_for_status()?.json().await?)
     }
 
+    /// For requests that take longer than several seconds, as it is usually the case with AI applications, we have built a queue system.
+    ///
+    /// Utilizing our queue system offers you a more granulated control to handle unexpected surges in traffic.
+    /// It further provides you with the capability to cancel requests if needed and grants you the observability to monitor your current
+    /// position within the queue. Besides that using the queue system spares you from the headache of keeping around long running https requests.
     pub async fn queue(self) -> Result<Queue<Response>, FalError> {
         let response = self
             .client

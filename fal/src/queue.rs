@@ -32,9 +32,13 @@ pub struct RequestLog {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct QueueStatus {
+    /// The status of the Queue request
     pub status: Status,
+    /// The position of the request in the queue
     pub queue_position: Option<i64>,
+    /// The URL of the response
     pub response_url: String,
+    /// The logs of the request, if `show_logs` is `true`
     pub logs: Option<Vec<RequestLog>>,
 }
 
@@ -61,6 +65,10 @@ impl<Response: DeserializeOwned> Queue<Response> {
         }
     }
 
+    /// Get the status of the Queue request
+    ///
+    /// If `show_logs` is set to true, the logs for the request will be included.
+    /// Otherwise, they will not be present.
     pub async fn status(&self, show_logs: bool) -> Result<QueueStatus, FalError> {
         let response = self
             .client
@@ -75,11 +83,11 @@ impl<Response: DeserializeOwned> Queue<Response> {
             .header("Content-Type", "application/json")
             .send()
             .await?;
-        println!("status: {:?}", response.status());
 
         Ok(response.error_for_status()?.json().await?)
     }
 
+    /// Get the response of the Queue request, if the request is Completed
     pub async fn response(&self) -> Result<Response, FalError> {
         let response = self
             .client
@@ -102,6 +110,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
         Ok(response.error_for_status()?.json().await?)
     }
 
+    /// Cancel the Queue request
     pub async fn cancel(&self) -> Result<(), FalError> {
         let response = self
             .client
@@ -120,14 +129,21 @@ impl<Response: DeserializeOwned> Queue<Response> {
         Ok(())
     }
 
+    /// Stream the status of the Queue request
+    ///
+    /// If `show_logs` is set to true, the logs for the request will be included.
+    /// Otherwise, they will not be present.
+    /// Each [`QueueStatus`](crate::queue::QueueStatus) will include new logs since the last received status in the stream.
     pub async fn stream(
         &self,
+        show_logs: bool,
     ) -> Result<impl Stream<Item = Result<QueueStatus, FalError>>, FalError> {
         let response = self
             .client
             .as_ref()
             .unwrap()
             .get(format!("{}/stream", &self.payload.status_url))
+            .query(&[("logs", if show_logs { "1" } else { "0" })])
             .header(
                 "Authorization",
                 format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),

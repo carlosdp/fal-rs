@@ -52,16 +52,6 @@ pub struct File {
     pub height: Option<i64>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
-pub struct FalSingleImageResponse {
-    pub image: File,
-}
-
-#[derive(Debug, Deserialize, Serialize)]
-pub struct FalMultiImageResponse {
-    pub images: Vec<File>,
-}
-
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct Timings {
     // todo

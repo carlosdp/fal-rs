@@ -1,14 +1,12 @@
-use std::{
-    future::Future,
-    io::{Cursor, Read},
-};
+use std::{future::Future, io::Cursor};
 
 use base64::prelude::*;
-use image::{DynamicImage, ImageFormat};
+use image::DynamicImage;
 
 use crate::{FalError, File};
 
 impl File {
+    /// Convert the File to an image
     pub fn into_image(self) -> impl Future<Output = Result<image::DynamicImage, FalError>> {
         async move {
             let image_bytes = reqwest::get(&self.url).await?.bytes().await?;
@@ -17,6 +15,7 @@ impl File {
         }
     }
 
+    /// Convert the file into raw bytes
     pub fn into_raw_image(self) -> impl Future<Output = Result<Vec<u8>, FalError>> {
         async move {
             let image_bytes = reqwest::get(&self.url).await?.bytes().await?;
@@ -29,36 +28,20 @@ pub trait ToDataUrl {
     fn to_data_url(&self) -> String;
 }
 
-pub trait ToRead {
-    fn to_read(&self) -> impl Read;
-}
-
 impl ToDataUrl for DynamicImage {
+    /// Convert the image into a PNG data URL.
+    /// This is a convenience function to help with image-to-X endpoints.
     fn to_data_url(&self) -> String {
         image_to_data_url(self)
     }
 }
 
-impl ToRead for DynamicImage {
-    fn to_read(&self) -> impl Read {
-        image_to_read(self)
-    }
-}
-
-pub fn image_to_data_url(image: &image::DynamicImage) -> String {
+fn image_to_data_url(image: &image::DynamicImage) -> String {
     let mut buf = Vec::new();
     let mut writer = Cursor::new(&mut buf);
     image
         .write_to(&mut writer, image::ImageFormat::Png)
         .unwrap();
     let data = BASE64_STANDARD.encode(&buf);
-    format!("data:image/jpeg;base64,{}", data)
-}
-
-fn image_to_read(image: &DynamicImage) -> impl Read {
-    let mut buf = Vec::new();
-    let mut writer = Cursor::new(&mut buf);
-    image.write_to(&mut writer, ImageFormat::Png).unwrap();
-
-    Cursor::new(buf)
+    format!("data:image/png;base64,{}", data)
 }
