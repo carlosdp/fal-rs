@@ -1,3 +1,5 @@
+#![doc = include_str!("../../README.md")]
+
 #[cfg(feature = "endpoints")]
 pub mod endpoints;
 #[cfg(feature = "image")]

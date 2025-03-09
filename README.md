@@ -86,7 +86,7 @@ async fn main() {
 ```
 
 ## The `#[endpoint]` macro
-You can easily create a custom endpoint function using the provided `#[endpoint]` proc macro. This should only be necessary if you disable the `endpoints` feature, or you are using a private model endpoint.
+You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you disable the `endpoints` feature, or you are using a private model endpoint.
 
 ```rust
 use fal::prelude::*;
