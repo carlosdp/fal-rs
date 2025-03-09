@@ -1,5 +1,6 @@
 [package]
 name = "fal"
+description = "A Rust crate for the fal.ai API, including generated, typed functions for all public models"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/carlosdp/fal-rs"

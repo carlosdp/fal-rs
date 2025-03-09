@@ -1,5 +1,6 @@
 [package]
 name = "fal-derive"
+description = "Macros for creating fal API endpoint functions"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/carlosdp/fal-rs"
