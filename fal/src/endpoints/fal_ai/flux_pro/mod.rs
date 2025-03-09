@@ -1,4 +1,6 @@
+#[allow(unused_imports)]
 use crate::prelude::*;
+#[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 
 pub mod finetuned;

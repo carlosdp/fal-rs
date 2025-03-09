@@ -159,7 +159,7 @@ fn write_module_to_files(
             // Add use declarations if we have direct functions/types
             if !functions.is_empty() {
                 mod_content
-                    .push_str("use serde::{Serialize, Deserialize};\nuse crate::prelude::*;\n\n");
+                    .push_str("#[allow(unused_imports)]\nuse serde::{Serialize, Deserialize};#[allow(unused_imports)]\nuse crate::prelude::*;\n\n");
             }
 
             // Add pub mod declarations for child modules
