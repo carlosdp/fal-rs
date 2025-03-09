@@ -47,6 +47,7 @@ pub struct Queue<Response: DeserializeOwned> {
     #[serde(skip)]
     pub client: Option<reqwest::Client>,
     pub endpoint: String,
+    pub api_key: String,
     pub payload: QueueResponse,
     phantom: PhantomData<Response>,
 }
@@ -55,11 +56,13 @@ impl<Response: DeserializeOwned> Queue<Response> {
     pub fn new(
         client: reqwest::Client,
         endpoint: impl Into<String>,
+        api_key: String,
         payload: QueueResponse,
     ) -> Self {
         Self {
             client: Some(client),
             endpoint: endpoint.into(),
+            api_key,
             payload,
             phantom: PhantomData,
         }
@@ -76,10 +79,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
             .unwrap()
             .get(&self.payload.status_url)
             .query(&[("logs", if show_logs { "1" } else { "0" })])
-            .header(
-                "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
-            )
+            .header("Authorization", format!("Key {}", self.api_key))
             .header("Content-Type", "application/json")
             .send()
             .await?;
@@ -94,10 +94,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
             .as_ref()
             .unwrap()
             .get(&self.payload.response_url)
-            .header(
-                "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
-            )
+            .header("Authorization", format!("Key {}", self.api_key))
             .header("Content-Type", "application/json")
             .send()
             .await?;
@@ -117,10 +114,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
             .as_ref()
             .unwrap()
             .put(&self.payload.cancel_url)
-            .header(
-                "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
-            )
+            .header("Authorization", format!("Key {}", self.api_key))
             .send()
             .await?;
 
@@ -144,10 +138,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
             .unwrap()
             .get(format!("{}/stream", &self.payload.status_url))
             .query(&[("logs", if show_logs { "1" } else { "0" })])
-            .header(
-                "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
-            )
+            .header("Authorization", format!("Key {}", self.api_key))
             .send()
             .await?;
 

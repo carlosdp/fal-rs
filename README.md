@@ -23,14 +23,7 @@ fal = "0.1"
 ```
 
 ## Usage
-
-First, set your fal.ai API key as an environment variable:
-
-```bash
-export FAL_API_KEY=your_api_key_here
-```
-
-### Basic Example
+### Using public model endpoints
 
 By default, the `endpoints` feature is enabled, and you can use pre-built, fully-typed endpoint functions to call the API:
 
@@ -44,6 +37,7 @@ async fn main() {
         prompt: "a majestic horse in a field".to_string(),
         ..Default::default()
     })
+    .with_api_key("fal_api_key_here") // If not provided, the FAL_API_KEY environment variable is used
     .send()
     .await
     .unwrap();

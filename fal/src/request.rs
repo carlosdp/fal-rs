@@ -7,6 +7,28 @@ use crate::{
     FalError,
 };
 
+/// A request to the FAL API
+///
+/// You can provide an API key using the [with_client](crate::request::FalRequest::with_client) function.
+/// If no API key is provided, the `FAL_API_KEY` environment variable will be used, if present.
+///
+/// ```rust,no_run
+/// use fal::prelude::*;
+///
+/// #[tokio::main]
+/// async fn main() {
+///     let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
+///         prompt: "a majestic horse in a field".to_string(),
+///         ..Default::default()
+///     })
+///     .with_api_key("sk-API_KEY_HERE")
+///     .send()
+///     .await
+///     .unwrap();
+///
+///     println!("Generated image URL: {}", response.images[0].url);
+/// }
+/// ```
 #[derive(Debug)]
 pub struct FalRequest<Params: Serialize, Response: DeserializeOwned> {
     /// The Reqwest Client to use to make requests
@@ -15,6 +37,9 @@ pub struct FalRequest<Params: Serialize, Response: DeserializeOwned> {
     pub endpoint: String,
     /// The parameters to send to the endpoint
     pub params: Params,
+    /// The API key to use to make the request
+    /// If not provided, the `FAL_API_KEY` environment variable will be used
+    pub api_key: Option<String>,
     phantom: PhantomData<Response>,
 }
 
@@ -24,6 +49,7 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
             client: reqwest::Client::new(),
             endpoint: endpoint.into(),
             params,
+            api_key: std::env::var("FAL_API_KEY").ok(),
             phantom: PhantomData,
         }
     }
@@ -43,7 +69,12 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
             .json(&self.params)
             .header(
                 "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
+                format!(
+                    "Key {}",
+                    self.api_key.expect(
+                        "No fal API key provided, and FAL_API_KEY environment variable is not set"
+                    )
+                ),
             )
             .header("Content-Type", "application/json")
             .send()
@@ -63,14 +94,15 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
     /// It further provides you with the capability to cancel requests if needed and grants you the observability to monitor your current
     /// position within the queue. Besides that using the queue system spares you from the headache of keeping around long running https requests.
     pub async fn queue(self) -> Result<Queue<Response>, FalError> {
+        let key = self
+            .api_key
+            .expect("No fal API key provided, and FAL_API_KEY environment variable is not set");
+
         let response = self
             .client
             .post(format!("https://queue.fal.run/{}", self.endpoint))
             .json(&self.params)
-            .header(
-                "Authorization",
-                format!("Key {}", std::env::var("FAL_API_KEY").unwrap()),
-            )
+            .header("Authorization", format!("Key {}", &key))
             .header("Content-Type", "application/json")
             .send()
             .await?;
@@ -82,6 +114,6 @@ impl<Params: Serialize, Response: DeserializeOwned> FalRequest<Params, Response>
 
         let payload: QueueResponse = response.error_for_status()?.json().await?;
 
-        Ok(Queue::new(self.client, self.endpoint, payload))
+        Ok(Queue::new(self.client, self.endpoint, key, payload))
     }
 }
