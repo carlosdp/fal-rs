@@ -151,21 +151,20 @@ fn write_module_to_files(
             // Start with an empty string for mod content
             let mut mod_content = String::new();
 
-            // Get direct child functions
-            let direct_children: Vec<_> = children
+            // Get direct child functions and modules
+            let (functions, modules): (Vec<_>, Vec<_>) = children
                 .iter()
-                .filter(|c| matches!(c, Node::Leaf { .. }))
-                .collect();
+                .partition(|child| matches!(child, Node::Leaf { .. }));
 
-            // Only add use declarations if we have direct leaf nodes (functions/types)
-            if !direct_children.is_empty() {
+            // Add use declarations if we have direct functions/types
+            if !functions.is_empty() {
                 mod_content
                     .push_str("use serde::{Serialize, Deserialize};\nuse crate::prelude::*;\n\n");
             }
 
             // Add pub mod declarations for child modules
             let mut has_child_modules = false;
-            for child in children.iter() {
+            for child in &modules {
                 if let Node::Module {
                     name: child_name, ..
                 } = child
@@ -176,13 +175,13 @@ fn write_module_to_files(
             }
 
             // Add a newline after module declarations if we have both modules and content
-            if has_child_modules && !direct_children.is_empty() {
+            if has_child_modules && !functions.is_empty() {
                 mod_content.push_str("\n");
             }
 
-            // Add direct child functions and types
-            if !direct_children.is_empty() {
-                for child in direct_children {
+            // Add direct functions and types
+            if !functions.is_empty() {
+                for child in functions {
                     mod_content.push_str(&generate_request_module(child, input_types, extra_types));
                 }
             }
@@ -191,7 +190,7 @@ fn write_module_to_files(
             std::fs::write(format!("{}/mod.rs", module_path), mod_content)?;
 
             // Recursively handle child modules
-            for child in children {
+            for child in modules {
                 if let Node::Module { .. } = child {
                     write_module_to_files(child, &module_path, input_types, extra_types, false)?;
                 }
@@ -271,7 +270,7 @@ async fn main() {
             }
 
             let module_parts = if path == "/" {
-                vec!["default".to_string()]
+                vec![]
             } else {
                 path.split("/")
                     .skip(1)
@@ -289,10 +288,14 @@ async fn main() {
                     .replace("-", "_"),
             ];
 
-            let fn_name = module_parts
-                .last()
-                .unwrap_or(&"default".to_string())
-                .to_string();
+            let fn_name = if module_parts.is_empty() {
+                parent_parts
+                    .last()
+                    .unwrap_or(&"default".to_string())
+                    .to_string()
+            } else {
+                module_parts.last().unwrap().to_string()
+            };
 
             // Combine parent and module parts for the full path
             let mut full_path_parts = Vec::new();
