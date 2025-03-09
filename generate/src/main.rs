@@ -466,10 +466,21 @@ fn schema_type_to_rust_type(
         .unwrap()
         .iter()
         .map(|(k, v)| {
+            let is_required = info["required"]
+                .as_array()
+                .map(|a| a.contains(&serde_json::Value::String(k.to_string())))
+                .unwrap_or(false);
+
             let prefix = if k == "type" {
                 "#[serde(rename = \"type\")]\npub ty:".to_owned()
             } else {
                 format!("pub {k}:")
+            };
+
+            let serialization_attr = if !is_required {
+                "#[serde(skip_serializing_if = \"Option::is_none\")]\n"
+            } else {
+                ""
             };
 
             let description = v["description"].as_str().unwrap_or("");
@@ -503,15 +514,8 @@ fn schema_type_to_rust_type(
             };
 
             format!(
-                "{docs}{prefix} {}",
-                schema_property_to_rust_type(
-                    v,
-                    info["required"]
-                        .as_array()
-                        .map(|a| a.contains(&serde_json::Value::String(k.to_string())))
-                        .unwrap_or(false),
-                    extra_types,
-                )
+                "{docs}{serialization_attr}{prefix} {}",
+                schema_property_to_rust_type(v, is_required, extra_types,)
             )
         })
         .collect::<Vec<String>>()
