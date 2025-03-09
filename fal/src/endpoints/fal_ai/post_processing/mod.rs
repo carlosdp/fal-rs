@@ -1,25 +1,21 @@
 #[allow(unused_imports)]
-use serde::{Serialize, Deserialize};#[allow(unused_imports)]
 use crate::prelude::*;
+#[allow(unused_imports)]
+use serde::{Deserialize, Serialize};
+#[allow(unused_imports)]
+use std::collections::HashMap;
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ProcessedOutput {
+    /// The processed images
+    pub images: Vec<Image>,
+}
 
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ProcessedOutput {
-        /// The processed images
-pub images: Vec<Image>
-    }
-    
-
-                /// Post Processing
-/// 
-/// Post Processing is an endpoint that can enhance images using a variety of techniques including grain, blur, sharpen, and more.
-/// 
+/// Post Processing
+///
 /// Category: image-to-image
-                pub fn post_processing(params: ImageProcessingInput) -> FalRequest<ImageProcessingInput, ProcessedOutput> {
-                    FalRequest::new(
-                        "fal-ai/post-processing",
-                        params
-                    )
-                }
-                
+pub fn post_processing(
+    params: ImageProcessingInput,
+) -> FalRequest<ImageProcessingInput, ProcessedOutput> {
+    FalRequest::new("fal-ai/post-processing", params)
+}

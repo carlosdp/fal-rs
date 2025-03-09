@@ -6,11 +6,13 @@ repository = "https://github.com/carlosdp/fal-rs"
 license = "MIT OR Apache-2.0"
 keywords = ["fal", "ai", "generative-ai"]
 authors = ["Carlos Diaz-Padron"]
+categories = ["api-bindings"]
+readme = "../README.md"
 
 [features]
 default = ["image", "endpoints"]
 image = ["dep:image", "futures", "base64"]
-endpoints = []
+endpoints = ["smart-default"]
 
 [dependencies]
 fal-derive = { path = "../fal-derive" }
@@ -23,6 +25,7 @@ thiserror = "1"
 base64 = { version = "0.22", optional = true }
 image = { version = "0.25", optional = true }
 futures = { version = "0.3", optional = true }
+smart-default = { version = "0.7", optional = true }
 
 [dev-dependencies]
 tokio = { workspace = true, features = ["full"] }

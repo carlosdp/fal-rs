@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 use serde::Deserialize;
@@ -134,7 +134,7 @@ fn write_module_to_files(
     node: &Node,
     base_path: &str,
     input_types: &HashMap<String, serde_json::Value>,
-    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    extra_types: &mut HashMap<String, (String, String)>,
     is_root: bool,
 ) -> std::io::Result<()> {
     match node {
@@ -159,7 +159,7 @@ fn write_module_to_files(
             // Add use declarations if we have direct functions/types
             if !functions.is_empty() {
                 mod_content
-                    .push_str("#[allow(unused_imports)]\nuse serde::{Serialize, Deserialize};#[allow(unused_imports)]\nuse crate::prelude::*;\n\n");
+                    .push_str("#[allow(unused_imports)]\nuse std::collections::HashMap;\n#[allow(unused_imports)]\nuse serde::{Serialize, Deserialize};\n#[allow(unused_imports)]\nuse crate::prelude::*;\n\n");
             }
 
             // Add pub mod declarations for child modules
@@ -229,6 +229,9 @@ async fn main() {
         .await
         .unwrap();
 
+    // De-duplicate, because the /models endpoint returns multiple endpoints within an alias
+    let mut visited_aliases = HashSet::new();
+
     for model in &models {
         let (owner, endpoint) = model
             .endpoint_id
@@ -238,6 +241,12 @@ async fn main() {
         // URL encode the alias to handle special characters in the endpoint
         let parts = endpoint.split("/").collect::<Vec<&str>>();
         let alias = parts[0];
+
+        if visited_aliases.contains(alias) {
+            continue;
+        }
+
+        visited_aliases.insert(alias);
 
         let encoded_alias = utf8_percent_encode(alias, NON_ALPHANUMERIC).to_string();
 
@@ -275,6 +284,13 @@ async fn main() {
                 path.split("/")
                     .skip(1)
                     .map(|s| s.replace(".", "_").replace("-", "_"))
+                    .map(|s| {
+                        if s.chars().next().unwrap().is_digit(10) {
+                            format!("v{s}")
+                        } else {
+                            s.to_string()
+                        }
+                    })
                     .collect::<Vec<String>>()
             };
 
@@ -286,7 +302,16 @@ async fn main() {
                     .join("::")
                     .replace(".", "_")
                     .replace("-", "_"),
-            ];
+            ]
+            .into_iter()
+            .map(|s| {
+                if s.chars().next().unwrap().is_digit(10) {
+                    format!("v{s}")
+                } else {
+                    s.to_string()
+                }
+            })
+            .collect::<Vec<_>>();
 
             let fn_name = if module_parts.is_empty() {
                 parent_parts
@@ -336,7 +361,7 @@ async fn main() {
     // Print the tree structure
     root.print_tree(0);
 
-    let mut extra_types: HashMap<serde_json::Value, (String, String)> = HashMap::new();
+    let mut extra_types: HashMap<String, (String, String)> = HashMap::new();
 
     // Write the module tree to files
     write_module_to_files(
@@ -364,7 +389,7 @@ async fn main() {
 
     // Write common types to types.rs
     let types_content = format!(
-        "use serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\n{}",
+        "use std::collections::HashMap;\n\nuse serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\n{}",
         rust_struct_types, extra_types_str
     );
     std::fs::write(format!("{}/types.rs", base_module_path), types_content)
@@ -395,7 +420,7 @@ async fn main() {
 fn generate_request_module(
     node: &Node,
     input_types: &HashMap<String, serde_json::Value>,
-    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    extra_types: &mut HashMap<String, (String, String)>,
 ) -> String {
     match node {
         Node::Module { name, children } => {
@@ -461,10 +486,10 @@ fn generate_request_module(
 
 fn schema_type_to_rust_type(
     info: &serde_json::Value,
-    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    extra_types: &mut HashMap<String, (String, String)>,
     input_type: bool,
 ) -> String {
-    let type_name = info["title"].as_str().unwrap();
+    let type_name = info["title"].as_str().unwrap().replace(" ", "");
     let params = info["properties"]
         .as_object()
         .unwrap()
@@ -477,8 +502,11 @@ fn schema_type_to_rust_type(
 
             let prefix = if k == "type" {
                 "#[serde(rename = \"type\")]\npub ty:".to_owned()
+            } else if is_rust_keyword(k) {
+                format!("#[serde(rename = \"{k}\")]\npub r#{k}:")
             } else {
-                format!("pub {k}:")
+                let prop_name = to_snake_case(&k);
+                format!("pub {prop_name}:")
             };
 
             let serialization_attr = if !is_required {
@@ -540,7 +568,7 @@ fn schema_type_to_rust_type(
 fn schema_property_to_rust_type(
     property: &serde_json::Value,
     required: bool,
-    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    extra_types: &mut HashMap<String, (String, String)>,
 ) -> String {
     let type_name = match property["type"].as_str() {
         Some("string") => "String".to_string(),
@@ -550,7 +578,7 @@ fn schema_property_to_rust_type(
         Some("object") => {
             if property["additionalProperties"].as_object().is_some() {
                 if let Some(title) = property["title"].as_str() {
-                    title.to_string()
+                    get_or_build_object_type(title, property, extra_types)
                 } else {
                     tracing::warn!("[additionalProperties] no title for object: {:?}", property);
                     "HashMap<String, serde_json::Value>".to_string()
@@ -624,25 +652,27 @@ fn schema_property_to_rust_type(
 fn get_or_build_enum(
     title: &str,
     options: &[serde_json::Value],
-    extra_types: &mut HashMap<serde_json::Value, (String, String)>,
+    extra_types: &mut HashMap<String, (String, String)>,
 ) -> String {
-    if let Some((existing_type, _)) = extra_types.get(&serde_json::Value::Array(options.to_vec())) {
+    let mut enum_name = title.to_string();
+    enum_name = enum_name
+        .replace(".", "_")
+        .replace("-", "_")
+        .replace(" ", "");
+    enum_name = format!("{}Property", enum_name);
+
+    if let Some((existing_type, _)) = extra_types.get(&enum_name) {
         existing_type.clone()
     } else {
-        let mut enum_name = title.to_string();
-        enum_name = enum_name
-            .replace(".", "_")
-            .replace("-", "_")
-            .replace(" ", "");
-        enum_name = format!("{}Property", enum_name);
-
         let variants = options
             .iter()
-            .map(|v| {
+            .enumerate()
+            .map(|(i, v)| {
                 if let Some(enum_options) = v["enum"].as_array() {
                     enum_options
                         .iter()
-                        .map(|op| {
+                        .enumerate()
+                        .map(|(j, op)| {
                             let mut variant_name =
                                 snake_to_upper_camel(op.as_str().unwrap()).replace(":", "_");
                             if variant_name
@@ -657,8 +687,9 @@ fn get_or_build_enum(
                                 variant_name = format!("{prefix}_{variant_name}");
                             }
                             let original_name = op.as_str().unwrap();
+                            let default_marker = if i == 0 && j == 0 { "#[default]\n" } else { "" };
 
-                            format!("#[serde(rename=\"{original_name}\")]\n{variant_name}")
+                            format!("{default_marker}#[serde(rename=\"{original_name}\")]\n{variant_name}")
                         })
                         .collect()
                 } else {
@@ -679,7 +710,9 @@ fn get_or_build_enum(
                         .replace(" ", "");
 
                     let variant_type = schema_property_to_rust_type(v, true, extra_types);
-                    vec![format!("{variant_name}({variant_type})")]
+                    let default_marker = if i == 0 { "#[default]\n" } else { "" };
+
+                    vec![format!("{default_marker}{variant_name}({variant_type})")]
                 }
             })
             .flatten()
@@ -687,15 +720,34 @@ fn get_or_build_enum(
             .join(",\n");
 
         let enum_type = format!(
-            "#[derive(Debug, Serialize, Deserialize)]\n#[allow(non_camel_case_types)]\npub enum {enum_name}\n{{\n{variants}\n}}"
+            "#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]\n#[allow(non_camel_case_types)]\npub enum {enum_name}\n{{\n{variants}\n}}"
         );
 
-        extra_types.insert(
-            serde_json::Value::Array(options.to_vec()),
-            (enum_name.clone(), enum_type.clone()),
-        );
+        extra_types.insert(enum_name.clone(), (enum_name.clone(), enum_type.clone()));
 
         enum_name
+    }
+}
+
+fn get_or_build_object_type(
+    title: &str,
+    property: &serde_json::Value,
+    extra_types: &mut HashMap<String, (String, String)>,
+) -> String {
+    let mut struct_name = title.to_string();
+    struct_name = struct_name
+        .replace(".", "_")
+        .replace("-", "_")
+        .replace(" ", "");
+
+    if let Some((name, _)) = extra_types.get(&struct_name) {
+        name.clone()
+    } else {
+        let mut property = property.clone();
+        property["properties"] = property["additionalProperties"].clone();
+        let struct_impl = schema_type_to_rust_type(&property, extra_types, true);
+        extra_types.insert(struct_name.clone(), (struct_name.clone(), struct_impl));
+        struct_name
     }
 }
 
@@ -703,7 +755,6 @@ fn docs_from(model: &Model, openapi_params: &serde_json::Value) -> String {
     let openapi_description = openapi_params["post"]["description"].as_str().unwrap_or("");
 
     let title = &model.title;
-    let short_desc = &model.short_description;
     let category = &model.category;
     let machine_type = model
         .machine_type
@@ -720,8 +771,6 @@ fn docs_from(model: &Model, openapi_params: &serde_json::Value) -> String {
         "
     {title}
 
-    {short_desc}
-
     Category: {category}
     {machine_type}
     {license_type}
@@ -732,7 +781,7 @@ fn docs_from(model: &Model, openapi_params: &serde_json::Value) -> String {
 }
 
 fn hardcoded_struct(reference: &str) -> bool {
-    matches!(reference, "File" | "Image" | "Timings")
+    matches!(reference, "File" | "Image")
 }
 
 fn snake_to_upper_camel(input: &str) -> String {
@@ -751,4 +800,42 @@ fn snake_to_upper_camel(input: &str) -> String {
     }
 
     result
+}
+
+fn to_snake_case(input: &str) -> String {
+    let mut result = String::new();
+    let mut prev_is_uppercase = false;
+
+    for (i, c) in input.chars().enumerate() {
+        if c.is_uppercase() {
+            if i > 0 && !prev_is_uppercase {
+                result.push('_');
+            }
+            result.push(c.to_lowercase().next().unwrap());
+            prev_is_uppercase = true;
+        } else {
+            result.push(if c.is_whitespace() || c == '-' {
+                '_'
+            } else {
+                c
+            });
+            prev_is_uppercase = false;
+        }
+    }
+
+    result
+}
+
+fn is_rust_keyword(word: &str) -> bool {
+    const KEYWORDS: &[&str] = &[
+        "as", "break", "const", "continue", "crate", "else", "enum", "extern", "false", "fn",
+        "for", "if", "impl", "in", "let", "loop", "match", "mod", "move", "mut", "pub", "ref",
+        "return", "self", "Self", "static", "struct", "super", "trait", "true", "type", "unsafe",
+        "use", "where", "while", // Reserved for future use
+        "abstract", "async", "await", "become", "box", "do", "final", "macro", "override", "priv",
+        "try", "typeof", "unsized", "virtual", "yield", // Strict mode keywords
+        "dyn",
+    ];
+
+    KEYWORDS.contains(&word)
 }

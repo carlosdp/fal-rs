@@ -1,6 +1,6 @@
 pub mod fal_ai;
-pub mod rundiffusion_fal;
 pub mod fashn;
+pub mod rundiffusion_fal;
 
 mod types;
 pub use types::*;

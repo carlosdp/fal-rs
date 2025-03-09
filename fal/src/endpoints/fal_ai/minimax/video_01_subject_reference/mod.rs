@@ -1,180 +1,25 @@
 #[allow(unused_imports)]
-use serde::{Serialize, Deserialize};#[allow(unused_imports)]
 use crate::prelude::*;
+#[allow(unused_imports)]
+use serde::{Deserialize, Serialize};
+#[allow(unused_imports)]
+use std::collections::HashMap;
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SubjectReferenceOutput {
+    /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
+    pub video: File,
+}
 
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01 Live
-/// 
-/// Generate video clips from your prompts using MiniMax model
-/// 
+/// MiniMax (Hailuo AI) Video 01 Live
+///
 /// Category: text-to-video
-/// 
-/// 
-/// 
+///
+///
+///
 /// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01-live",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01 Live
-/// 
-/// Generate video clips from your images using MiniMax Video model
-/// 
-/// Category: image-to-video
-/// 
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01-live/image-to-video",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01 Subject Reference
-/// 
-/// Generate video clips maintaining consistent, realistic facial features and identity across dynamic video content
-/// 
-/// Category: image-to-video
-/// 
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01-subject-reference",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01 Director
-/// 
-/// Generate video clips more accurately with respect to natural language descriptions and using camera movement instructions for shot control.
-/// 
-/// Category: text-to-video
-/// 
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01-director",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01 Director - Image to Video
-/// 
-/// Generate video clips more accurately with respect to initial image, natural language descriptions, and using camera movement instructions for shot control.
-/// 
-/// Category: image-to-video
-/// 
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01-director/image-to-video",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01
-/// 
-/// Generate video clips from your images using MiniMax Video model
-/// 
-/// Category: image-to-video
-/// Machine Type: A100
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01/image-to-video",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct SubjectReferenceOutput {
-        /// The generated video/// The generated video/// {"url":"https://fal.media/files/rabbit/pONKqOnY7z6GlF6oDESvR_output.mp4"}
-
-pub video: File
-    }
-    
-
-                /// MiniMax (Hailuo AI) Video 01
-/// 
-/// Generate video clips from your prompts using MiniMax model
-/// 
-/// Category: text-to-video
-/// Machine Type: A100
-/// 
-/// 
-/// Hailuo S2V-01 API: Text-to-video generation with subject reference image for consistent character appearance
-                pub fn video_01_subject_reference(params: SubjectReferenceRequest) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
-                    FalRequest::new(
-                        "fal-ai/minimax/video-01",
-                        params
-                    )
-                }
-                
+pub fn video_01_subject_reference(
+    params: SubjectReferenceRequest,
+) -> FalRequest<SubjectReferenceRequest, SubjectReferenceOutput> {
+    FalRequest::new("fal-ai/minimax/video-01-live", params)
+}

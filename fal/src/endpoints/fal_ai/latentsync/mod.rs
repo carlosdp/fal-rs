@@ -1,27 +1,21 @@
 #[allow(unused_imports)]
-use serde::{Serialize, Deserialize};#[allow(unused_imports)]
 use crate::prelude::*;
+#[allow(unused_imports)]
+use serde::{Deserialize, Serialize};
+#[allow(unused_imports)]
+use std::collections::HashMap;
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Output {
+    /// The generated video with the lip sync.
+    pub video: File,
+}
 
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct Output {
-        /// The generated video with the lip sync.
-pub video: File
-    }
-    
-
-                /// LatentSync
-/// 
-/// LatentSync is a video-to-video model that generates lip sync animations from audio using advanced algorithms for high-quality synchronization.
-/// 
+/// LatentSync
+///
 /// Category: video-to-video
-/// 
+///
 /// License Type: commercial
-                pub fn latentsync(params: Input) -> FalRequest<Input, Output> {
-                    FalRequest::new(
-                        "fal-ai/latentsync",
-                        params
-                    )
-                }
-                
+pub fn latentsync(params: Input) -> FalRequest<Input, Output> {
+    FalRequest::new("fal-ai/latentsync", params)
+}

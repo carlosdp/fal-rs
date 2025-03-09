@@ -53,8 +53,3 @@ pub struct File {
     pub width: Option<i64>,
     pub height: Option<i64>,
 }
-
-#[derive(Debug, Deserialize, Serialize, Default)]
-pub struct Timings {
-    // todo
-}

@@ -1,5 +1,8 @@
 #[allow(unused_imports)]
-use serde::{Serialize, Deserialize};#[allow(unused_imports)]
+use std::collections::HashMap;
+#[allow(unused_imports)]
+use serde::{Serialize, Deserialize};
+#[allow(unused_imports)]
 use crate::prelude::*;
 
 
@@ -15,8 +18,6 @@ pub video: File
     
 
                 /// Wan-2.1 1.3B Text-to-Video
-/// 
-/// Wan-2.1 1.3B is a text-to-video model that generates high-quality videos with high visual quality and motion diversity from text promptsat faster speeds.
 /// 
 /// Category: text-to-video
 /// Machine Type: H100

@@ -1,230 +1,25 @@
 #[allow(unused_imports)]
-use serde::{Serialize, Deserialize};#[allow(unused_imports)]
 use crate::prelude::*;
+#[allow(unused_imports)]
+use serde::{Deserialize, Serialize};
+#[allow(unused_imports)]
+use std::collections::HashMap;
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ImageExpansionOutput {
+    /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
+    pub image: Image,
+    /// Seed value used for generation.
+    pub seed: i64,
+}
 
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Text-to-Image Base
-/// 
-/// Bria's Text-to-Image model, trained exclusively on licensed data for safe and risk-free commercial use. Available also as source code and weights. For access to weights: https://bria.ai/contact-us
-/// 
+/// Bria Text-to-Image Base
+///
 /// Category: text-to-image
 /// Machine Type: H100
 /// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/text-to-image/base",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Text-to-Image Fast
-/// 
-/// Bria's Text-to-Image model with perfect harmony of latency and quality. Trained exclusively on licensed data for safe and risk-free commercial use. Available also as source code and weights. For access to weights: https://bria.ai/contact-us
-/// 
-/// Category: text-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/text-to-image/fast",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Text-to-Image HD
-/// 
-/// Bria's Text-to-Image model for HD images. Trained exclusively on licensed data for safe and risk-free commercial use. Available also as source code and weights. For access to weights: https://bria.ai/contact-us
-/// 
-/// Category: text-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/text-to-image/hd",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Eraser
-/// 
-/// Bria Eraser enables precise removal of unwanted objects from images while maintaining high-quality outputs. Trained exclusively on licensed data for safe and risk-free commercial use. Access the model's source code and weights: https://bria.ai/contact-us
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/eraser",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Product Shot
-/// 
-/// Place any product in any scenery with just a prompt or reference image while maintaining high integrity of the product. Trained exclusively on licensed data for safe and risk-free commercial use and optimized for eCommerce.
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/product-shot",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Background Replace
-/// 
-/// Bria Background Replace allows for efficient swapping of backgrounds in images via text prompts or reference image, delivering realistic and polished results. Trained exclusively on licensed data for safe and risk-free commercial use
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/background/replace",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria GenFill
-/// 
-/// Bria GenFill enables high-quality object addition or visual transformation. Trained exclusively on licensed data for safe and risk-free commercial use. Access the model's source code and weights: https://bria.ai/contact-us
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/genfill",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria Expand Image
-/// 
-/// Bria Expand expands images beyond their borders in high quality. Trained exclusively on licensed data for safe and risk-free commercial use. Access the model's source code and weights: https://bria.ai/contact-us
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/expand",
-                        params
-                    )
-                }
-                
-                
-    #[derive(Debug, Serialize, Deserialize)]
-    pub struct ImageExpansionOutput {
-        /// The generated image/// The generated image/// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
-
-pub image: Image,
-/// Seed value used for generation.
-pub seed: i64
-    }
-    
-
-                /// Bria RMBG 2.0
-/// 
-/// Bria RMBG 2.0 enables seamless removal of backgrounds from images, ideal for professional editing tasks. Trained exclusively on licensed data for safe and risk-free commercial use. Model weights for commercial use are available here: https://share-eu1.hsforms.com/2GLpEVQqJTI2Lj7AMYwgfIwf4e04?utm_campaign=RMBG%202.0&utm_source=RMBG%20image%20and%20video%20page&utm_medium=button&utm_content=rmbg%20image%20pricing%20form
-/// 
-/// Category: image-to-image
-/// Machine Type: H100
-/// License Type: commercial
-                pub fn expand(params: ImageExpansionInput) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
-                    FalRequest::new(
-                        "fal-ai/bria/background/remove",
-                        params
-                    )
-                }
-                
+pub fn expand(
+    params: ImageExpansionInput,
+) -> FalRequest<ImageExpansionInput, ImageExpansionOutput> {
+    FalRequest::new("fal-ai/bria/text-to-image/base", params)
+}
