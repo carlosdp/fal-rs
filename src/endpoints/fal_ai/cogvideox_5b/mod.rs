@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_cogvideox-5b",
     feature = "endpoints_fal-ai_cogvideox-5b_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_cogvideox-5b",
+        feature = "endpoints_fal-ai_cogvideox-5b_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod image_to_video;
     feature = "endpoints_fal-ai_cogvideox-5b",
     feature = "endpoints_fal-ai_cogvideox-5b_video-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_cogvideox-5b",
+        feature = "endpoints_fal-ai_cogvideox-5b_video-to-video"
+    )))
+)]
 pub mod video_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

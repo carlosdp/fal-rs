@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
     feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_luma-dream-machine",
+        feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
+        feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

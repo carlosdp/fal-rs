@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux_dev",
     feature = "endpoints_fal-ai_flux_dev_image-to-image"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux",
+        feature = "endpoints_fal-ai_flux_dev",
+        feature = "endpoints_fal-ai_flux_dev_image-to-image"
+    )))
+)]
 pub mod image_to_image;
 #[cfg(any(
     feature = "endpoints",
@@ -20,6 +30,16 @@ pub mod image_to_image;
     feature = "endpoints_fal-ai_flux_dev",
     feature = "endpoints_fal-ai_flux_dev_redux"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux",
+        feature = "endpoints_fal-ai_flux_dev",
+        feature = "endpoints_fal-ai_flux_dev_redux"
+    )))
+)]
 pub mod redux;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux-general",
     feature = "endpoints_fal-ai_flux-general_differential-diffusion"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-general",
+        feature = "endpoints_fal-ai_flux-general_differential-diffusion"
+    )))
+)]
 pub mod differential_diffusion;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod differential_diffusion;
     feature = "endpoints_fal-ai_flux-general",
     feature = "endpoints_fal-ai_flux-general_image-to-image"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-general",
+        feature = "endpoints_fal-ai_flux-general_image-to-image"
+    )))
+)]
 pub mod image_to_image;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod image_to_image;
     feature = "endpoints_fal-ai_flux-general",
     feature = "endpoints_fal-ai_flux-general_inpainting"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-general",
+        feature = "endpoints_fal-ai_flux-general_inpainting"
+    )))
+)]
 pub mod inpainting;
 #[cfg(any(
     feature = "endpoints",
@@ -32,6 +59,15 @@ pub mod inpainting;
     feature = "endpoints_fal-ai_flux-general",
     feature = "endpoints_fal-ai_flux-general_rf-inversion"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-general",
+        feature = "endpoints_fal-ai_flux-general_rf-inversion"
+    )))
+)]
 pub mod rf_inversion;
 
 #[derive(Debug, Serialize, Deserialize)]

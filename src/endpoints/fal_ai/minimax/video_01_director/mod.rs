@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_minimax_video-01-director",
     feature = "endpoints_fal-ai_minimax_video-01-director_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_video-01-director",
+        feature = "endpoints_fal-ai_minimax_video-01-director_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

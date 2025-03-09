@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_imagen3",
     feature = "endpoints_fal-ai_imagen3_fast"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imagen3",
+        feature = "endpoints_fal-ai_imagen3_fast"
+    )))
+)]
 pub mod fast;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod fast;
     feature = "endpoints_fal-ai_imagen3",
     feature = "endpoints_fal-ai_imagen3_subject-reference"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imagen3",
+        feature = "endpoints_fal-ai_imagen3_subject-reference"
+    )))
+)]
 pub mod subject_reference;
 
 #[derive(Debug, Serialize, Deserialize)]

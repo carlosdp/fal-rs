@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_stable-cascade",
     feature = "endpoints_fal-ai_stable-cascade_sote-diffusion"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_stable-cascade",
+        feature = "endpoints_fal-ai_stable-cascade_sote-diffusion"
+    )))
+)]
 pub mod sote_diffusion;
 
 #[derive(Debug, Serialize, Deserialize)]

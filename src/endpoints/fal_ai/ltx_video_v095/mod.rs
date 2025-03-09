@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_ltx-video-v095",
     feature = "endpoints_fal-ai_ltx-video-v095_extend"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ltx-video-v095",
+        feature = "endpoints_fal-ai_ltx-video-v095_extend"
+    )))
+)]
 pub mod extend;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod extend;
     feature = "endpoints_fal-ai_ltx-video-v095",
     feature = "endpoints_fal-ai_ltx-video-v095_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ltx-video-v095",
+        feature = "endpoints_fal-ai_ltx-video-v095_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod image_to_video;
     feature = "endpoints_fal-ai_ltx-video-v095",
     feature = "endpoints_fal-ai_ltx-video-v095_multiconditioning"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ltx-video-v095",
+        feature = "endpoints_fal-ai_ltx-video-v095_multiconditioning"
+    )))
+)]
 pub mod multiconditioning;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_docres",
     feature = "endpoints_fal-ai_docres_dewarp"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_docres",
+        feature = "endpoints_fal-ai_docres_dewarp"
+    )))
+)]
 pub mod dewarp;
 
 #[derive(Debug, Serialize, Deserialize)]

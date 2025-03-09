@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_ideogram_v2",
     feature = "endpoints_fal-ai_ideogram_v2_edit"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ideogram",
+        feature = "endpoints_fal-ai_ideogram_v2",
+        feature = "endpoints_fal-ai_ideogram_v2_edit"
+    )))
+)]
 pub mod edit;
 #[cfg(any(
     feature = "endpoints",
@@ -20,6 +30,16 @@ pub mod edit;
     feature = "endpoints_fal-ai_ideogram_v2",
     feature = "endpoints_fal-ai_ideogram_v2_remix"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ideogram",
+        feature = "endpoints_fal-ai_ideogram_v2",
+        feature = "endpoints_fal-ai_ideogram_v2_remix"
+    )))
+)]
 pub mod remix;
 #[cfg(any(
     feature = "endpoints",
@@ -28,6 +48,16 @@ pub mod remix;
     feature = "endpoints_fal-ai_ideogram_v2",
     feature = "endpoints_fal-ai_ideogram_v2_turbo"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ideogram",
+        feature = "endpoints_fal-ai_ideogram_v2",
+        feature = "endpoints_fal-ai_ideogram_v2_turbo"
+    )))
+)]
 pub mod turbo;
 
 #[derive(Debug, Serialize, Deserialize)]

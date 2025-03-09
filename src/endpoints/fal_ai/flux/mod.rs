@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux",
     feature = "endpoints_fal-ai_flux_dev"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux",
+        feature = "endpoints_fal-ai_flux_dev"
+    )))
+)]
 pub mod dev;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod dev;
     feature = "endpoints_fal-ai_flux",
     feature = "endpoints_fal-ai_flux_schnell"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux",
+        feature = "endpoints_fal-ai_flux_schnell"
+    )))
+)]
 pub mod schnell;
 
 #[derive(Debug, Serialize, Deserialize)]

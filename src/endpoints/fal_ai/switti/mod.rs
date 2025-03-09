@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_switti",
     feature = "endpoints_fal-ai_switti_v512"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_switti",
+        feature = "endpoints_fal-ai_switti_v512"
+    )))
+)]
 pub mod v512;
 
 #[derive(Debug, Serialize, Deserialize)]

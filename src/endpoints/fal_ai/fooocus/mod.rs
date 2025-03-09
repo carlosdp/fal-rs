@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_fooocus",
     feature = "endpoints_fal-ai_fooocus_image-prompt"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus",
+        feature = "endpoints_fal-ai_fooocus_image-prompt"
+    )))
+)]
 pub mod image_prompt;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod image_prompt;
     feature = "endpoints_fal-ai_fooocus",
     feature = "endpoints_fal-ai_fooocus_inpaint"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus",
+        feature = "endpoints_fal-ai_fooocus_inpaint"
+    )))
+)]
 pub mod inpaint;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod inpaint;
     feature = "endpoints_fal-ai_fooocus",
     feature = "endpoints_fal-ai_fooocus_upscale-or-vary"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus",
+        feature = "endpoints_fal-ai_fooocus_upscale-or-vary"
+    )))
+)]
 pub mod upscale_or_vary;
 
 #[derive(Debug, Serialize, Deserialize)]

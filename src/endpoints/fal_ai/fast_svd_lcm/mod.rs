@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_fast-svd-lcm",
     feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fast-svd-lcm",
+        feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video"
+    )))
+)]
 pub mod text_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

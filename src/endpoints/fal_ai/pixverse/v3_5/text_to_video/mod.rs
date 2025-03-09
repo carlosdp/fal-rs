@@ -13,6 +13,17 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_pixverse_v3-5_text-to-video",
     feature = "endpoints_fal-ai_pixverse_v3-5_text-to-video_fast"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_pixverse",
+        feature = "endpoints_fal-ai_pixverse_v3-5",
+        feature = "endpoints_fal-ai_pixverse_v3-5_text-to-video",
+        feature = "endpoints_fal-ai_pixverse_v3-5_text-to-video_fast"
+    )))
+)]
 pub mod fast;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_minimax",
     feature = "endpoints_fal-ai_minimax_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod image_to_video;
     feature = "endpoints_fal-ai_minimax",
     feature = "endpoints_fal-ai_minimax_video-01"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_video-01"
+    )))
+)]
 pub mod video_01;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod video_01;
     feature = "endpoints_fal-ai_minimax",
     feature = "endpoints_fal-ai_minimax_video-01-director"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_video-01-director"
+    )))
+)]
 pub mod video_01_director;
 #[cfg(any(
     feature = "endpoints",
@@ -32,6 +59,15 @@ pub mod video_01_director;
     feature = "endpoints_fal-ai_minimax",
     feature = "endpoints_fal-ai_minimax_video-01-live"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_video-01-live"
+    )))
+)]
 pub mod video_01_live;
 #[cfg(any(
     feature = "endpoints",
@@ -39,6 +75,15 @@ pub mod video_01_live;
     feature = "endpoints_fal-ai_minimax",
     feature = "endpoints_fal-ai_minimax_video-01-subject-reference"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax",
+        feature = "endpoints_fal-ai_minimax_video-01-subject-reference"
+    )))
+)]
 pub mod video_01_subject_reference;
 
 #[derive(Debug, Serialize, Deserialize)]

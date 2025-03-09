@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_live-portrait",
     feature = "endpoints_fal-ai_live-portrait_image"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_live-portrait",
+        feature = "endpoints_fal-ai_live-portrait_image"
+    )))
+)]
 pub mod image;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod image;
     feature = "endpoints_fal-ai_live-portrait",
     feature = "endpoints_fal-ai_live-portrait_video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_live-portrait",
+        feature = "endpoints_fal-ai_live-portrait_video"
+    )))
+)]
 pub mod video;
 
 #[derive(Debug, Serialize, Deserialize)]

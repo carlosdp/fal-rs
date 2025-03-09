@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning",
     feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning_redux"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning_redux"
+    )))
+)]
 pub mod redux;
 
 #[derive(Debug, Serialize, Deserialize)]

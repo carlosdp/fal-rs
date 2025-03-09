@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_mini-cpm",
     feature = "endpoints_fal-ai_mini-cpm_video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_mini-cpm",
+        feature = "endpoints_fal-ai_mini-cpm_video"
+    )))
+)]
 pub mod video;
 
 #[derive(Debug, Serialize, Deserialize)]

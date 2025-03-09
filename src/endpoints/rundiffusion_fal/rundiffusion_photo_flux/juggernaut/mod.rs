@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut",
     feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_image-to-image"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_image-to-image"
+    )))
+)]
 pub mod image_to_image;
 #[cfg(any(
     feature = "endpoints",
@@ -20,6 +30,16 @@ pub mod image_to_image;
     feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut",
     feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_inpainting"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_inpainting"
+    )))
+)]
 pub mod inpainting;
 
 #[derive(Debug, Serialize, Deserialize)]

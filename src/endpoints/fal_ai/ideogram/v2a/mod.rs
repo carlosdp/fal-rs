@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_ideogram_v2a",
     feature = "endpoints_fal-ai_ideogram_v2a_remix"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ideogram",
+        feature = "endpoints_fal-ai_ideogram_v2a",
+        feature = "endpoints_fal-ai_ideogram_v2a_remix"
+    )))
+)]
 pub mod remix;
 #[cfg(any(
     feature = "endpoints",
@@ -20,6 +30,16 @@ pub mod remix;
     feature = "endpoints_fal-ai_ideogram_v2a",
     feature = "endpoints_fal-ai_ideogram_v2a_turbo"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ideogram",
+        feature = "endpoints_fal-ai_ideogram_v2a",
+        feature = "endpoints_fal-ai_ideogram_v2a_turbo"
+    )))
+)]
 pub mod turbo;
 
 #[derive(Debug, Serialize, Deserialize)]

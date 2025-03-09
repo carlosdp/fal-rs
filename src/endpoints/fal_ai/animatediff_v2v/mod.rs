@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_animatediff-v2v",
     feature = "endpoints_fal-ai_animatediff-v2v_turbo"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_animatediff-v2v",
+        feature = "endpoints_fal-ai_animatediff-v2v_turbo"
+    )))
+)]
 pub mod turbo;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_finetuned"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_finetuned"
+    )))
+)]
 pub mod finetuned;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod finetuned;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_new"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_new"
+    )))
+)]
 pub mod new;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod new;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_v1"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_v1"
+    )))
+)]
 pub mod v1;
 #[cfg(any(
     feature = "endpoints",
@@ -32,6 +59,15 @@ pub mod v1;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_v1-1"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_v1-1"
+    )))
+)]
 pub mod v1_1;
 #[cfg(any(
     feature = "endpoints",
@@ -39,6 +75,15 @@ pub mod v1_1;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_v1-1-ultra"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_v1-1-ultra"
+    )))
+)]
 pub mod v1_1_ultra;
 #[cfg(any(
     feature = "endpoints",
@@ -46,6 +91,15 @@ pub mod v1_1_ultra;
     feature = "endpoints_fal-ai_flux-pro",
     feature = "endpoints_fal-ai_flux-pro_v1-1-ultra-finetuned"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro",
+        feature = "endpoints_fal-ai_flux-pro_v1-1-ultra-finetuned"
+    )))
+)]
 pub mod v1_1_ultra_finetuned;
 
 #[derive(Debug, Serialize, Deserialize)]

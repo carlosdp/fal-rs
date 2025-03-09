@@ -4,6 +4,15 @@
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_depth"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_depth"
+    )))
+)]
 pub mod depth;
 #[cfg(any(
     feature = "endpoints",
@@ -11,6 +20,15 @@ pub mod depth;
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_esrgan"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_esrgan"
+    )))
+)]
 pub mod esrgan;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +36,15 @@ pub mod esrgan;
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_marigold-depth"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_marigold-depth"
+    )))
+)]
 pub mod marigold_depth;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +52,15 @@ pub mod marigold_depth;
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_nsfw"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_nsfw"
+    )))
+)]
 pub mod nsfw;
 #[cfg(any(
     feature = "endpoints",
@@ -32,6 +68,15 @@ pub mod nsfw;
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_rembg"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_rembg"
+    )))
+)]
 pub mod rembg;
 #[cfg(any(
     feature = "endpoints",
@@ -39,4 +84,13 @@ pub mod rembg;
     feature = "endpoints_fal-ai_imageutils",
     feature = "endpoints_fal-ai_imageutils_sam"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils",
+        feature = "endpoints_fal-ai_imageutils_sam"
+    )))
+)]
 pub mod sam;

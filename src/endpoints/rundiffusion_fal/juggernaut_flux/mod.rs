@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_rundiffusion-fal_juggernaut-flux",
     feature = "endpoints_rundiffusion-fal_juggernaut-flux_base"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux_base"
+    )))
+)]
 pub mod base;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod base;
     feature = "endpoints_rundiffusion-fal_juggernaut-flux",
     feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning"
+    )))
+)]
 pub mod lightning;
 #[cfg(any(
     feature = "endpoints",
@@ -25,6 +43,15 @@ pub mod lightning;
     feature = "endpoints_rundiffusion-fal_juggernaut-flux",
     feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro"
+    )))
+)]
 pub mod pro;
 
 #[derive(Debug, Serialize, Deserialize)]

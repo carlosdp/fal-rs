@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux-control-lora-canny",
     feature = "endpoints_fal-ai_flux-control-lora-canny_image-to-image"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-control-lora-canny",
+        feature = "endpoints_fal-ai_flux-control-lora-canny_image-to-image"
+    )))
+)]
 pub mod image_to_image;
 
 #[derive(Debug, Serialize, Deserialize)]

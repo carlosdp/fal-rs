@@ -181,13 +181,14 @@ fn write_module_to_files(
                     let features = (1..=path_segments.len())
                         .map(|i| path_segments[0..i].join("_"))
                         .collect::<Vec<String>>();
+
+                    let features_map = features
+                        .into_iter()
+                        .map(|s| format!("feature = \"{}\"", s))
+                        .collect::<Vec<String>>()
+                        .join(",");
                     let feature_cfg = format!(
-                        "#[cfg(any({}))]",
-                        features
-                            .into_iter()
-                            .map(|s| format!("feature = \"{}\"", s))
-                            .collect::<Vec<String>>()
-                            .join(",")
+                        "#[cfg(any({features_map}))]\n#[cfg_attr(docsrs, doc(cfg(any({features_map}))))]",
                     );
 
                     mod_content.push_str(&format!("{}\npub mod {};\n", feature_cfg, child_name));
@@ -479,7 +480,8 @@ async fn main() {
                 .iter()
                 .filter_map(|child| {
                     if let Node::Module { name, .. } = child {
-                        Some(format!("#[cfg(any(feature = \"endpoints\", feature = \"endpoints_{}\"))]\npub mod {};", name.replace("_", "-"), name))
+                        let feature_name = format!("endpoints_{}", name.replace("_", "-"));
+                        Some(format!("#[cfg(any(feature = \"endpoints\", feature = \"{feature_name}\"))]\n#[cfg_attr(docsrs, doc(cfg(any(feature = \"endpoints\", feature = \"{feature_name}\"))))]\npub mod {};", name))
                     } else {
                         None
                     }

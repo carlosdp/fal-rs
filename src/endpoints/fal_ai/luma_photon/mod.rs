@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_luma-photon",
     feature = "endpoints_fal-ai_luma-photon_flash"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_luma-photon",
+        feature = "endpoints_fal-ai_luma-photon_flash"
+    )))
+)]
 pub mod flash;
 
 #[derive(Debug, Serialize, Deserialize)]

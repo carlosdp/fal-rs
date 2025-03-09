@@ -127,7 +127,7 @@ impl<Response: DeserializeOwned> Queue<Response> {
     ///
     /// If `show_logs` is set to true, the logs for the request will be included.
     /// Otherwise, they will not be present.
-    /// Each [`QueueStatus`](crate::queue::QueueStatus) will include new logs since the last received status in the stream.
+    /// Each [`QueueStatus`] will include new logs since the last received status in the stream.
     pub async fn stream(
         &self,
         show_logs: bool,

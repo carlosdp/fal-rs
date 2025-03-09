@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_amt-interpolation",
     feature = "endpoints_fal-ai_amt-interpolation_frame-interpolation"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_amt-interpolation",
+        feature = "endpoints_fal-ai_amt-interpolation_frame-interpolation"
+    )))
+)]
 pub mod frame_interpolation;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -12,6 +12,16 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_flux_schnell",
     feature = "endpoints_fal-ai_flux_schnell_redux"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux",
+        feature = "endpoints_fal-ai_flux_schnell",
+        feature = "endpoints_fal-ai_flux_schnell_redux"
+    )))
+)]
 pub mod redux;
 
 #[derive(Debug, Serialize, Deserialize)]

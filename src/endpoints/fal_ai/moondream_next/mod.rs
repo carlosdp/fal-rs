@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_moondream-next",
     feature = "endpoints_fal-ai_moondream-next_batch"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_moondream-next",
+        feature = "endpoints_fal-ai_moondream-next_batch"
+    )))
+)]
 pub mod batch;
 #[cfg(any(
     feature = "endpoints",
@@ -18,6 +27,15 @@ pub mod batch;
     feature = "endpoints_fal-ai_moondream-next",
     feature = "endpoints_fal-ai_moondream-next_detection"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_moondream-next",
+        feature = "endpoints_fal-ai_moondream-next_detection"
+    )))
+)]
 pub mod detection;
 
 #[derive(Debug, Serialize, Deserialize)]

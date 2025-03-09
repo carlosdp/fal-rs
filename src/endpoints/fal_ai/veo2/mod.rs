@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_veo2",
     feature = "endpoints_fal-ai_veo2_image-to-video"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_veo2",
+        feature = "endpoints_fal-ai_veo2_image-to-video"
+    )))
+)]
 pub mod image_to_video;
 
 #[derive(Debug, Serialize, Deserialize)]

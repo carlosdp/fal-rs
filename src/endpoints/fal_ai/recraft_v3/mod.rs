@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_recraft-v3",
     feature = "endpoints_fal-ai_recraft-v3_create-style"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_recraft-v3",
+        feature = "endpoints_fal-ai_recraft-v3_create-style"
+    )))
+)]
 pub mod create_style;
 
 #[derive(Debug, Serialize, Deserialize)]

@@ -11,6 +11,15 @@ use std::collections::HashMap;
     feature = "endpoints_fal-ai_mmaudio-v2",
     feature = "endpoints_fal-ai_mmaudio-v2_text-to-audio"
 ))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_mmaudio-v2",
+        feature = "endpoints_fal-ai_mmaudio-v2_text-to-audio"
+    )))
+)]
 pub mod text_to_audio;
 
 #[derive(Debug, Serialize, Deserialize)]
