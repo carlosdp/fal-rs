@@ -16,7 +16,7 @@ image = ["dep:image", "futures", "base64"]
 endpoints = ["smart-default"]
 
 [dependencies]
-fal-derive = { path = "../fal-derive" }
+fal-derive = { version = "0.1", path = "../fal-derive" }
 reqwest = { workspace = true, features = ["json", "stream"] }
 eventsource-stream = "0.2"
 serde = { workspace = true, features = ["derive"] }
