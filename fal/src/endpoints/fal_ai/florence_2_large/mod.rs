@@ -1,0 +1,14 @@
+pub mod caption;
+pub mod caption_to_phrase_grounding;
+pub mod dense_region_caption;
+pub mod detailed_caption;
+pub mod more_detailed_caption;
+pub mod object_detection;
+pub mod ocr;
+pub mod ocr_with_region;
+pub mod open_vocabulary_detection;
+pub mod referring_expression_segmentation;
+pub mod region_proposal;
+pub mod region_to_category;
+pub mod region_to_description;
+pub mod region_to_segmentation;

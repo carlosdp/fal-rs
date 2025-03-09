@@ -1,0 +1,11 @@
+pub mod canny;
+pub mod depth_anything;
+pub mod hed;
+pub mod lineart;
+pub mod midas;
+pub mod mlsd;
+pub mod pidi;
+pub mod sam;
+pub mod scribble;
+pub mod teed;
+pub mod zoe;

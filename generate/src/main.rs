@@ -229,7 +229,7 @@ async fn main() {
         .await
         .unwrap();
 
-    for model in models.iter().take(5) {
+    for model in &models {
         let (owner, endpoint) = model
             .endpoint_id
             .split_once("/")
@@ -303,10 +303,14 @@ async fn main() {
             full_path_parts.extend(parent_parts.iter().map(String::as_str));
             full_path_parts.extend(module_parts.iter().map(String::as_str));
 
-            let output_type_ref = params["post"]["responses"]["200"]["content"]["application/json"]
-                ["schema"]["$ref"]
+            let Some(output_type_ref) = params["post"]["responses"]["200"]["content"]
+                ["application/json"]["schema"]["$ref"]
                 .as_str()
-                .unwrap();
+            else {
+                tracing::error!("no output type ref for {}", &model.endpoint_id);
+                tracing::error!("params: {:?}", params);
+                continue;
+            };
 
             let output_type = {
                 let type_name = output_type_ref.split("/").last().unwrap();
@@ -326,7 +330,7 @@ async fn main() {
             );
         }
 
-        tokio::time::sleep(std::time::Duration::from_millis(100)).await;
+        tokio::time::sleep(std::time::Duration::from_millis(10)).await;
     }
 
     // Print the tree structure
@@ -545,7 +549,12 @@ fn schema_property_to_rust_type(
         Some("boolean") => "bool".to_string(),
         Some("object") => {
             if property["additionalProperties"].as_object().is_some() {
-                property["title"].as_str().unwrap().to_string()
+                if let Some(title) = property["title"].as_str() {
+                    title.to_string()
+                } else {
+                    tracing::warn!("[additionalProperties] no title for object: {:?}", property);
+                    "HashMap<String, serde_json::Value>".to_string()
+                }
             } else if let Some(reference) = property["$ref"].as_str() {
                 if hardcoded_struct(reference) {
                     reference.split("/").last().unwrap().to_string()
