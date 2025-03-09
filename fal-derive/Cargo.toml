@@ -2,6 +2,10 @@
 name = "fal-derive"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/carlosdp/fal-rs"
+license = "MIT OR Apache-2.0"
+keywords = ["fal", "ai", "generative-ai"]
+authors = ["Carlos Diaz-Padron"]
 
 [lib]
 proc-macro = true
