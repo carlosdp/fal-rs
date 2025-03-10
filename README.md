@@ -59,7 +59,7 @@ use fal::endpoints::fal_ai::flux;
 async fn main() {
     let api_key = std::env::var("FAL_API_KEY").unwrap();
 
-    // Use the Flux Pro endpoint to generate an image
+    // Use the Flux Dev endpoint to generate an image
     let response = flux::dev::dev(flux::dev::DevTextToImageInput {
         prompt: "a majestic horse in a field".to_string(),
         ..Default::default()
