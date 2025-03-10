@@ -12,7 +12,6 @@ A Rust client for the [fal.ai](https://fal.ai) API, providing easy access to sta
 - **Compile Time Efficient**: FAL API Endpoint modules are code generated from the API with granular features, so you only build the set of endpoints you actually use!
 - **Async/Await Support**: Built on top of `reqwest` for efficient async operations
 - **Queue System**: Built-in support for fal.ai's queue system for long-running operations
-- **Image Processing**: Optional image processing capabilities with the `image` feature
 
 ## Installation
 
@@ -120,6 +119,16 @@ fal = { version = "0.1", default-features = false, features = ["image"] }
 use fal::prelude::*;
 use serde::Deserialize;
 
+#[derive(Debug, Deserialize)]
+pub struct File {
+    pub url: String,
+    pub content_type: String,
+    pub file_name: Option<String>,
+    pub file_size: Option<i64>,
+    pub width: Option<i64>,
+    pub height: Option<i64>,
+}
+
 #[derive(Deserialize)]
 pub struct FalResponse {
   pub images: Vec<File>,
@@ -144,7 +153,6 @@ async fn main() {
 
 The crate comes with several optional features:
 
-- `image` (enabled by default): Provides image processing helpers using the `image` crate
 - `endpoints_*`: Include pre-generated endpoint modules for fal.ai services. See "Using public model endpoints" above for details.
 
 ## Generating Endpoint Modules

@@ -3,9 +3,11 @@ use std::{future::Future, io::Cursor};
 use base64::prelude::*;
 use image::DynamicImage;
 
-use crate::{FalError, File};
+use crate::FalError;
 
-impl File {
+#[deprecated(note = "use `reqwest::get` and `image::load_from_memory` instead")]
+#[allow(deprecated)]
+impl crate::File {
     /// Convert the File to an image
     pub fn into_image(self) -> impl Future<Output = Result<image::DynamicImage, FalError>> {
         async move {

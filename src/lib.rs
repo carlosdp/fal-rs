@@ -1,5 +1,6 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![doc = include_str!("../README.md")]
+#![allow(deprecated)]
 
 pub mod endpoints;
 #[cfg(feature = "image")]
@@ -42,8 +43,10 @@ impl From<String> for FalError {
     }
 }
 
+#[deprecated(note = "use a type specific to the endpoint, or make your own")]
 pub type Image = File;
 
+#[deprecated(note = "use a type specific to the endpoint, or make your own")]
 #[derive(Debug, Deserialize, Serialize, Default)]
 pub struct File {
     pub url: String,

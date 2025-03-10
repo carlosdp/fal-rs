@@ -2,6 +2,16 @@ use fal::prelude::*;
 use futures::StreamExt;
 use serde::{Deserialize, Serialize};
 
+#[derive(Debug, Deserialize, Serialize, Default)]
+pub struct File {
+    pub url: String,
+    pub content_type: String,
+    pub file_name: Option<String>,
+    pub file_size: Option<i64>,
+    pub width: Option<i64>,
+    pub height: Option<i64>,
+}
+
 #[derive(Debug, Deserialize, Serialize)]
 pub struct FalMultiImageResponse {
     pub images: Vec<File>,
