@@ -109,12 +109,6 @@ async fn main() {
 ### The `#[endpoint]` macro
 You can easily create a custom endpoint function using the provided [endpoint](crate::endpoint) proc macro. This should only be necessary if you are using a private model endpoint, or you really just want control over your types. Otherwise, you should be able to find the endpoint you want to use in the pre-built endpoints module!
 
-```toml
-# in Cargo.toml
-[dependencies]
-fal = { version = "0.1", default-features = false, features = ["image"] }
-```
-
 ```rust,no_run
 use fal::prelude::*;
 use serde::Deserialize;
