@@ -6,28 +6,30 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[cfg(any(
-    feature = "endpoints_fal-ai_flux_dev",
-    feature = "endpoints_fal-ai_flux_dev_image-to-image",
-    feature = "endpoints_fal-ai_flux_dev_redux"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_flux_dev",
-        feature = "endpoints_fal-ai_flux_dev_image-to-image",
-        feature = "endpoints_fal-ai_flux_dev_redux"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux"
     )))
 )]
 pub mod dev;
 #[cfg(any(
-    feature = "endpoints_fal-ai_flux_schnell",
-    feature = "endpoints_fal-ai_flux_schnell_redux"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_flux_schnell",
-        feature = "endpoints_fal-ai_flux_schnell_redux"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux"
     )))
 )]
 pub mod schnell;
@@ -234,13 +236,6 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
-}
-
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -258,6 +253,13 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// FLUX.1 [dev]

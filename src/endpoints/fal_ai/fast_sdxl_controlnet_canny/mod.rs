@@ -5,16 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny_image-to-image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny_image-to-image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny"
+    )))
 )]
 pub mod image_to_image;
-#[cfg(any(feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny_inpainting"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny_inpainting")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fast-sdxl-controlnet-canny"
+    )))
 )]
 pub mod inpainting;
 
@@ -244,6 +260,13 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
+}
+
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -261,13 +284,6 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
-}
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
 }
 
 /// ControlNet SDXL

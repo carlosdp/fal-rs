@@ -1,48 +1,112 @@
 #[cfg(any(
-    feature = "endpoints_fal-ai_bria_background",
-    feature = "endpoints_fal-ai_bria_background_remove",
-    feature = "endpoints_fal-ai_bria_background_replace"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_bria_background",
-        feature = "endpoints_fal-ai_bria_background_remove",
-        feature = "endpoints_fal-ai_bria_background_replace"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
     )))
 )]
 pub mod background;
-#[cfg(any(feature = "endpoints_fal-ai_bria_eraser"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_eraser"))))]
-pub mod eraser;
-#[cfg(any(feature = "endpoints_fal-ai_bria_expand"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_expand"))))]
-pub mod expand;
-#[cfg(any(feature = "endpoints_fal-ai_bria_genfill"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_genfill"))))]
-pub mod genfill;
-#[cfg(any(feature = "endpoints_fal-ai_bria_product-shot"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_product-shot"))))]
-pub mod product_shot;
-#[cfg(any(feature = "endpoints_fal-ai_bria_reimagine"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_reimagine"))))]
-pub mod reimagine;
 #[cfg(any(
-    feature = "endpoints_fal-ai_bria_text-to-image",
-    feature = "endpoints_fal-ai_bria_text-to-image_base",
-    feature = "endpoints_fal-ai_bria_text-to-image_fast",
-    feature = "endpoints_fal-ai_bria_text-to-image_hd"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_bria_text-to-image",
-        feature = "endpoints_fal-ai_bria_text-to-image_base",
-        feature = "endpoints_fal-ai_bria_text-to-image_fast",
-        feature = "endpoints_fal-ai_bria_text-to-image_hd"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
+pub mod eraser;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
+pub mod expand;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
+pub mod genfill;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
+pub mod product_shot;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
+pub mod reimagine;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
     )))
 )]
 pub mod text_to_image;
-#[cfg(any(feature = "endpoints_fal-ai_bria_upscale"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_bria_upscale"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
+)]
 pub mod upscale;

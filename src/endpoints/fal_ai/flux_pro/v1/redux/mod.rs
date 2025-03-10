@@ -583,6 +583,13 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
+}
+
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -625,13 +632,6 @@ pub enum AspectRatioProperty {
     #[serde(rename = "9:21")]
     Property_9_21,
     String(String),
-}
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
 }
 
 /// FLUX1.1 [pro] ultra

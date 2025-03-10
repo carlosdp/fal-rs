@@ -5,10 +5,18 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_mmaudio-v2_text-to-audio"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_mmaudio-v2"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_mmaudio-v2_text-to-audio")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_mmaudio-v2"
+    )))
 )]
 pub mod text_to_audio;
 
@@ -113,7 +121,7 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum FileNameProperty {
+pub enum ContentTypeProperty {
     #[default]
     String(String),
     Null(serde_json::Value),
@@ -129,7 +137,7 @@ pub enum FileSizeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
+pub enum FileNameProperty {
     #[default]
     String(String),
     Null(serde_json::Value),

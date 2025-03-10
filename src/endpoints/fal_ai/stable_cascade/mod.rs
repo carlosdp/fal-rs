@@ -5,10 +5,18 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_stable-cascade_sote-diffusion"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_stable-cascade"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_stable-cascade_sote-diffusion")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_stable-cascade"
+    )))
 )]
 pub mod sote_diffusion;
 

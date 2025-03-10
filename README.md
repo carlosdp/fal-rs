@@ -26,12 +26,14 @@ fal = "0.2"
 ## Usage
 ### Using public model endpoints
 
-By default, endpoints are disabled. The FAL API has hundreds of endpoints, and are growing in number by the day. In order to prevent compile time bloat, this crate supports fine-grained crate features for enabling endpoints, as you need them. To use pre-built, fully-typed endpoint functions to call the API, you can enable them by enabling the corresponding feature. For example, for the `fal-ai/flux-pro` endpoint, I can enable it like this:
+By default, endpoints are disabled. The FAL API has hundreds of endpoints, and are growing in number by the day. In order to prevent compile time and binary size bloat, this crate supports somewhat fine-grained crate features for enabling endpoints, as you need them. To use pre-built, fully-typed endpoint functions to call the API, you can enable them by enabling the corresponding feature for that group of endpoints. For example, for the `fal-ai/flux/dev` endpoint, I can enable it like this:
 
 ```toml
 # In Cargo.toml
-fal = { version = "0.2", features = ["endpoints_fal-ai_flux-pro"] }
+fal = { version = "0.2", features = ["endpoints_fal-ai_flux"] }
 ```
+
+**Note**: The features go a maximum of two "levels", so you can enable `fal-ai/flux`, which enables all endpoints under `fal-ai/flux`, or `fal-ai`, or all endpoints in the API.
 
 or, I can enable *all* endpoints under the `fal-ai` owner:
 
@@ -50,8 +52,6 @@ fal = { version = "0.2", features = ["endpoints"] }
 Once enabled, the endpoint can be called like this:
 
 ```rust,no_run
-# #[cfg(feature = "endpoints_fal-ai_flux_dev")]
-# {
 use fal::prelude::*;
 use fal::endpoints::fal_ai::flux;
 
@@ -71,7 +71,6 @@ async fn main() {
 
     println!("Generated image URL: {}", response.images[0].url);
 }
-# }
 ```
 
 ### Using the Queue System
@@ -79,8 +78,6 @@ async fn main() {
 For long-running operations, you can use the [FAL Queue API](https://docs.fal.ai/model-endpoints/queue):
 
 ```rust,no_run
-# #[cfg(feature = "endpoints_fal-ai_flux_dev")]
-# {
 use fal::prelude::*;
 use fal::endpoints::fal_ai::flux;
 use futures::StreamExt;
@@ -108,7 +105,6 @@ async fn main() {
     let response = queue.response().await.unwrap();
     println!("Generated image URL: {}", response.images[0].url);
 }
-# }
 ```
 
 ### The `#[endpoint]` macro

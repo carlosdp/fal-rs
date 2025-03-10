@@ -1,6 +1,14 @@
-#[cfg(any(feature = "endpoints_fal-ai_kling-video_v1-5_standard_effects"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kling-video"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_kling-video_v1-5_standard_effects")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kling-video"
+    )))
 )]
 pub mod effects;

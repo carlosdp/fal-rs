@@ -1,6 +1,28 @@
-#[cfg(any(feature = "endpoints_fal-ai_sa2va_v4b_image"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_sa2va_v4b_image"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_sa2va"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_sa2va"
+    )))
+)]
 pub mod image;
-#[cfg(any(feature = "endpoints_fal-ai_sa2va_v4b_video"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_sa2va_v4b_video"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_sa2va"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_sa2va"
+    )))
+)]
 pub mod video;

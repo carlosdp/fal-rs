@@ -5,16 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_live-portrait_image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_live-portrait"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_live-portrait_image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_live-portrait"
+    )))
 )]
 pub mod image;
-#[cfg(any(feature = "endpoints_fal-ai_live-portrait_video"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_live-portrait"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_live-portrait_video")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_live-portrait"
+    )))
 )]
 pub mod video;
 

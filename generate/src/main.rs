@@ -211,6 +211,7 @@ async fn main() {
                     // Create the feature gates string with all features
                     let features_str = all_features
                         .into_iter()
+                        .filter(|f| f.chars().filter(|c| *c == '_').count() <= 2)
                         .map(|f| format!("feature = \"{}\"", f))
                         .collect::<Vec<_>>()
                         .join(", ");
@@ -267,10 +268,16 @@ fn add_module_features(manifest: &mut Manifest, node: &Node, parent_path: &str) 
                 format!("{}_{}", parent_path, name.replace("_", "-"))
             };
 
-            // Add feature for current module
-            if let Some(features) = &mut manifest.features {
-                let feature_name = current_path.clone();
-                features.insert(feature_name, vec![]);
+            // Count segments to determine depth
+            let segments: Vec<&str> = current_path.split('_').collect();
+
+            // Only add feature if we haven't exceeded 3 levels and we're not at the root level
+            if segments.len() <= 3 {
+                // We want endpoints_fal-ai_dreamshaper but not deeper
+                // Add feature for current module
+                if let Some(features) = &mut manifest.features {
+                    features.insert(current_path.clone(), vec![]);
+                }
             }
 
             // Recurse into children

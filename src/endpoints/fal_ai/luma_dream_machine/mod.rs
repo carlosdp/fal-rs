@@ -5,21 +5,31 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_luma-dream-machine_image-to-video"))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_luma-dream-machine_image-to-video")))
-)]
-pub mod image_to_video;
 #[cfg(any(
-    feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
-    feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_luma-dream-machine"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
-        feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_luma-dream-machine"
+    )))
+)]
+pub mod image_to_video;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_luma-dream-machine"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_luma-dream-machine"
     )))
 )]
 pub mod ray_2;

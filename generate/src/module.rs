@@ -135,23 +135,22 @@ pub fn write_module_to_files(node: &Node, base_path: &str, is_root: bool) -> std
                         .map(|s| s.replace("_", "-"))
                         .collect();
                     path_segments.remove(0); // remove "src"
-                    path_segments.push(child_name.replace("_", "-")); // add the child module name
 
                     // Helper function to collect all descendant features
                     fn collect_all_features(node: &Node, base_path: &[String]) -> Vec<String> {
                         let mut features = Vec::new();
 
                         match node {
-                            Node::Module { name, children } => {
+                            Node::Module { name, children: _ } => {
                                 let mut current_path = base_path.to_vec();
                                 current_path.push(name.replace("_", "-"));
 
-                                // Add this module's feature
-                                features.push(current_path.join("_"));
+                                let mut feature_path = vec![];
 
-                                // Recursively collect all descendant features
-                                for child in children {
-                                    features.extend(collect_all_features(child, &current_path));
+                                // Add each level of the path up to 3 levels
+                                for segment in current_path.iter().take(3) {
+                                    feature_path.push(segment.clone());
+                                    features.push(feature_path.join("_"));
                                 }
                             }
                             Node::Leaf { .. } => {}
@@ -160,28 +159,35 @@ pub fn write_module_to_files(node: &Node, base_path: &str, is_root: bool) -> std
                         features
                     }
 
-                    // Get the base path for feature collection
-                    let base_path = path_segments[..path_segments.len() - 1].to_vec();
-
                     // Collect all features from this module and all its descendants
-                    let mut all_features = collect_all_features(child, &base_path);
+                    let mut all_features = collect_all_features(child, &path_segments);
 
                     // Sort and deduplicate features
                     all_features.sort();
                     all_features.dedup();
 
                     // Create the feature gates string with all features
-                    let features_map = all_features
-                        .into_iter()
-                        .map(|f| format!("feature = \"{}\"", f))
-                        .collect::<Vec<String>>()
-                        .join(", ");
+                    let feature_cfg = if !all_features.is_empty() {
+                        let features_map = all_features
+                            .into_iter()
+                            .map(|f| format!("feature = \"{}\"", f))
+                            .collect::<Vec<String>>()
+                            .join(", ");
 
-                    let feature_cfg = format!(
-                        "#[cfg(any({features_map}))]\n#[cfg_attr(docsrs, doc(cfg(any({features_map}))))]",
-                    );
+                        format!(
+                            "#[cfg(any({features_map}))]\n#[cfg_attr(docsrs, doc(cfg(any({features_map}))))]",
+                        )
+                    } else {
+                        String::new()
+                    };
 
-                    mod_content.push_str(&format!("{}\npub mod {};\n", feature_cfg, child_name));
+                    let module_decl = if feature_cfg.is_empty() {
+                        format!("pub mod {};\n", child_name)
+                    } else {
+                        format!("{}\npub mod {};\n", feature_cfg, child_name)
+                    };
+
+                    mod_content.push_str(&module_decl);
                 }
             }
 

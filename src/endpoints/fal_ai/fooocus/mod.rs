@@ -5,19 +5,46 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_fooocus_image-prompt"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_fooocus"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_fooocus_image-prompt")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus"
+    )))
 )]
 pub mod image_prompt;
-#[cfg(any(feature = "endpoints_fal-ai_fooocus_inpaint"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_fooocus_inpaint"))))]
-pub mod inpaint;
-#[cfg(any(feature = "endpoints_fal-ai_fooocus_upscale-or-vary"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_fooocus"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_fooocus_upscale-or-vary")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus"
+    )))
+)]
+pub mod inpaint;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_fooocus"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_fooocus"
+    )))
 )]
 pub mod upscale_or_vary;
 

@@ -162,6 +162,14 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
+pub enum DurationSecondsProperty {
+    #[default]
+    Number(f64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
 pub enum ContentTypeProperty {
     #[default]
     String(String),
@@ -170,7 +178,15 @@ pub enum ContentTypeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum SpeakerIdProperty {
+pub enum FileSizeProperty {
+    #[default]
+    Integer(i64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum LanguageCodeProperty {
     #[default]
     String(String),
     Null(serde_json::Value),
@@ -186,25 +202,9 @@ pub enum FileNameProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum DurationSecondsProperty {
-    #[default]
-    Number(f64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum LanguageCodeProperty {
+pub enum SpeakerIdProperty {
     #[default]
     String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileSizeProperty {
-    #[default]
-    Integer(i64),
     Null(serde_json::Value),
 }
 

@@ -5,13 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_imagen3_fast"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imagen3_fast"))))]
-pub mod fast;
-#[cfg(any(feature = "endpoints_fal-ai_imagen3_subject-reference"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imagen3"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_imagen3_subject-reference")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imagen3"
+    )))
+)]
+pub mod fast;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imagen3"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imagen3"
+    )))
 )]
 pub mod subject_reference;
 

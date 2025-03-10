@@ -1,12 +1,28 @@
-#[cfg(any(feature = "endpoints_fal-ai_leffa_pose-transfer"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_leffa"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_leffa_pose-transfer")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_leffa"
+    )))
 )]
 pub mod pose_transfer;
-#[cfg(any(feature = "endpoints_fal-ai_leffa_virtual-tryon"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_leffa"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_leffa_virtual-tryon")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_leffa"
+    )))
 )]
 pub mod virtual_tryon;

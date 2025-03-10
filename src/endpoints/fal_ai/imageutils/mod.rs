@@ -1,21 +1,84 @@
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_depth"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imageutils_depth"))))]
-pub mod depth;
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_esrgan"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imageutils_esrgan"))))]
-pub mod esrgan;
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_marigold-depth"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_imageutils_marigold-depth")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
+)]
+pub mod depth;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
+)]
+pub mod esrgan;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
 )]
 pub mod marigold_depth;
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_nsfw"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imageutils_nsfw"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
+)]
 pub mod nsfw;
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_rembg"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imageutils_rembg"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
+)]
 pub mod rembg;
-#[cfg(any(feature = "endpoints_fal-ai_imageutils_sam"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imageutils_sam"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_imageutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_imageutils"
+    )))
+)]
 pub mod sam;

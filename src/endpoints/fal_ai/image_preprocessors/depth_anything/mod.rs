@@ -1,6 +1,14 @@
-#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_depth-anything_v2"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_image-preprocessors"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_depth-anything_v2")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_image-preprocessors"
+    )))
 )]
 pub mod v2;

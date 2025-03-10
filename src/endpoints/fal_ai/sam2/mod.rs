@@ -1,9 +1,42 @@
-#[cfg(any(feature = "endpoints_fal-ai_sam2_auto-segment"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_sam2_auto-segment"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_sam2"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_sam2"
+    )))
+)]
 pub mod auto_segment;
-#[cfg(any(feature = "endpoints_fal-ai_sam2_image"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_sam2_image"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_sam2"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_sam2"
+    )))
+)]
 pub mod image;
-#[cfg(any(feature = "endpoints_fal-ai_sam2_image-rle"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_sam2_image-rle"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_sam2"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_sam2"
+    )))
+)]
 pub mod image_rle;

@@ -1,12 +1,14 @@
 #[cfg(any(
-    feature = "endpoints_fal-ai_kling_v1-5",
-    feature = "endpoints_fal-ai_kling_v1-5_kolors-virtual-try-on"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kling"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_kling_v1-5",
-        feature = "endpoints_fal-ai_kling_v1-5_kolors-virtual-try-on"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kling"
     )))
 )]
 pub mod v1_5;

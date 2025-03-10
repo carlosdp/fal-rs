@@ -54,7 +54,7 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum TopAlignProperty {
+pub enum LeftAlignProperty {
     #[default]
     String(String),
     Number(f64),
@@ -62,7 +62,7 @@ pub enum TopAlignProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum LeftAlignProperty {
+pub enum TopAlignProperty {
     #[default]
     String(String),
     Number(f64),

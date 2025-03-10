@@ -5,8 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_birefnet_v2"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_birefnet_v2"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_birefnet"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_birefnet"
+    )))
+)]
 pub mod v2;
 
 #[derive(Debug, Serialize, Deserialize, Default)]

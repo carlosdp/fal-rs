@@ -5,8 +5,19 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_any-llm_vision"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_any-llm_vision"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_any-llm"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_any-llm"
+    )))
+)]
 pub mod vision;
 
 #[derive(Debug, Serialize, Deserialize, Default)]
@@ -77,7 +88,7 @@ pub struct VisionInput {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ErrorProperty {
+pub enum SystemPromptProperty {
     #[default]
     String(String),
     Null(serde_json::Value),
@@ -85,7 +96,7 @@ pub enum ErrorProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum SystemPromptProperty {
+pub enum ErrorProperty {
     #[default]
     String(String),
     Null(serde_json::Value),

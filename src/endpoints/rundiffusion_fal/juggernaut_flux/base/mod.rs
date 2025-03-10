@@ -5,16 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_image-to-image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_image-to-image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux"
+    )))
 )]
 pub mod image_to_image;
-#[cfg(any(feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_redux"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_redux")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux"
+    )))
 )]
 pub mod redux;
 

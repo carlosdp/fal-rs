@@ -62,9 +62,9 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum FileSizeProperty {
+pub enum FileNameProperty {
     #[default]
-    Integer(i64),
+    String(String),
     Null(serde_json::Value),
 }
 
@@ -78,9 +78,9 @@ pub enum ContentTypeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum FileNameProperty {
+pub enum FileSizeProperty {
     #[default]
-    String(String),
+    Integer(i64),
     Null(serde_json::Value),
 }
 

@@ -5,66 +5,88 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_flux-pro_finetuned"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_flux-pro_finetuned"))))]
-pub mod finetuned;
-#[cfg(any(feature = "endpoints_fal-ai_flux-pro_new"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_flux-pro_new"))))]
-pub mod new;
 #[cfg(any(
-    feature = "endpoints_fal-ai_flux-pro_v1",
-    feature = "endpoints_fal-ai_flux-pro_v1_canny",
-    feature = "endpoints_fal-ai_flux-pro_v1_canny-finetuned",
-    feature = "endpoints_fal-ai_flux-pro_v1_depth",
-    feature = "endpoints_fal-ai_flux-pro_v1_depth-finetuned",
-    feature = "endpoints_fal-ai_flux-pro_v1_fill",
-    feature = "endpoints_fal-ai_flux-pro_v1_fill-finetuned",
-    feature = "endpoints_fal-ai_flux-pro_v1_outpaint",
-    feature = "endpoints_fal-ai_flux-pro_v1_redux"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_flux-pro_v1",
-        feature = "endpoints_fal-ai_flux-pro_v1_canny",
-        feature = "endpoints_fal-ai_flux-pro_v1_canny-finetuned",
-        feature = "endpoints_fal-ai_flux-pro_v1_depth",
-        feature = "endpoints_fal-ai_flux-pro_v1_depth-finetuned",
-        feature = "endpoints_fal-ai_flux-pro_v1_fill",
-        feature = "endpoints_fal-ai_flux-pro_v1_fill-finetuned",
-        feature = "endpoints_fal-ai_flux-pro_v1_outpaint",
-        feature = "endpoints_fal-ai_flux-pro_v1_redux"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
+    )))
+)]
+pub mod finetuned;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
+    )))
+)]
+pub mod new;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
     )))
 )]
 pub mod v1;
 #[cfg(any(
-    feature = "endpoints_fal-ai_flux-pro_v1-1",
-    feature = "endpoints_fal-ai_flux-pro_v1-1_redux"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_flux-pro_v1-1",
-        feature = "endpoints_fal-ai_flux-pro_v1-1_redux"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
     )))
 )]
 pub mod v1_1;
 #[cfg(any(
-    feature = "endpoints_fal-ai_flux-pro_v1-1-ultra",
-    feature = "endpoints_fal-ai_flux-pro_v1-1-ultra_redux"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_flux-pro_v1-1-ultra",
-        feature = "endpoints_fal-ai_flux-pro_v1-1-ultra_redux"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
     )))
 )]
 pub mod v1_1_ultra;
-#[cfg(any(feature = "endpoints_fal-ai_flux-pro_v1-1-ultra-finetuned"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_flux-pro"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_flux-pro_v1-1-ultra-finetuned")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_flux-pro"
+    )))
 )]
 pub mod v1_1_ultra_finetuned;
 
@@ -646,6 +668,13 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
+}
+
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -688,13 +717,6 @@ pub enum AspectRatioProperty {
     #[serde(rename = "9:21")]
     Property_9_21,
     String(String),
-}
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
 }
 
 /// FLUX1.1 [pro] ultra

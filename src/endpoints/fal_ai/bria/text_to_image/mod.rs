@@ -1,18 +1,42 @@
-#[cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_base"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_base")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
 )]
 pub mod base;
-#[cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_fast"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_fast")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
 )]
 pub mod fast;
-#[cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_hd"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_bria"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_bria_text-to-image_hd")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_bria"
+    )))
 )]
 pub mod hd;

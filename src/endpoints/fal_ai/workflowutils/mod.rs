@@ -1,93 +1,224 @@
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_blur-mask"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_blur-mask")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod blur_mask;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_canny"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_canny")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod canny;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_compare-text"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_compare-text")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod compare_text;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_composite-image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_composite-image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod composite_image;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_grow-mask"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_grow-mask")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod grow_mask;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_image-size"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_image-size")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod image_size;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_insert-text"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_insert-text")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod insert_text;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_insightface"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_insightface")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod insightface;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_invert-mask"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_invert-mask")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod invert_mask;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_regex-replace"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_regex-replace")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod regex_replace;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_resize-image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_resize-image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod resize_image;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_resize-to-max-pixels"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_resize-to-max-pixels")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod resize_to_max_pixels;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_rgba-to-rgb"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_rgba-to-rgb")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod rgba_to_rgb;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_shrink-mask"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_shrink-mask")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod shrink_mask;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_teed"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_teed"))))]
-pub mod teed;
-#[cfg(any(feature = "endpoints_fal-ai_workflowutils_transparent-image-to-mask"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_workflowutils_transparent-image-to-mask")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
+)]
+pub mod teed;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_workflowutils"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_workflowutils"
+    )))
 )]
 pub mod transparent_image_to_mask;

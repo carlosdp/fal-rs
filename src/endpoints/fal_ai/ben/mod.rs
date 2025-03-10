@@ -1,14 +1,14 @@
 #[cfg(any(
-    feature = "endpoints_fal-ai_ben_v2",
-    feature = "endpoints_fal-ai_ben_v2_image",
-    feature = "endpoints_fal-ai_ben_v2_video"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ben"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_ben_v2",
-        feature = "endpoints_fal-ai_ben_v2_image",
-        feature = "endpoints_fal-ai_ben_v2_video"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ben"
     )))
 )]
 pub mod v2;

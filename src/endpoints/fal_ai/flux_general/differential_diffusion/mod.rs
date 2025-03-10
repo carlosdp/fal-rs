@@ -613,6 +613,21 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ScaleProperty {
+    #[default]
+    Object(HashMap<String, serde_json::Value>),
+    Number(f64),
+}
+
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -630,21 +645,6 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
-}
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum ScaleProperty {
-    #[default]
-    Object(HashMap<String, serde_json::Value>),
-    Number(f64),
 }
 
 /// FLUX.1 [dev] with Controlnets and Loras

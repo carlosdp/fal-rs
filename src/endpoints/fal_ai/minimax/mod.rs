@@ -5,52 +5,74 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_minimax_image-to-video"))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_minimax_image-to-video")))
-)]
-pub mod image_to_video;
 #[cfg(any(
-    feature = "endpoints_fal-ai_minimax_video-01",
-    feature = "endpoints_fal-ai_minimax_video-01_image-to-video"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_minimax"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_minimax_video-01",
-        feature = "endpoints_fal-ai_minimax_video-01_image-to-video"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax"
+    )))
+)]
+pub mod image_to_video;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_minimax"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax"
     )))
 )]
 pub mod video_01;
 #[cfg(any(
-    feature = "endpoints_fal-ai_minimax_video-01-director",
-    feature = "endpoints_fal-ai_minimax_video-01-director_image-to-video"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_minimax"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_minimax_video-01-director",
-        feature = "endpoints_fal-ai_minimax_video-01-director_image-to-video"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax"
     )))
 )]
 pub mod video_01_director;
 #[cfg(any(
-    feature = "endpoints_fal-ai_minimax_video-01-live",
-    feature = "endpoints_fal-ai_minimax_video-01-live_image-to-video"
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_minimax"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_fal-ai_minimax_video-01-live",
-        feature = "endpoints_fal-ai_minimax_video-01-live_image-to-video"
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax"
     )))
 )]
 pub mod video_01_live;
-#[cfg(any(feature = "endpoints_fal-ai_minimax_video-01-subject-reference"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_minimax"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_minimax_video-01-subject-reference")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_minimax"
+    )))
 )]
 pub mod video_01_subject_reference;
 

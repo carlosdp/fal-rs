@@ -6,42 +6,44 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[cfg(any(
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_base",
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_image-to-image",
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_redux"
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_base",
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_image-to-image",
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_base_redux"
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux"
     )))
 )]
 pub mod base;
 #[cfg(any(
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning",
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning_redux"
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning",
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_lightning_redux"
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux"
     )))
 )]
 pub mod lightning;
 #[cfg(any(
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro",
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_image-to-image",
-    feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_redux"
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_juggernaut-flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro",
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_image-to-image",
-        feature = "endpoints_rundiffusion-fal_juggernaut-flux_pro_redux"
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_juggernaut-flux"
     )))
 )]
 pub mod pro;
@@ -248,13 +250,6 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
-}
-
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
@@ -272,6 +267,13 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// Juggernaut Flux Base

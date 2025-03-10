@@ -1,15 +1,42 @@
-#[cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_compose"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_compose"))))]
-pub mod compose;
-#[cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_metadata"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ffmpeg-api"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_metadata")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ffmpeg-api"
+    )))
+)]
+pub mod compose;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ffmpeg-api"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ffmpeg-api"
+    )))
 )]
 pub mod metadata;
-#[cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_waveform"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_ffmpeg-api"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_ffmpeg-api_waveform")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_ffmpeg-api"
+    )))
 )]
 pub mod waveform;

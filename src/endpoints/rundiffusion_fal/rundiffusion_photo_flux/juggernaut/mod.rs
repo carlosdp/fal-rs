@@ -6,20 +6,30 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[cfg(any(
-    feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_image-to-image"
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_image-to-image"
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux"
     )))
 )]
 pub mod image_to_image;
-#[cfg(any(feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_inpainting"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_rundiffusion-fal",
+    feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux"
+))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux_juggernaut_inpainting"
+        feature = "endpoints",
+        feature = "endpoints_rundiffusion-fal",
+        feature = "endpoints_rundiffusion-fal_rundiffusion-photo-flux"
     )))
 )]
 pub mod inpainting;

@@ -13,7 +13,7 @@ use crate::{
 /// If no API key is provided, the `FAL_API_KEY` environment variable will be used, if present.
 ///
 /// ```rust,no_run
-/// #[cfg(feature = "endpoints_fal-ai_flux_dev")]
+/// #[cfg(feature = "endpoints_fal-ai_flux")]
 /// # {
 /// use fal::prelude::*;
 /// use fal::endpoints::fal_ai::flux;

@@ -5,16 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_stable-diffusion-v35-large_turbo_image-to-image"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_stable-diffusion-v35-large"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_stable-diffusion-v35-large_turbo_image-to-image")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_stable-diffusion-v35-large"
+    )))
 )]
 pub mod image_to_image;
-#[cfg(any(feature = "endpoints_fal-ai_stable-diffusion-v35-large_turbo_inpaint"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_stable-diffusion-v35-large"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_stable-diffusion-v35-large_turbo_inpaint")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_stable-diffusion-v35-large"
+    )))
 )]
 pub mod inpaint;
 

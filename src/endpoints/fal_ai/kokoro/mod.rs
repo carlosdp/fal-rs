@@ -5,44 +5,131 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_american-english"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_kokoro_american-english")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
 )]
 pub mod american_english;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_brazilian-portuguese"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_kokoro_brazilian-portuguese")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
 )]
 pub mod brazilian_portuguese;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_british-english"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_kokoro_british-english")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
 )]
 pub mod british_english;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_french"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_kokoro_french"))))]
-pub mod french;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_hindi"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_kokoro_hindi"))))]
-pub mod hindi;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_italian"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_kokoro_italian"))))]
-pub mod italian;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_japanese"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_kokoro_japanese"))))]
-pub mod japanese;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_mandarin-chinese"))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(feature = "endpoints_fal-ai_kokoro_mandarin-chinese")))
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
+)]
+pub mod french;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
+)]
+pub mod hindi;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
+)]
+pub mod italian;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
+)]
+pub mod japanese;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
 )]
 pub mod mandarin_chinese;
-#[cfg(any(feature = "endpoints_fal-ai_kokoro_spanish"))]
-#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_kokoro_spanish"))))]
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_kokoro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_kokoro"
+    )))
+)]
 pub mod spanish;
 
 #[derive(Debug, Serialize, Deserialize)]
