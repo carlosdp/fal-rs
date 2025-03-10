@@ -5,62 +5,28 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_ideogram",
-    feature = "endpoints_fal-ai_ideogram_v2",
-    feature = "endpoints_fal-ai_ideogram_v2_edit"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_ideogram",
-        feature = "endpoints_fal-ai_ideogram_v2",
-        feature = "endpoints_fal-ai_ideogram_v2_edit"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_ideogram_v2_edit"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_ideogram_v2_edit"))))]
 pub mod edit;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_ideogram",
-    feature = "endpoints_fal-ai_ideogram_v2",
-    feature = "endpoints_fal-ai_ideogram_v2_remix"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_ideogram",
-        feature = "endpoints_fal-ai_ideogram_v2",
-        feature = "endpoints_fal-ai_ideogram_v2_remix"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_ideogram_v2_remix"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_ideogram_v2_remix"))))]
 pub mod remix;
 #[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_ideogram",
-    feature = "endpoints_fal-ai_ideogram_v2",
-    feature = "endpoints_fal-ai_ideogram_v2_turbo"
+    feature = "endpoints_fal-ai_ideogram_v2_turbo",
+    feature = "endpoints_fal-ai_ideogram_v2_turbo_edit",
+    feature = "endpoints_fal-ai_ideogram_v2_turbo_remix"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_ideogram",
-        feature = "endpoints_fal-ai_ideogram_v2",
-        feature = "endpoints_fal-ai_ideogram_v2_turbo"
+        feature = "endpoints_fal-ai_ideogram_v2_turbo",
+        feature = "endpoints_fal-ai_ideogram_v2_turbo_edit",
+        feature = "endpoints_fal-ai_ideogram_v2_turbo_remix"
     )))
 )]
 pub mod turbo;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct EditImageInput {
     /// Whether to expand the prompt with MagicPrompt functionality.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -82,7 +48,7 @@ pub struct EditImageInput {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -103,7 +69,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -117,7 +83,7 @@ pub struct Output {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RemixImageInput {
     /// The aspect ratio of the generated image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -142,7 +108,7 @@ pub struct RemixImageInput {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageInput {
     /// The aspect ratio of the generated image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -162,7 +128,7 @@ pub struct TextToImageInput {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleImageInput {
     /// The detail of the upscaled image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -184,7 +150,7 @@ pub struct UpscaleImageInput {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleOutput {
     pub images: Vec<File>,
     /// Seed used for the random number generator
@@ -192,7 +158,7 @@ pub struct UpscaleOutput {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

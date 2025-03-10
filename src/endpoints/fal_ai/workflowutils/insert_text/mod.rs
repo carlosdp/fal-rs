@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BlurMaskInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
@@ -16,14 +16,14 @@ pub struct BlurMaskInput {
     pub radius: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BlurMaskOutput {
     /// The mask
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/blur_mask_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct CannyInput {
     /// High threshold for the hysteresis procedure
     /// 200
@@ -38,7 +38,7 @@ pub struct CannyInput {
     pub low_threshold: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Color {
     /// Blue value
     /// 128
@@ -54,7 +54,7 @@ pub struct Color {
     pub r: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct CompareTextInput {
     /// Text to compare against
     /// "Hello, World!"
@@ -70,7 +70,7 @@ pub struct CompareTextInput {
     pub text: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct CompositeImageInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
@@ -84,7 +84,7 @@ pub struct CompositeImageInput {
     pub overlay_image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FaceDetection {
     /// Bounding box of the face.
     /// [0,0,100,100]
@@ -107,7 +107,7 @@ pub struct FaceDetection {
     pub sex: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -128,7 +128,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GrowMaskInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
@@ -143,20 +143,20 @@ pub struct GrowMaskInput {
     pub threshold: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GrowMaskOutput {
     /// The mask
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/grow_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -185,28 +185,28 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageOutput {
     /// The output image
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/invert_mask_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageSizeOutput {
     /// Image size
     /// {"height":700,"width":610}
     pub image_size: HashMap<String, serde_json::Value>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InsertTextInput {
     /// Template to insert text into
     /// "Hello, {}!"
@@ -216,7 +216,7 @@ pub struct InsertTextInput {
     pub text: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InsightfaceInput {
     /// Size of the detection.
     /// 640
@@ -254,7 +254,7 @@ pub struct InsightfaceInput {
     pub threshold: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InsightfaceOutput {
     /// Bounding box of the face.
     /// [0,0,100,100]
@@ -279,21 +279,21 @@ pub struct InsightfaceOutput {
     pub sex: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InvertMaskOutput {
     /// The mask
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/invert_mask_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MaskInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RGBAToRGBImageInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
@@ -303,7 +303,7 @@ pub struct RGBAToRGBImageInput {
     pub transparent_color: Color,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RegexReplaceInput {
     /// Pattern to replace
     /// "World"
@@ -316,7 +316,7 @@ pub struct RegexReplaceInput {
     pub text: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ResizeImageInput {
     /// Position of cropping. Only used when mode is 'crop', default is center
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -343,7 +343,7 @@ pub struct ResizeImageInput {
     pub width: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ResizeToPixelsInput {
     /// If set, the output dimensions will be divisible by this value.
     /// 32
@@ -358,7 +358,7 @@ pub struct ResizeToPixelsInput {
     pub max_pixels: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ShrinkMaskInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/mask_input.png"
@@ -373,21 +373,21 @@ pub struct ShrinkMaskInput {
     pub threshold: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ShrinkMaskOutput {
     /// The mask
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/shrink_mask_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TeedInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/retoucher/GGsAolHXsAA58vn.jpeg"
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TeedOutput {
     /// The edge map.
     /// {"content_type":"image/png","height":2048,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/teed_output.png","width":1246}
@@ -401,7 +401,7 @@ pub struct TextOutput {
     pub text: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TransparentImageToMaskInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/workflow_utils/transparent_image_to_mask_input.png"
@@ -412,14 +412,14 @@ pub struct TransparentImageToMaskInput {
     pub threshold: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TransparentImageToMaskOutput {
     /// The mask
     /// {"content_type":"image/png","height":700,"url":"https://storage.googleapis.com/falserverless/model_tests/workflow_utils/transparent_image_to_mask_output.png","width":610}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

@@ -5,24 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_fast-svd-lcm",
-    feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_fast-svd-lcm",
-        feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_fast-svd-lcm_text-to-video")))
 )]
 pub mod text_to_video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FastSVDImageInput {
     /// The conditoning augmentation determines the amount of noise that will be
     /// added to the conditioning frame. The higher the number, the more noise
@@ -63,7 +53,7 @@ pub struct FastSVDOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FastSVDTextInput {
     /// The conditoning augmentation determines the amount of noise that will be
     /// added to the conditioning frame. The higher the number, the more noise
@@ -95,7 +85,7 @@ pub struct FastSVDTextInput {
     pub video_size: Option<VideoSizeProperty>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -113,13 +103,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageSize {
     /// The height of the generated image.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -129,12 +119,31 @@ pub struct ImageSize {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum VideoSizeProperty {
+    #[default]
+    ImageSize(ImageSize),
+    #[serde(rename = "square_hd")]
+    SquareHd,
+    #[serde(rename = "square")]
+    Square,
+    #[serde(rename = "portrait_4_3")]
+    Portrait43,
+    #[serde(rename = "portrait_16_9")]
+    Portrait169,
+    #[serde(rename = "landscape_4_3")]
+    Landscape43,
+    #[serde(rename = "landscape_16_9")]
+    Landscape169,
 }
 
 /// Stable Video Diffusion Turbo

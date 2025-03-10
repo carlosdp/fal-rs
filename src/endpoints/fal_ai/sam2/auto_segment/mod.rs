@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BoxPrompt {
     /// The frame index to interact with.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -24,7 +24,7 @@ pub struct BoxPrompt {
     pub y_min: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -45,13 +45,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -80,7 +80,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct PointPrompt {
     /// The frame index to interact with.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -96,7 +96,7 @@ pub struct PointPrompt {
     pub y: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2AutomaticSegmentationInput {
     /// URL of the image to be automatically segmented
     /// "https://raw.githubusercontent.com/facebookresearch/segment-anything-2/main/notebooks/images/truck.jpg"
@@ -131,7 +131,7 @@ pub struct SAM2AutomaticSegmentationOutput {
     pub individual_masks: Vec<Image>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2ImageInput {
     /// Coordinates for boxes
     /// [{"x_max":700,"x_min":425,"y_max":875,"y_min":600}]
@@ -154,25 +154,25 @@ pub struct SAM2ImageInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2ImageOutput {
     /// Segmented image.
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2RLEOutput {
     /// Run Length Encoding of the mask.
     pub rle: RleProperty,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2VideoOutput {
     /// The segmented video.
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SAM2VideoRLEInput {
     /// Apply the mask on the video.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -190,12 +190,20 @@ pub struct SAM2VideoRLEInput {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum RleProperty {
+    #[default]
+    String(String),
+    Array(Vec<String>),
 }
 
 /// Segment Anything Model 2

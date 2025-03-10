@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -26,13 +26,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageInput {
     /// Apply Gaussian blur to the mask. Value determines kernel size (must be odd number)
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -72,7 +72,7 @@ pub struct ImageOutput {
     pub image: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

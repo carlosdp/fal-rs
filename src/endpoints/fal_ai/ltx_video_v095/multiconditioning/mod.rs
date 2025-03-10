@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ExtendVideoInput {
     /// Aspect ratio of the generated video (16:9 or 9:16).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -33,7 +33,7 @@ pub struct ExtendVideoInput {
     pub video: VideoConditioningInput,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ExtendVideoOutput {
     /// The seed used for generation.
     pub seed: i64,
@@ -42,7 +42,7 @@ pub struct ExtendVideoOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -63,13 +63,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageConditioningInput {
     /// URL of image to use as conditioning
     pub image_url: String,
@@ -77,7 +77,7 @@ pub struct ImageConditioningInput {
     pub start_frame_num: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToVideoInput {
     /// Aspect ratio of the generated video (16:9 or 9:16).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -105,7 +105,7 @@ pub struct ImageToVideoInput {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToVideoOutput {
     /// The seed used for generation.
     pub seed: i64,
@@ -114,7 +114,7 @@ pub struct ImageToVideoOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MultiConditioningVideoInput {
     /// Aspect ratio of the generated video (16:9 or 9:16).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -155,7 +155,7 @@ pub struct MulticonditioningVideoOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToVideoInput {
     /// Aspect ratio of the generated video (16:9 or 9:16).
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -180,7 +180,7 @@ pub struct TextToVideoInput {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToVideoOutput {
     /// The seed used for generation.
     pub seed: i64,
@@ -189,7 +189,7 @@ pub struct TextToVideoOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
@@ -197,7 +197,7 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct VideoConditioningInput {
     /// Frame number of the video from which the conditioning starts. Must be a multiple of 8.
     pub start_frame_num: i64,

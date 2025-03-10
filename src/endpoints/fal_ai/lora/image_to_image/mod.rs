@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ControlNet {
     /// The scale of the control net weight. This is used to scale the control net weight
     /// before merging it with the base model.
@@ -35,7 +35,7 @@ pub struct ControlNet {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Embedding {
     /// URL or the path to the embedding weights.
     pub path: String,
@@ -44,7 +44,7 @@ pub struct Embedding {
     pub tokens: Option<Vec<Option<String>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -65,13 +65,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct IPAdapter {
     /// The value to set the image projection shortcut to. For FaceID plus V1 models,
     /// this should be set to False. For FaceID plus V2 models, this should be set to True.
@@ -107,7 +107,7 @@ pub struct IPAdapter {
     pub weight_name: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -136,7 +136,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageSize {
     /// The height of the generated image.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -146,7 +146,7 @@ pub struct ImageSize {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToImageInput {
     /// Skips part of the image generation process, leading to slightly different results.
     /// This means the image renders faster, too.
@@ -289,7 +289,7 @@ pub struct ImageToImageInput {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InpaintInput {
     /// Skips part of the image generation process, leading to slightly different results.
     /// This means the image renders faster, too.
@@ -435,7 +435,7 @@ pub struct InpaintInput {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights.
     pub path: String,
@@ -462,7 +462,7 @@ pub struct OutputParameters {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SigmasInput {
     /// Sigmas schedule to be used if 'custom' method is selected.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -474,7 +474,7 @@ pub struct SigmasInput {
     pub method: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageInput {
     /// Skips part of the image generation process, leading to slightly different results.
     /// This means the image renders faster, too.
@@ -615,7 +615,7 @@ pub struct TextToImageInput {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TimestepsInput {
     /// Timesteps schedule to be used if 'custom' method is selected.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -627,12 +627,39 @@ pub struct TimestepsInput {
     pub method: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum IpAdapterImageUrlProperty {
+    #[default]
+    String(String),
+    Array(Vec<String>),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ImageSizeProperty {
+    #[default]
+    ImageSize(ImageSize),
+    #[serde(rename = "square_hd")]
+    SquareHd,
+    #[serde(rename = "square")]
+    Square,
+    #[serde(rename = "portrait_4_3")]
+    Portrait43,
+    #[serde(rename = "portrait_16_9")]
+    Portrait169,
+    #[serde(rename = "landscape_4_3")]
+    Landscape43,
+    #[serde(rename = "landscape_16_9")]
+    Landscape169,
 }
 
 /// Stable Diffusion with LoRAs

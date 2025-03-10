@@ -5,14 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AmEngOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/elephant/dXVMqWsBDG9yan3kaOT0Z_tmp0vvkha3s.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AmEnglishRequest {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt: Option<String>,
@@ -22,14 +22,14 @@ pub struct AmEnglishRequest {
     pub voice: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BrEngOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/kangaroo/4wpA60Kum6UjOVBKJoNyL_tmpxfrkn95k.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BrEnglishRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -37,14 +37,14 @@ pub struct BrEnglishRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BrPortugeseOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/rabbit/Y9-bWJt5lixo8PTCmncN6_tmpyh7u57oa.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BrPortugueseRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -52,7 +52,7 @@ pub struct BrPortugueseRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -73,14 +73,14 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FrenchOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/kangaroo/E_itKJKZKRNaO-QtU77k1_tmpe1qso5xp.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FrenchRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -88,7 +88,7 @@ pub struct FrenchRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -101,7 +101,7 @@ pub struct HindiOutput {
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HindiRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -109,14 +109,14 @@ pub struct HindiRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ItalianOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/monkey/-MZ0hRO4IpTMukb_S5aRZ_tmpin14eoed.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ItalianRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -124,14 +124,14 @@ pub struct ItalianRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct JapaneseOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/lion/piLhqKO8LJxrWaNg2dVUv_tmpp6eff6zl.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct JapaneseRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -139,14 +139,14 @@ pub struct JapaneseRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MandarinOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/rabbit/8UiqobkQXPrYDRHl4l5oU_tmptz6jo3ex.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MandarinRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -154,14 +154,14 @@ pub struct MandarinRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SpanishOutput {
     /// The generated music
     /// {"url":"https://fal.media/files/monkey/5rBM3qVCED73Lxs5XLcwj_tmp4f2z_qrf.wav"}
     pub audio: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SpanishRequest {
     pub prompt: String,
     /// Voice ID for the desired voice.
@@ -169,7 +169,7 @@ pub struct SpanishRequest {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

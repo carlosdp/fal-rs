@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BatchMoonDreamOutput {
     /// URL to the generated captions JSON file containing filename-caption pairs.
     pub captions_file: File,
@@ -13,7 +13,7 @@ pub struct BatchMoonDreamOutput {
     pub outputs: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BatchQueryInput {
     /// List of image URLs to be processed (maximum 32 images)
     pub images_data_url: String,
@@ -25,7 +25,7 @@ pub struct BatchQueryInput {
     pub prompt: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct DetectionInput {
     /// Text description of what to detect
     /// "Person"
@@ -48,7 +48,7 @@ pub struct DetectionOutput {
     pub text_output: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -69,13 +69,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -104,13 +104,13 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MoonDreamOutput {
     /// Response from the model
     pub output: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct QueryInput {
     /// Image URL to be processed
     /// "https://llava-vl.github.io/static/images/monalisa.jpg"
@@ -126,7 +126,7 @@ pub struct QueryInput {
     pub task_type: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

@@ -13,13 +13,16 @@ use crate::{
 /// If no API key is provided, the `FAL_API_KEY` environment variable will be used, if present.
 ///
 /// ```rust,no_run
+/// #[cfg(feature = "endpoints_fal-ai_flux_dev")]
+/// # {
 /// use fal::prelude::*;
+/// use fal::endpoints::fal_ai::flux;
 ///
 /// #[tokio::main]
 /// async fn main() {
 ///     let api_key = std::env::var("FAL_API_KEY").unwrap();
 ///
-///     let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
+///     let response = flux::dev::dev(flux::dev::DevTextToImageInput {
 ///         prompt: "a majestic horse in a field".to_string(),
 ///         ..Default::default()
 ///     })
@@ -30,6 +33,7 @@ use crate::{
 ///
 ///     println!("Generated image URL: {}", response.images[0].url);
 /// }
+/// # }
 /// ```
 #[derive(Debug)]
 pub struct FalRequest<Params: Serialize, Response: DeserializeOwned> {

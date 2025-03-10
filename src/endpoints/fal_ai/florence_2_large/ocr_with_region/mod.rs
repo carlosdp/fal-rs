@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BoundingBox {
     /// Height of the bounding box
     pub h: f64,
@@ -19,7 +19,7 @@ pub struct BoundingBox {
     pub y: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BoundingBoxOutputWithLabels {
     /// Processed image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -28,19 +28,19 @@ pub struct BoundingBoxOutputWithLabels {
     pub results: BoundingBoxes,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BoundingBoxes {
     /// List of bounding boxes
     pub bboxes: Vec<BoundingBox>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -69,7 +69,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageInput {
     /// The URL of the image to be processed.
     /// "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg"
@@ -77,7 +77,7 @@ pub struct ImageInput {
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageWithTextInput {
     /// The URL of the image to be processed.
     /// "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg"
@@ -87,7 +87,7 @@ pub struct ImageWithTextInput {
     pub text_input: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageWithUserCoordinatesInput {
     /// The URL of the image to be processed.
     /// "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg"
@@ -98,7 +98,7 @@ pub struct ImageWithUserCoordinatesInput {
     pub region: Region,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct OCRBoundingBox {
     /// List of quadrilateral boxes
     pub quad_boxes: Vec<OCRBoundingBoxSingle>,
@@ -113,7 +113,7 @@ pub struct OCRBoundingBoxOutputWithLabels {
     pub results: OCRBoundingBox,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct OCRBoundingBoxSingle {
     /// Height of the bounding box
     pub h: f64,
@@ -127,7 +127,7 @@ pub struct OCRBoundingBoxSingle {
     pub y: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Polygon {
     /// Label of the polygon
     pub label: String,
@@ -135,13 +135,13 @@ pub struct Polygon {
     pub points: Vec<HashMap<String, serde_json::Value>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct PolygonOutput {
     /// List of polygons
     pub polygons: Vec<Polygon>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct PolygonOutputWithLabels {
     /// Processed image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -150,7 +150,7 @@ pub struct PolygonOutputWithLabels {
     pub results: PolygonOutput,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Region {
     /// X-coordinate of the top-left corner
     pub x1: i64,
@@ -162,13 +162,13 @@ pub struct Region {
     pub y2: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextOutput {
     /// Results from the model
     pub results: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

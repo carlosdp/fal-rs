@@ -4,103 +4,13 @@ mod module;
 mod types;
 
 use fal_data::*;
-use helpers::*;
 use module::*;
 use types::*;
 
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 
 use cargo_manifest::Manifest;
 use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
-
-pub struct CachedType {
-    pub name: String,
-    pub schema: serde_json::Value,
-}
-
-pub struct TypeCache {
-    types: HashMap<String, Vec<CachedType>>,
-}
-
-impl TypeCache {
-    pub fn new() -> Self {
-        Self {
-            types: HashMap::new(),
-        }
-    }
-
-    pub fn get_type(&self, name: &str) -> Option<&serde_json::Value> {
-        for (_, types) in self.types.iter() {
-            for cached_type in types.iter() {
-                if cached_type.name == name {
-                    return Some(&cached_type.schema);
-                }
-            }
-        }
-
-        None
-    }
-
-    pub fn get_type_name(
-        &mut self,
-        original_name: &str,
-        alternate_names: &[String],
-        schema: &serde_json::Value,
-    ) -> String {
-        if let Some(cached_types) = self.types.get_mut(original_name) {
-            for cached_type in cached_types.iter() {
-                if json_eq_ignore_array_order(&cached_type.schema, schema) {
-                    return cached_type.name.clone();
-                }
-            }
-
-            // there is a name conflict, but we have not created a matching type yet
-            let alternate_name = alternate_names
-                .iter()
-                .find(|name| !cached_types.iter().any(|t| t.name == **name))
-                .expect(&format!(
-                    "no viable alternate name found for {} and {}, existing types: {}",
-                    original_name,
-                    alternate_names.join(", "),
-                    cached_types
-                        .iter()
-                        .map(|t| t.name.clone())
-                        .collect::<Vec<_>>()
-                        .join(", ")
-                ));
-
-            cached_types.push(CachedType {
-                name: alternate_name.clone(),
-                schema: schema.clone(),
-            });
-
-            return alternate_name.clone();
-        } else {
-            self.types.insert(
-                original_name.to_string(),
-                vec![CachedType {
-                    name: original_name.to_string(),
-                    schema: schema.clone(),
-                }],
-            );
-
-            original_name.to_string()
-        }
-    }
-
-    pub fn finalize_types(self) -> HashMap<String, serde_json::Value> {
-        self.types
-            .into_iter()
-            .map(|(_, types)| {
-                types
-                    .into_iter()
-                    .map(|ty| (ty.name, ty.schema))
-                    .collect::<Vec<_>>()
-            })
-            .flatten()
-            .collect()
-    }
-}
 
 #[tokio::main]
 async fn main() {
@@ -112,7 +22,6 @@ async fn main() {
         name: "endpoints".to_string(),
         children: Vec::new(),
     };
-    let mut type_cache = TypeCache::new();
 
     let client = reqwest::Client::new();
 
@@ -160,53 +69,7 @@ async fn main() {
             .json()
             .await
             .unwrap();
-        let mut paths = app_data.metadata.openapi["paths"].clone();
-
-        // for (name, schema) in app_data.metadata.openapi["components"]["schemas"]
-        //     .as_object()
-        //     .unwrap()
-        //     .iter()
-        // {
-        //     // TODO: here, we should check if an existing schema is equal, and if not, we need to disambiguate
-        //     // Create a new name based on what we can infer here, (maybe even use LLM to come up with a name lol)
-        //     // Then, we need to remap the $refs in this object that reference this.
-        //     // Actually, we need to use a multi value hashmap, because another endpoint might use the same, alternate type
-        //     // and we want to be able to look up the existing matching type
-        //     // Use a Hashmap<String, Vec<(String, serde_json::Value)>
-        //     let mut alternate_names = app_data.metadata.openapi["paths"]
-        //         .as_object()
-        //         .unwrap()
-        //         .iter()
-        //         .filter(|(_, path_info)| {
-        //             path_info["post"]["requestBody"]["content"]["application/json"]["schema"]
-        //                 ["$ref"]
-        //                 .as_str()
-        //                 .unwrap_or("")
-        //                 .split("/")
-        //                 .last()
-        //                 .unwrap_or("")
-        //                 == name
-        //         })
-        //         .filter_map(|(_, path_info)| {
-        //             path_info["post"]["summary"]
-        //                 .as_str()
-        //                 .map(|s| s.replace(" ", ""))
-        //         })
-        //         .collect::<Vec<_>>();
-        //     alternate_names.push(format!(
-        //         "{}{name}",
-        //         snake_to_upper_camel(&app_data.app_name.replace("-", "_"))
-        //     ));
-
-        //     let type_name = type_cache.get_type_name(name, &alternate_names, schema);
-        //     update_refs(
-        //         &mut paths,
-        //         name,
-        //         &format!("#/components/schemas/{type_name}"),
-        //     );
-        // }
-
-        let paths = paths.as_object().unwrap();
+        let paths = app_data.metadata.openapi["paths"].as_object().unwrap();
 
         for (path, params) in paths {
             if path == "/health" {
@@ -274,26 +137,16 @@ async fn main() {
             };
 
             let output_type = {
-                let type_name = output_type_ref.split("/").last().unwrap();
-                println!("type ref: {}", output_type_ref);
-                let schema = if let Some(schema) = app_data
+                let Some(schema) = app_data
                     .metadata
                     .openapi
                     .pointer(&output_type_ref[1..])
                     .clone()
-                {
-                    schema.clone()
-                } else {
-                    println!("{:?}", app_data.metadata.openapi);
-                    type_cache
-                        .get_type(type_name)
-                        .expect(&format!(
-                            "type {} not found in component schemas or cache",
-                            type_name
-                        ))
-                        .clone()
+                else {
+                    tracing::error!("no schema found for {}, skipping endpoint", output_type_ref);
+                    continue;
                 };
-                schema
+                schema.clone()
             };
             let input_types = app_data.metadata.openapi["components"]["schemas"]
                 .as_object()
@@ -324,63 +177,58 @@ async fn main() {
     // Print the tree structure
     root.print_tree(0);
 
-    let mut extra_types: HashMap<String, (String, String)> = HashMap::new();
-
-    let req_res_types = type_cache.finalize_types();
-
     // Write the module tree to files
-    write_module_to_files(
-        &root,
-        base_module_path,
-        &req_res_types,
-        &mut extra_types,
-        true,
-    )
-    .expect("Failed to write module files");
+    write_module_to_files(&root, base_module_path, true).expect("Failed to write module files");
 
     let mut manifest = Manifest::from_path("Cargo.toml").unwrap();
 
-    // Generate and write common types
-    let rust_struct_types = req_res_types
-        .iter()
-        .filter(|(k, _)| !hardcoded_struct(k))
-        .map(|(_, v)| schema_type_to_rust_type(v, &mut extra_types, true))
-        .collect::<Vec<String>>()
-        .join("\n\n");
-
-    let extra_types_str = extra_types
-        .iter()
-        .map(|(_, (_, item))| item.clone())
-        .collect::<Vec<String>>()
-        .join("\n\n");
-
-    // Write common types to types.rs
-    let types_content = format!(
-        "use std::collections::HashMap;\n\nuse serde::{{Serialize, Deserialize}};\nuse crate::prelude::*;\n\n{}\n\n{}",
-        rust_struct_types, extra_types_str
-    );
-    std::fs::write(format!("{}/types.rs", base_module_path), types_content)
-        .expect("Failed to write types file");
-
     // Write initial root mod.rs with module declarations
-    let root_mod_content = format!(
-        "{}\n\nmod types;\npub use types::*;\n",
-        match &root {
-            Node::Module { children, .. } => children
-                .iter()
-                .filter_map(|child| {
-                    if let Node::Module { name, .. } = child {
-                        let feature_name = format!("endpoints_{}", name.replace("_", "-"));
-                        Some(format!("#[cfg(any(feature = \"endpoints\", feature = \"{feature_name}\"))]\n#[cfg_attr(docsrs, doc(cfg(any(feature = \"endpoints\", feature = \"{feature_name}\"))))]\npub mod {};", name))
-                    } else {
-                        None
+    let root_mod_content = match &root {
+        Node::Module { children, .. } => children
+            .iter()
+            .filter_map(|child| {
+                if let Node::Module { name, children } = child {
+                    // Collect all child features recursively
+                    let mut all_features = vec![format!("endpoints_{}", name.replace("_", "-"))];
+
+                    // Helper function to collect child features
+                    fn collect_child_features(node: &Node, features: &mut Vec<String>, parent_name: &str) {
+                        if let Node::Module { name, children } = node {
+                            let current_name = format!("{}_{}", parent_name, name.replace("_", "-"));
+                            features.push(current_name.clone());
+
+                            for child in children {
+                                collect_child_features(child, features, &current_name);
+                            }
+                        }
                     }
-                })
-                .collect::<Vec<_>>()
-                .join("\n"),
-            _ => String::new(),
-        }
-    );
+
+                    // Collect features from all children
+                    for child in children {
+                        collect_child_features(child, &mut all_features, &format!("endpoints_{}", name.replace("_", "-")));
+                    }
+
+                    // Create the feature gates string with all features
+                    let features_str = all_features
+                        .into_iter()
+                        .map(|f| format!("feature = \"{}\"", f))
+                        .collect::<Vec<_>>()
+                        .join(", ");
+
+                    Some(format!(
+                        "#[cfg(any(feature = \"endpoints\", {}))]\n#[cfg_attr(docsrs, doc(cfg(any(feature = \"endpoints\", {}))))]\npub mod {};",
+                        features_str,
+                        features_str,
+                        name
+                    ))
+                } else {
+                    None
+                }
+            })
+            .collect::<Vec<_>>()
+            .join("\n"),
+        _ => String::new(),
+    };
     std::fs::write(format!("{}/mod.rs", base_module_path), root_mod_content)
         .expect("Failed to write root mod.rs");
 

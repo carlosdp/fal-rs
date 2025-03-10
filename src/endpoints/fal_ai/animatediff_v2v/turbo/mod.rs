@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AnimateDiffV2VInput {
     /// Base model to use for animation generation.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -44,7 +44,7 @@ pub struct AnimateDiffV2VInput {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AnimateDiffV2VOutput {
     /// Seed used for generating the video.
     pub seed: i64,
@@ -54,7 +54,7 @@ pub struct AnimateDiffV2VOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AnimateDiffV2VTurboInput {
     /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
     /// the model to stick to your prompt when looking for a related image to show you.
@@ -100,7 +100,7 @@ pub struct AnimateDiffV2VTurboOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -121,13 +121,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights. Or HF model name.
     /// "https://civitai.com/api/download/models/135931"
@@ -139,12 +139,19 @@ pub struct LoraWeight {
     pub scale: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// AnimateDiff Video-to-Video Evolved

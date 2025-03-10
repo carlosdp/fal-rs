@@ -5,40 +5,20 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_moondream-next",
-    feature = "endpoints_fal-ai_moondream-next_batch"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_moondream-next_batch"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_moondream-next",
-        feature = "endpoints_fal-ai_moondream-next_batch"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_moondream-next_batch")))
 )]
 pub mod batch;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_moondream-next",
-    feature = "endpoints_fal-ai_moondream-next_detection"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_moondream-next_detection"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_moondream-next",
-        feature = "endpoints_fal-ai_moondream-next_detection"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_moondream-next_detection")))
 )]
 pub mod detection;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BatchMoonDreamOutput {
     /// URL to the generated captions JSON file containing filename-caption pairs.
     pub captions_file: File,
@@ -46,7 +26,7 @@ pub struct BatchMoonDreamOutput {
     pub outputs: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BatchQueryInput {
     /// List of image URLs to be processed (maximum 32 images)
     pub images_data_url: String,
@@ -58,7 +38,7 @@ pub struct BatchQueryInput {
     pub prompt: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct DetectionInput {
     /// Text description of what to detect
     /// "Person"
@@ -73,7 +53,7 @@ pub struct DetectionInput {
     pub use_ensemble: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct DetectionOutput {
     /// Output image with detection visualization
     pub image: Image,
@@ -81,7 +61,7 @@ pub struct DetectionOutput {
     pub text_output: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -102,13 +82,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -143,7 +123,7 @@ pub struct MoonDreamOutput {
     pub output: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct QueryInput {
     /// Image URL to be processed
     /// "https://llava-vl.github.io/static/images/monalisa.jpg"
@@ -159,7 +139,7 @@ pub struct QueryInput {
     pub task_type: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

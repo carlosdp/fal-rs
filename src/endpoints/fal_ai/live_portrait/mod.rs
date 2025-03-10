@@ -5,40 +5,20 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_live-portrait",
-    feature = "endpoints_fal-ai_live-portrait_image"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_live-portrait_image"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_live-portrait",
-        feature = "endpoints_fal-ai_live-portrait_image"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_live-portrait_image")))
 )]
 pub mod image;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_live-portrait",
-    feature = "endpoints_fal-ai_live-portrait_video"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_live-portrait_video"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_live-portrait",
-        feature = "endpoints_fal-ai_live-portrait_video"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_live-portrait_video")))
 )]
 pub mod video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -59,13 +39,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -94,7 +74,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LivePortraitImageInput {
     /// Amount to open mouth in 'aaa' shape
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -168,13 +148,13 @@ pub struct LivePortraitImageInput {
     pub woo: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LivePortraitImageOutput {
     /// The generated image file.
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LivePortraitInput {
     /// Amount to open mouth in 'aaa' shape
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -269,7 +249,7 @@ pub struct LivePortraitOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LivePortraitVideoInput {
     /// Whether to prioritize source or driving audio.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -285,7 +265,7 @@ pub struct LivePortraitVideoInput {
     pub source_video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

@@ -50,14 +50,17 @@ fal = { version = "0.2", features = ["endpoints"] }
 Once enabled, the endpoint can be called like this:
 
 ```rust,no_run
+# #[cfg(feature = "endpoints_fal-ai_flux_dev")]
+# {
 use fal::prelude::*;
+use fal::endpoints::fal_ai::flux;
 
 #[tokio::main]
 async fn main() {
     let api_key = std::env::var("FAL_API_KEY").unwrap();
 
     // Use the Flux Pro endpoint to generate an image
-    let response = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
+    let response = flux::dev::dev(flux::dev::DevTextToImageInput {
         prompt: "a majestic horse in a field".to_string(),
         ..Default::default()
     })
@@ -68,6 +71,7 @@ async fn main() {
 
     println!("Generated image URL: {}", response.images[0].url);
 }
+# }
 ```
 
 ### Using the Queue System
@@ -75,12 +79,15 @@ async fn main() {
 For long-running operations, you can use the [FAL Queue API](https://docs.fal.ai/model-endpoints/queue):
 
 ```rust,no_run
+# #[cfg(feature = "endpoints_fal-ai_flux_dev")]
+# {
 use fal::prelude::*;
+use fal::endpoints::fal_ai::flux;
 use futures::StreamExt;
 
 #[tokio::main]
 async fn main() {
-    let queue = fal::endpoints::fal_ai::flux_pro::flux_pro(FluxProTextToImageInput {
+    let queue = flux::dev::dev(flux::dev::DevTextToImageInput {
         prompt: "a majestic horse in a field".to_string(),
         ..Default::default()
     })
@@ -101,6 +108,7 @@ async fn main() {
     let response = queue.response().await.unwrap();
     println!("Generated image URL: {}", response.images[0].url);
 }
+# }
 ```
 
 ### The `#[endpoint]` macro

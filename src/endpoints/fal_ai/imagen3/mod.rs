@@ -5,40 +5,17 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_imagen3",
-    feature = "endpoints_fal-ai_imagen3_fast"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_imagen3",
-        feature = "endpoints_fal-ai_imagen3_fast"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_imagen3_fast"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_imagen3_fast"))))]
 pub mod fast;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_imagen3",
-    feature = "endpoints_fal-ai_imagen3_subject-reference"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_imagen3_subject-reference"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_imagen3",
-        feature = "endpoints_fal-ai_imagen3_subject-reference"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_imagen3_subject-reference")))
 )]
 pub mod subject_reference;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -59,7 +36,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -73,13 +50,13 @@ pub struct Output {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ReferenceImage {
     /// URL to the reference image file (PNG format recommended)
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SubjectCustomizeInput {
     /// A description of what to discourage in the generated images
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -104,7 +81,7 @@ pub struct SubjectCustomizeInput {
     pub subject_type: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageInput {
     /// The aspect ratio of the generated image
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +100,7 @@ pub struct TextToImageInput {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

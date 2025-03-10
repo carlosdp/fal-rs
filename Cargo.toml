@@ -13,6 +13,9 @@ categories = ["api-bindings"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/carlosdp/fal-rs"
 
+[package.metadata.docs.rs]
+features = ["endpoints_fal-ai_flux_dev"]
+
 [workspace]
 members = [
     "fal-derive",
@@ -518,7 +521,7 @@ image = [
 path = "tests/endpoints.rs"
 name = "endpoints"
 edition = "2021"
-required-features = ["endpoints"]
+required-features = ["endpoints_fal-ai_flux_dev"]
 
 [[test]]
 path = "tests/image.rs"

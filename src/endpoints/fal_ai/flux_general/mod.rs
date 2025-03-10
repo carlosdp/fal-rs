@@ -5,72 +5,32 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_flux-general",
-    feature = "endpoints_fal-ai_flux-general_differential-diffusion"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_flux-general_differential-diffusion"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_flux-general",
-        feature = "endpoints_fal-ai_flux-general_differential-diffusion"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_flux-general_differential-diffusion")))
 )]
 pub mod differential_diffusion;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_flux-general",
-    feature = "endpoints_fal-ai_flux-general_image-to-image"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_flux-general_image-to-image"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_flux-general",
-        feature = "endpoints_fal-ai_flux-general_image-to-image"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_flux-general_image-to-image")))
 )]
 pub mod image_to_image;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_flux-general",
-    feature = "endpoints_fal-ai_flux-general_inpainting"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_flux-general_inpainting"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_flux-general",
-        feature = "endpoints_fal-ai_flux-general_inpainting"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_flux-general_inpainting")))
 )]
 pub mod inpainting;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_flux-general",
-    feature = "endpoints_fal-ai_flux-general_rf-inversion"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_flux-general_rf-inversion"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_flux-general",
-        feature = "endpoints_fal-ai_flux-general_rf-inversion"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_flux-general_rf-inversion")))
 )]
 pub mod rf_inversion;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ControlLoraWeight {
     /// URL of the image to be used as the control image.
     pub control_image_url: String,
@@ -85,7 +45,7 @@ pub struct ControlLoraWeight {
     pub scale: Option<ScaleProperty>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ControlNet {
     /// The scale of the control net weight. This is used to scale the control net weight
     /// before merging it with the base model.
@@ -115,7 +75,7 @@ pub struct ControlNet {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ControlNetUnion {
     /// optional URL to the controlnet config.json file.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -129,7 +89,7 @@ pub struct ControlNetUnion {
     pub variant: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ControlNetUnionInput {
     /// The scale of the control net weight. This is used to scale the control net weight
     /// before merging it with the base model.
@@ -160,7 +120,7 @@ pub struct ControlNetUnionInput {
     pub start_percentage: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct DifferentialDiffusionInput {
     /// Base shift for the scheduled timesteps
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -249,13 +209,13 @@ pub struct DifferentialDiffusionInput {
     pub use_real_cfg: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct IPAdapter {
     /// Path to the Image Encoder for the IP-Adapter, for example 'openai/clip-vit-large-patch14'
     pub image_encoder_path: String,
@@ -285,7 +245,7 @@ pub struct IPAdapter {
     pub weight_name: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub content_type: Option<String>,
@@ -294,7 +254,7 @@ pub struct Image {
     pub width: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageSize {
     /// The height of the generated image.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -304,7 +264,7 @@ pub struct ImageSize {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToImageInput {
     /// Base shift for the scheduled timesteps
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -390,7 +350,7 @@ pub struct ImageToImageInput {
     pub use_real_cfg: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InpaintInput {
     /// Base shift for the scheduled timesteps
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -479,7 +439,7 @@ pub struct InpaintInput {
     pub use_real_cfg: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights.
     pub path: String,
@@ -503,7 +463,7 @@ pub struct Output {
     pub timings: Timings,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RFInversionInput {
     /// Base shift for the scheduled timesteps
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -590,7 +550,7 @@ pub struct RFInversionInput {
     pub use_beta_schedule: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageInput {
     /// Base shift for the scheduled timesteps
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -670,12 +630,46 @@ pub struct TextToImageInput {
     pub use_real_cfg: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ImageSizeProperty {
+    #[default]
+    ImageSize(ImageSize),
+    #[serde(rename = "square_hd")]
+    SquareHd,
+    #[serde(rename = "square")]
+    Square,
+    #[serde(rename = "portrait_4_3")]
+    Portrait43,
+    #[serde(rename = "portrait_16_9")]
+    Portrait169,
+    #[serde(rename = "landscape_4_3")]
+    Landscape43,
+    #[serde(rename = "landscape_16_9")]
+    Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ScaleProperty {
+    #[default]
+    Object(HashMap<String, serde_json::Value>),
+    Number(f64),
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// FLUX.1 [dev] with Controlnets and Loras

@@ -5,28 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_pixverse",
-    feature = "endpoints_fal-ai_pixverse_v3-5",
-    feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video",
-    feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video_fast"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video_fast"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_pixverse",
-        feature = "endpoints_fal-ai_pixverse_v3-5",
-        feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video",
-        feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video_fast"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_pixverse_v3-5_image-to-video_fast")))
 )]
 pub mod fast;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FastImageToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -51,7 +37,7 @@ pub struct FastImageToVideoRequest {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FastTextToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -73,7 +59,7 @@ pub struct FastTextToVideoRequest {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -94,7 +80,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -107,7 +93,7 @@ pub struct I2VOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -135,7 +121,7 @@ pub struct ImageToVideoRequest {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -160,7 +146,7 @@ pub struct TextToVideoRequest {
     pub style: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
@@ -168,7 +154,7 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct VideoOutput {
     /// The generated video
     /// {"content_type":"video/mp4","file_name":"output.mp4","file_size":2995630,"url":"https://fal.media/files/zebra/11UahivZ3XZ1tRlcEcgPq_output.mp4"}

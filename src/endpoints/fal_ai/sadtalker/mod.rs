@@ -5,24 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_sadtalker",
-    feature = "endpoints_fal-ai_sadtalker_reference"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_sadtalker_reference"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_sadtalker",
-        feature = "endpoints_fal-ai_sadtalker_reference"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_sadtalker_reference")))
 )]
 pub mod reference;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -40,13 +30,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SadTalkerInput {
     /// URL of the driven audio
     /// "https://storage.googleapis.com/falserverless/model_tests/sadtalker/deyu.wav"
@@ -81,7 +71,7 @@ pub struct SadTalkerOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SadTalkerRefVideoInput {
     /// URL of the driven audio
     /// "https://storage.googleapis.com/falserverless/model_tests/sadtalker/deyu.wav"
@@ -113,7 +103,7 @@ pub struct SadTalkerRefVideoInput {
     pub still_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

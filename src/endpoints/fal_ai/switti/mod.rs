@@ -5,30 +5,17 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_switti",
-    feature = "endpoints_fal-ai_switti_v512"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_switti",
-        feature = "endpoints_fal-ai_switti_v512"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_switti_v512"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_switti_v512"))))]
 pub mod v512;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -72,7 +59,7 @@ pub struct SwittiOutput {
     pub timings: Timings,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageInput {
     /// If set to true, the safety checker will be enabled.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -125,12 +112,19 @@ pub struct TextToImageInput {
     pub turn_off_cfg_start_si: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// Switti 1024

@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Audio {
     /// Overall bitrate of the media in bits per second
     pub bitrate: i64,
@@ -32,7 +32,7 @@ pub struct Audio {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AudioTrack {
     /// Audio bitrate in bits per second
     pub bitrate: i64,
@@ -44,19 +44,19 @@ pub struct AudioTrack {
     pub sample_rate: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Input {
     /// List of tracks to be combined into the final media
     pub tracks: Vec<Track>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Keyframe {
     /// The duration in milliseconds of this keyframe
     pub duration: f64,
@@ -66,7 +66,7 @@ pub struct Keyframe {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MetadataInput {
     /// Whether to extract the start and end frames for videos. Note that when true the request will be slower.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -81,7 +81,7 @@ pub struct MetadataOutput {
     pub media: MediaProperty,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Output {
     /// URL of the video's thumbnail image
     pub thumbnail_url: String,
@@ -89,7 +89,7 @@ pub struct Output {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Resolution {
     /// Display aspect ratio (e.g., '16:9')
     pub aspect_ratio: String,
@@ -99,7 +99,7 @@ pub struct Resolution {
     pub width: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Track {
     /// Unique identifier for the track
     pub id: String,
@@ -110,7 +110,7 @@ pub struct Track {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
@@ -118,7 +118,7 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Video {
     /// Audio track information if video has audio
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -160,7 +160,7 @@ pub struct Video {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct VideoFormat {
     /// Video bitrate in bits per second
     pub bitrate: i64,
@@ -176,7 +176,7 @@ pub struct VideoFormat {
     pub video_codec: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct WaveformInput {
     /// URL of the audio file to analyze
     pub media_url: String,
@@ -191,7 +191,7 @@ pub struct WaveformInput {
     pub smoothing_window: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct WaveformOutput {
     /// Duration of the audio in seconds
     pub duration: f64,
@@ -201,6 +201,14 @@ pub struct WaveformOutput {
     pub precision: i64,
     /// Normalized waveform data as an array of values between -1 and 1. The number of points is determined by audio duration × points_per_second.
     pub waveform: Vec<f64>,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum MediaProperty {
+    #[default]
+    Video(Video),
+    Audio(Audio),
 }
 
 /// FFmpeg API Compose

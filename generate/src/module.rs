@@ -11,7 +11,7 @@ pub enum Node {
         endpoint: String,
         fn_name: String,
         definition: serde_json::Value,
-        input_types: Vec<serde_json::Value>,
+        module_types: Vec<serde_json::Value>,
         output_type: serde_json::Value,
         docs: String,
     },
@@ -24,7 +24,7 @@ impl Node {
         endpoint: &str,
         fn_name: &str,
         definition: serde_json::Value,
-        input_types: Vec<serde_json::Value>,
+        module_types: Vec<serde_json::Value>,
         output_type: serde_json::Value,
         docs: String,
     ) {
@@ -35,7 +35,7 @@ impl Node {
                         endpoint: endpoint.to_string(),
                         fn_name: fn_name.to_string(),
                         definition,
-                        input_types,
+                        module_types,
                         output_type,
                         docs,
                     });
@@ -55,7 +55,7 @@ impl Node {
                         endpoint,
                         fn_name,
                         definition,
-                        input_types,
+                        module_types,
                         output_type,
                         docs,
                     );
@@ -69,7 +69,7 @@ impl Node {
                         endpoint,
                         fn_name,
                         definition,
-                        input_types,
+                        module_types,
                         output_type,
                         docs,
                     );
@@ -95,13 +95,7 @@ impl Node {
     }
 }
 
-pub fn write_module_to_files(
-    node: &Node,
-    base_path: &str,
-    input_types: &HashMap<String, serde_json::Value>,
-    extra_types: &mut HashMap<String, (String, String)>,
-    is_root: bool,
-) -> std::io::Result<()> {
+pub fn write_module_to_files(node: &Node, base_path: &str, is_root: bool) -> std::io::Result<()> {
     match node {
         Node::Module { name, children } => {
             let module_path = if is_root {
@@ -142,15 +136,47 @@ pub fn write_module_to_files(
                         .collect();
                     path_segments.remove(0); // remove "src"
                     path_segments.push(child_name.replace("_", "-")); // add the child module name
-                    let features = (1..=path_segments.len())
-                        .map(|i| path_segments[0..i].join("_"))
-                        .collect::<Vec<String>>();
 
-                    let features_map = features
+                    // Helper function to collect all descendant features
+                    fn collect_all_features(node: &Node, base_path: &[String]) -> Vec<String> {
+                        let mut features = Vec::new();
+
+                        match node {
+                            Node::Module { name, children } => {
+                                let mut current_path = base_path.to_vec();
+                                current_path.push(name.replace("_", "-"));
+
+                                // Add this module's feature
+                                features.push(current_path.join("_"));
+
+                                // Recursively collect all descendant features
+                                for child in children {
+                                    features.extend(collect_all_features(child, &current_path));
+                                }
+                            }
+                            Node::Leaf { .. } => {}
+                        }
+
+                        features
+                    }
+
+                    // Get the base path for feature collection
+                    let base_path = path_segments[..path_segments.len() - 1].to_vec();
+
+                    // Collect all features from this module and all its descendants
+                    let mut all_features = collect_all_features(child, &base_path);
+
+                    // Sort and deduplicate features
+                    all_features.sort();
+                    all_features.dedup();
+
+                    // Create the feature gates string with all features
+                    let features_map = all_features
                         .into_iter()
-                        .map(|s| format!("feature = \"{}\"", s))
+                        .map(|f| format!("feature = \"{}\"", f))
                         .collect::<Vec<String>>()
-                        .join(",");
+                        .join(", ");
+
                     let feature_cfg = format!(
                         "#[cfg(any({features_map}))]\n#[cfg_attr(docsrs, doc(cfg(any({features_map}))))]",
                     );
@@ -167,7 +193,7 @@ pub fn write_module_to_files(
             // Add direct functions and types
             if !functions.is_empty() {
                 for child in functions {
-                    mod_content.push_str(&generate_request_module(child, input_types, extra_types));
+                    mod_content.push_str(&generate_request_module(child));
                 }
             }
 
@@ -177,7 +203,7 @@ pub fn write_module_to_files(
             // Recursively handle child modules
             for child in modules {
                 if let Node::Module { .. } = child {
-                    write_module_to_files(child, &module_path, input_types, extra_types, false)?;
+                    write_module_to_files(child, &module_path, false)?;
                 }
             }
         }
@@ -189,11 +215,7 @@ pub fn write_module_to_files(
     Ok(())
 }
 
-pub fn generate_request_module(
-    node: &Node,
-    input_types: &HashMap<String, serde_json::Value>,
-    extra_types: &mut HashMap<String, (String, String)>,
-) -> String {
+pub fn generate_request_module(node: &Node) -> String {
     match node {
         Node::Module { name, children } => {
             format!(
@@ -206,7 +228,7 @@ pub fn generate_request_module(
                 "#,
                 children
                     .iter()
-                    .map(|child| generate_request_module(child, input_types, extra_types))
+                    .map(|child| generate_request_module(child))
                     .collect::<Vec<String>>()
                     .join("\n")
             )
@@ -215,7 +237,7 @@ pub fn generate_request_module(
             endpoint,
             fn_name,
             definition,
-            input_types,
+            module_types: input_types,
             output_type,
             docs,
         } => {
@@ -228,12 +250,24 @@ pub fn generate_request_module(
                 .unwrap();
             let return_type = output_type["title"].as_str().unwrap();
 
+            let mut extra_types = HashMap::new();
+
             let input_structs = input_types
                 .iter()
-                .map(|input_type| schema_type_to_rust_type(input_type, extra_types, false))
+                .map(|input_type| {
+                    schema_type_to_rust_type(
+                        input_type,
+                        &mut extra_types,
+                        input_type["title"].as_str().unwrap_or_default() != return_type,
+                    )
+                })
                 .collect::<Vec<String>>()
                 .join("\n");
-            // let output_struct = schema_type_to_rust_type(&output_type, extra_types, false);
+            let extra_types_str = extra_types
+                .iter()
+                .map(|(_, (_, item))| item.clone())
+                .collect::<Vec<String>>()
+                .join("\n\n");
 
             let docs = docs
                 .trim()
@@ -246,6 +280,8 @@ pub fn generate_request_module(
             format!(
                 r#"
                 {input_structs}
+
+                {extra_types_str}
 
                 {docs}
                 pub fn {fn_name}(params: {request_type_name}) -> FalRequest<{request_type_name}, {return_type}> {{

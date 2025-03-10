@@ -5,24 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_ltx-video",
-    feature = "endpoints_fal-ai_ltx-video_image-to-video"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_ltx-video_image-to-video"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_ltx-video",
-        feature = "endpoints_fal-ai_ltx-video_image-to-video"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_ltx-video_image-to-video")))
 )]
 pub mod image_to_video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -43,13 +33,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToVideoInput {
     /// The guidance scale to use.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -79,7 +69,7 @@ pub struct Output {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToVideoInput {
     /// The guidance scale to use.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -98,7 +88,7 @@ pub struct TextToVideoInput {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

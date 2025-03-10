@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AudioFile {
     /// The mime type of the file.
     /// "image/png"
@@ -28,14 +28,14 @@ pub struct AudioFile {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AudioInput {
     /// The URL of the audio file.
     /// "https://storage.googleapis.com/falserverless/model_tests/f5-tts/en_1_ref.mp3"
     pub audio_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct CreateVoiceInput {
     /// Voice name (required, max 255 characters).
     /// "my voice"
@@ -51,7 +51,7 @@ pub struct CreateVoiceOutput {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -72,13 +72,13 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LDMTTSInput {
     /// S3 URI of the autoregressive (AR) model.
     /// null
@@ -107,14 +107,14 @@ pub struct LDMTTSInput {
     pub voices: Option<Vec<Option<LDMVoiceInput>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LDMTTSOutput {
     /// The generated audio file.
     /// {"content_type":"audio/mpeg","duration":24.3,"file_name":"33dd5f07-f834-4080-aaac-4a253ce1660b.mp3","file_size":584109,"url":"https://fal-api-audio-uploads.s3.amazonaws.com/33dd5f07-f834-4080-aaac-4a253ce1660b.mp3"}
     pub audio: AudioFile,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LDMVoiceInput {
     /// A prefix to identify the speaker in multi-turn dialogues.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -183,7 +183,7 @@ pub struct LDMVoiceInput {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TrainingInput {
     /// The name of the training job (required, max 255 characters).
     /// "my voice"
@@ -193,7 +193,7 @@ pub struct TrainingInput {
     pub training_data: Vec<AudioInput>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct V3TTSInput {
     /// The text to be converted to speech.
     /// "The quick brown fox jumped over the lazy dog."
@@ -269,14 +269,14 @@ pub struct V3TTSInput {
     pub voice: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct V3TTSOutput {
     /// The generated audio file.
     /// {"content_type":"audio/mpeg","duration":2.3486666666666665,"file_name":"166db034-7421-4767-adad-ab7c36a99b75.mp3","file_size":57069,"url":"https://fal-api-audio-uploads.s3.amazonaws.com/166db034-7421-4767-adad-ab7c36a99b75.mp3"}
     pub audio: AudioFile,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

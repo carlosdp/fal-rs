@@ -5,40 +5,20 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_fast-lightning-sdxl",
-    feature = "endpoints_fal-ai_fast-lightning-sdxl_image-to-image"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_fast-lightning-sdxl_image-to-image"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_fast-lightning-sdxl",
-        feature = "endpoints_fal-ai_fast-lightning-sdxl_image-to-image"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_fast-lightning-sdxl_image-to-image")))
 )]
 pub mod image_to_image;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_fast-lightning-sdxl",
-    feature = "endpoints_fal-ai_fast-lightning-sdxl_inpainting"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_fast-lightning-sdxl_inpainting"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_fast-lightning-sdxl",
-        feature = "endpoints_fal-ai_fast-lightning-sdxl_inpainting"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_fast-lightning-sdxl_inpainting")))
 )]
 pub mod inpainting;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Embedding {
     /// URL or the path to the embedding weights.
     /// "https://civitai.com/api/download/models/135931"
@@ -49,13 +29,13 @@ pub struct Embedding {
     pub tokens: Option<Vec<Option<String>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub content_type: Option<String>,
@@ -64,7 +44,7 @@ pub struct Image {
     pub width: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageSize {
     /// The height of the generated image.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -74,7 +54,7 @@ pub struct ImageSize {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToImageLightningInput {
     /// The list of embeddings to use.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -117,7 +97,7 @@ pub struct ImageToImageLightningInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct InpaintingLightningInput {
     /// The list of embeddings to use.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -163,7 +143,7 @@ pub struct InpaintingLightningInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights. Or HF model name.
     /// "https://civitai.com/api/download/models/135931"
@@ -189,7 +169,7 @@ pub struct Output {
     pub timings: Timings,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageLightningInput {
     /// The list of embeddings to use.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -226,12 +206,38 @@ pub struct TextToImageLightningInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ImageSizeProperty {
+    #[default]
+    ImageSize(ImageSize),
+    #[serde(rename = "square_hd")]
+    SquareHd,
+    #[serde(rename = "square")]
+    Square,
+    #[serde(rename = "portrait_4_3")]
+    Portrait43,
+    #[serde(rename = "portrait_16_9")]
+    Portrait169,
+    #[serde(rename = "landscape_4_3")]
+    Landscape43,
+    #[serde(rename = "landscape_16_9")]
+    Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// Stable Diffusion XL Lightning

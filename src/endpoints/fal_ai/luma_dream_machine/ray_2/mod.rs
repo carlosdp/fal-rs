@@ -5,26 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_luma-dream-machine",
-    feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
-    feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_luma-dream-machine",
-        feature = "endpoints_fal-ai_luma-dream-machine_ray-2",
-        feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_luma-dream-machine_ray-2_image-to-video")))
 )]
 pub mod image_to_video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -45,20 +33,20 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct I2VOutput {
     /// The generated video
     /// {"url":"https://v2.fal.media/files/8c216fcbc4ed41cd8840bd48c1ec6dd6_output.mp4"}
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -74,14 +62,14 @@ pub struct ImageToVideoRequest {
     pub prompt: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Ray2I2VOutput {
     /// URL of the generated video
     /// {"url":"https://v3.fal.media/files/zebra/9aDde3Te2kuJYHdR0Kz8R_output.mp4"}
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Ray2ImageToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -113,7 +101,7 @@ pub struct Ray2T2VOutput {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Ray2TextToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -131,14 +119,14 @@ pub struct Ray2TextToVideoRequest {
     pub resolution: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct T2VOutput {
     /// The generated video
     /// {"url":"https://v2.fal.media/files/807e842c734f4127a36de9262a2d292c_output.mp4"}
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToVideoRequest {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -150,7 +138,7 @@ pub struct TextToVideoRequest {
     pub prompt: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

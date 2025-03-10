@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct DepthMapInput {
     /// a
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -27,13 +27,13 @@ pub struct DepthMapOutput {
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -62,7 +62,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MarigoldDepthMapInput {
     /// Number of predictions to average over. Defaults to `10`. The higher the number, the more accurate the result, but the slower the inference.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -78,26 +78,26 @@ pub struct MarigoldDepthMapInput {
     pub processing_res: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MarigoldDepthMapOutput {
     /// The depth map.
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct NSFWImageDetectionInput {
     /// Input image url.
     /// "https://storage.googleapis.com/falserverless/model_tests/remove_background/elephant.jpg"
     pub image_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct NSFWImageDetectionOutput {
     /// The probability of the image being NSFW.
     pub nsfw_probability: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RemoveBackgroundInput {
     /// If set to true, the resulting image be cropped to a bounding box around the subject
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -112,13 +112,13 @@ pub struct RemoveBackgroundInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RemoveBackgroundOutput {
     /// Background removed image.
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SamInput {
     /// Attempt better quality output using morphologyEx
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -162,14 +162,14 @@ pub struct SamInput {
     pub with_contours: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct SamOutput {
     /// Combined image of all detected masks
     #[serde(skip_serializing_if = "Option::is_none")]
     pub image: Option<Option<Image>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleInput {
     /// Upscaling a face
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -193,13 +193,13 @@ pub struct UpscaleInput {
     pub tile: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleOutput {
     /// Upscaled image
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

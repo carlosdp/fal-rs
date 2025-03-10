@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BGRemoveInput {
     /// Input Image to erase from
     /// "https://fal.media/files/panda/K5Rndvzmn1j-OI1VZXDVd.jpeg"
@@ -17,14 +17,14 @@ pub struct BGRemoveInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BGRemoveOutput {
     /// The generated image
     /// {"content_type":"image/png","file_name":"070c731993e949d993c10ef6283d335d.png","file_size":1076276,"height":1024,"url":"https://v3.fal.media/files/tiger/GQEMNjRyxSoza7N8LPPqb_070c731993e949d993c10ef6283d335d.png","width":1024}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct BGReplaceInput {
     /// Whether to use the fast model
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -69,7 +69,7 @@ pub struct BGReplaceOutput {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct EraserInput {
     /// Input Image to erase from
     /// "https://storage.googleapis.com/falserverless/bria/bria_eraser_img.png"
@@ -90,14 +90,14 @@ pub struct EraserInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct EraserOutput {
     /// The generated image
     /// {"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_eraser_res.png"}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FastTextToImageRequest {
     /// The aspect ratio of the image. When a guidance method is being used, the aspect ratio is defined by the guidance image and this parameter is ignored.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -138,7 +138,7 @@ pub struct FastTextToImageRequest {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GenFillInput {
     /// Input Image to erase from
     /// "https://storage.googleapis.com/falserverless/bria/bria_genfill_img.png"
@@ -166,14 +166,14 @@ pub struct GenFillInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GenFillOutput {
     /// Generated Images
     /// [{"content_type":"image/png","file_name":"a0d138e6820c4ad58f1fd3c758f16047.png","file_size":1064550,"height":768,"url":"https://storage.googleapis.com/falserverless/bria/bria_genfill_res.png","width":1024}]
     pub images: Vec<Image>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct GuidanceInput {
     /// The image that should be used as guidance, in base64 format, with the method defined in guidance_method_1. Accepted formats are jpeg, jpg, png, webp. Maximum file size 12MB. If more then one guidance method is used, all guidance images must be of the same aspect ratio, and this will be the aspect ratio of the generated results. If guidance_method_1 is selected, an image must be provided.
     pub image_url: String,
@@ -185,13 +185,13 @@ pub struct GuidanceInput {
     pub scale: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -220,7 +220,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageExpansionInput {
     /// The desired size of the final image, after the expansion. should have an area of less than 5000x5000 pixels.
     /// [1200,674]
@@ -253,7 +253,7 @@ pub struct ImageExpansionInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageExpansionOutput {
     /// The generated image
     /// {"content_type":"image/png","file_name":"afa402a35ea742cdb5c3e219b2b19bfb.png","file_size":1471342,"height":674,"url":"https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png","width":1200}
@@ -262,7 +262,7 @@ pub struct ImageExpansionOutput {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Output {
     /// The generated images
     /// [{"content_type":"image/png","file_name":"257cf8e7bd3a47c2959396343d5b38cf.png","file_size":3731290,"height":1536,"url":"https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png","width":1536}]
@@ -271,7 +271,7 @@ pub struct Output {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ProductShotInput {
     /// Whether to use the fast model
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -315,14 +315,14 @@ pub struct ProductShotInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ProductShotOutput {
     /// The generated images
     /// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_product_res.png"}]
     pub images: Vec<Image>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ReimagineInput {
     /// Whether to use the fast model
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -355,7 +355,7 @@ pub struct ReimagineInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ReimagineOutput {
     /// The generated images
     /// [{"content_type":"image/png","url":"https://storage.googleapis.com/falserverless/bria/bria_reimagine_output.png"}]
@@ -364,7 +364,7 @@ pub struct ReimagineOutput {
     pub seed: i64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TextToImageRequest {
     /// The aspect ratio of the image. When a guidance method is being used, the aspect ratio is defined by the guidance image and this parameter is ignored.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -405,7 +405,7 @@ pub struct TextToImageRequest {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleInput {
     /// The desired increase in resolution.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -420,14 +420,14 @@ pub struct UpscaleInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct UpscaleOutput {
     /// Result Image
     /// {"content_type":"image/png","file_name":"db12c5f7076844d0bb84df92ab340acd.png","file_size":2494064,"height":1400,"url":"https://v3.fal.media/files/penguin/oHW1CIjw26zf3Jt-YLBTW_db12c5f7076844d0bb84df92ab340acd.png","width":1220}
     pub image: Image,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

@@ -152,42 +152,6 @@ fn arrays_equal_unordered(a: &[Value], b: &[Value]) -> bool {
     b_remaining.is_empty()
 }
 
-/// Recursively updates all "$ref" values in a JSON value that contain a given string with a new string.
-/// This is useful for updating schema references when types need to be renamed.
-///
-/// # Arguments
-///
-/// * `value` - The JSON value to update
-/// * `original_ref` - The string to search for in $ref values
-/// * `new_ref` - The string to replace original_ref with
-pub fn update_refs(value: &mut serde_json::Value, original_ref: &str, new_ref: &str) {
-    match value {
-        serde_json::Value::Object(obj) => {
-            // Check if this object has a $ref key that needs updating
-            if let Some(ref_val) = obj.get_mut("$ref") {
-                if let Some(ref_str) = ref_val.as_str() {
-                    if ref_str.contains(original_ref) {
-                        *ref_val = serde_json::Value::String(new_ref.to_owned());
-                    }
-                }
-            }
-
-            // Recursively process all values in the object
-            for (_, v) in obj.iter_mut() {
-                update_refs(v, original_ref, new_ref);
-            }
-        }
-        serde_json::Value::Array(arr) => {
-            // Recursively process all items in the array
-            for item in arr.iter_mut() {
-                update_refs(item, original_ref, new_ref);
-            }
-        }
-        // Other JSON value types (String, Number, Bool, Null) can't contain refs
-        _ => {}
-    }
-}
-
 // Example usage:
 #[cfg(test)]
 mod tests {
@@ -293,48 +257,5 @@ mod tests {
                 "team": "Developers"
             })
         ));
-    }
-
-    #[test]
-    fn test_update_refs() {
-        let mut value = json!({
-            "type": "object",
-            "properties": {
-                "foo": {
-                    "$ref": "#/components/schemas/OldType"
-                },
-                "bar": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/components/schemas/OldType"
-                    }
-                },
-                "baz": {
-                    "oneOf": [
-                        { "$ref": "#/components/schemas/OldType" },
-                        { "$ref": "#/components/schemas/OtherType" }
-                    ]
-                }
-            }
-        });
-
-        update_refs(&mut value, "OldType", "NewType");
-
-        assert_eq!(
-            value["properties"]["foo"]["$ref"],
-            json!("#/components/schemas/NewType")
-        );
-        assert_eq!(
-            value["properties"]["bar"]["items"]["$ref"],
-            json!("#/components/schemas/NewType")
-        );
-        assert_eq!(
-            value["properties"]["baz"]["oneOf"][0]["$ref"],
-            json!("#/components/schemas/NewType")
-        );
-        assert_eq!(
-            value["properties"]["baz"]["oneOf"][1]["$ref"],
-            json!("#/components/schemas/OtherType")
-        );
     }
 }

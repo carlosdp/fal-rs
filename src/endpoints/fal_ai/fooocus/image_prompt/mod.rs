@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FooocusImagePromptInput {
     /// The size of the generated image. You can choose between some presets or
     /// custom height and width that **must be multiples of 8**.
@@ -101,7 +101,7 @@ pub struct FooocusImagePromptInput {
     pub uov_method: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FooocusInpaintInput {
     /// The size of the generated image. You can choose between some presets or
     /// custom height and width that **must be multiples of 8**.
@@ -219,7 +219,7 @@ pub struct FooocusInpaintInput {
     pub sync_mode: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FooocusLegacyInput {
     /// The size of the generated image. You can choose between some presets or
     /// custom height and width that **must be multiples of 8**.
@@ -317,7 +317,7 @@ pub struct FooocusOutput {
     pub timings: Timings,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct FooocusUpscaleOrVaryInput {
     /// The size of the generated image. You can choose between some presets or
     /// custom height and width that **must be multiples of 8**.
@@ -396,13 +396,13 @@ pub struct FooocusUpscaleOrVaryInput {
     pub uov_method: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Image {
     /// The mime type of the file.
     /// "image/png"
@@ -431,7 +431,7 @@ pub struct Image {
     pub width: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImagePrompt {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
@@ -444,7 +444,7 @@ pub struct ImagePrompt {
     pub weight: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights.
     /// "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors"
@@ -455,12 +455,19 @@ pub struct LoraWeight {
     pub scale: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// Fooocus

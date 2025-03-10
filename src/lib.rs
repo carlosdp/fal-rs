@@ -11,6 +11,7 @@ use eventsource_stream::EventStreamError;
 pub use fal_derive::endpoint;
 
 pub mod prelude {
+    #[allow(unused_imports)]
     pub use super::endpoints::*;
     #[cfg(feature = "image")]
     pub use super::image::*;

@@ -5,30 +5,17 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_mini-cpm",
-    feature = "endpoints_fal-ai_mini-cpm_video"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_mini-cpm",
-        feature = "endpoints_fal-ai_mini-cpm_video"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_mini-cpm_video"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_mini-cpm_video"))))]
 pub mod video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MiniCPMV26ImageInput {
     /// List of image URLs to be used for the image description
     /// ["https://llava-vl.github.io/static/images/monalisa.jpg"]
@@ -44,7 +31,7 @@ pub struct MiniCPMV26Output {
     pub output: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct MiniCPMV26VideoInput {
     /// Prompt to be used for the video description
     /// "What is she doing? Describe it detailed way."
@@ -54,7 +41,7 @@ pub struct MiniCPMV26VideoInput {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

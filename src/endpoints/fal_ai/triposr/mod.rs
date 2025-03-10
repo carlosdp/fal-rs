@@ -5,24 +5,11 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_triposr",
-    feature = "endpoints_fal-ai_triposr_remeshing"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_triposr",
-        feature = "endpoints_fal-ai_triposr_remeshing"
-    )))
-)]
+#[cfg(any(feature = "endpoints_fal-ai_triposr_remeshing"))]
+#[cfg_attr(docsrs, doc(cfg(any(feature = "endpoints_fal-ai_triposr_remeshing"))))]
 pub mod remeshing;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -43,7 +30,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -60,7 +47,7 @@ pub struct ObjectOutput {
     pub timings: Timings,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct RemeshingInput {
     /// Number of faces for remesh
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -79,7 +66,7 @@ pub struct RemeshingInput {
     pub preserve_uvs: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TripoSRInput {
     /// Whether to remove the background from the input image.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -110,12 +97,19 @@ pub struct TripoSRInput {
     pub output_format: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,
     #[serde(rename = "type")]
     pub ty: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// TripoSR

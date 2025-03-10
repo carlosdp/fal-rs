@@ -5,24 +5,14 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_hunyuan-video",
-    feature = "endpoints_fal-ai_hunyuan-video_video-to-video"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_hunyuan-video_video-to-video"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_hunyuan-video",
-        feature = "endpoints_fal-ai_hunyuan-video_video-to-video"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_hunyuan-video_video-to-video")))
 )]
 pub mod video_to_video;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
     /// "image/png"
@@ -43,7 +33,7 @@ pub struct File {
     pub url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HTTPValidationError {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub detail: Option<Vec<Option<ValidationError>>>,
@@ -56,7 +46,7 @@ pub struct HunyuanT2VResponse {
     pub video: File,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HunyuanV2VRequest {
     /// The aspect ratio of the video to generate.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -91,7 +81,7 @@ pub struct HunyuanV2VRequest {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct HunyuanVideoRequest {
     /// The aspect ratio of the video to generate.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -120,7 +110,7 @@ pub struct HunyuanVideoRequest {
     pub seed: Option<i64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LoraWeight {
     /// URL or the path to the LoRA weights.
     pub path: String,
@@ -130,7 +120,7 @@ pub struct LoraWeight {
     pub scale: Option<f64>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ValidationError {
     pub loc: Vec<serde_json::Value>,
     pub msg: String,

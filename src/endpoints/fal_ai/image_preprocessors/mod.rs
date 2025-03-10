@@ -1,176 +1,72 @@
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_canny"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_canny"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_canny"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_canny")))
 )]
 pub mod canny;
 #[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_depth-anything"
+    feature = "endpoints_fal-ai_image-preprocessors_depth-anything",
+    feature = "endpoints_fal-ai_image-preprocessors_depth-anything_v2"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_depth-anything"
+        feature = "endpoints_fal-ai_image-preprocessors_depth-anything",
+        feature = "endpoints_fal-ai_image-preprocessors_depth-anything_v2"
     )))
 )]
 pub mod depth_anything;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_hed"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_hed"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_hed"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_hed")))
 )]
 pub mod hed;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_lineart"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_lineart"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_lineart"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_lineart")))
 )]
 pub mod lineart;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_midas"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_midas"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_midas"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_midas")))
 )]
 pub mod midas;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_mlsd"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_mlsd"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_mlsd"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_mlsd")))
 )]
 pub mod mlsd;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_pidi"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_pidi"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_pidi"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_pidi")))
 )]
 pub mod pidi;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_sam"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_sam"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_sam"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_sam")))
 )]
 pub mod sam;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_scribble"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_scribble"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_scribble"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_scribble")))
 )]
 pub mod scribble;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_teed"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_teed"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_teed"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_teed")))
 )]
 pub mod teed;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_image-preprocessors",
-    feature = "endpoints_fal-ai_image-preprocessors_zoe"
-))]
+#[cfg(any(feature = "endpoints_fal-ai_image-preprocessors_zoe"))]
 #[cfg_attr(
     docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_image-preprocessors",
-        feature = "endpoints_fal-ai_image-preprocessors_zoe"
-    )))
+    doc(cfg(any(feature = "endpoints_fal-ai_image-preprocessors_zoe")))
 )]
 pub mod zoe;
