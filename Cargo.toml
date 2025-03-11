@@ -13,15 +13,15 @@ categories = ["api-bindings"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/carlosdp/fal-rs"
 
+[package.metadata.docs.rs]
+all-features = true
+
 [workspace]
 members = [
     "fal-derive",
     "generate",
 ]
 resolver = "2"
-
-[package.metadata.docs.rs]
-all-features = true
 
 [workspace.dependencies]
 reqwest = "0.12"
@@ -71,6 +71,8 @@ features = ["full"]
 [features]
 default = ["image"]
 endpoints = []
+endpoints_easel-ai = []
+endpoints_easel-ai_advanced-face-swap = []
 endpoints_fal-ai = []
 endpoints_fal-ai_amt-interpolation = []
 endpoints_fal-ai_animatediff-sparsectrl-lcm = []

@@ -88,14 +88,6 @@ pub enum FileSizeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
 pub enum HeightProperty {
     #[default]
     Integer(i64),
@@ -107,6 +99,14 @@ pub enum HeightProperty {
 pub enum WidthProperty {
     #[default]
     Integer(i64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ContentTypeProperty {
+    #[default]
+    String(String),
     Null(serde_json::Value),
 }
 

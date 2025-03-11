@@ -583,6 +583,31 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum AspectRatioProperty {
+    #[default]
+    #[serde(rename = "21:9")]
+    Property_21_9,
+    #[serde(rename = "16:9")]
+    Property_16_9,
+    #[serde(rename = "4:3")]
+    Property_4_3,
+    #[serde(rename = "3:2")]
+    Property_3_2,
+    #[serde(rename = "1:1")]
+    Property_1_1,
+    #[serde(rename = "2:3")]
+    Property_2_3,
+    #[serde(rename = "3:4")]
+    Property_3_4,
+    #[serde(rename = "9:16")]
+    Property_9_16,
+    #[serde(rename = "9:21")]
+    Property_9_21,
+    String(String),
+}
+
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Timings {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -607,31 +632,6 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum AspectRatioProperty {
-    #[default]
-    #[serde(rename = "21:9")]
-    Property_21_9,
-    #[serde(rename = "16:9")]
-    Property_16_9,
-    #[serde(rename = "4:3")]
-    Property_4_3,
-    #[serde(rename = "3:2")]
-    Property_3_2,
-    #[serde(rename = "1:1")]
-    Property_1_1,
-    #[serde(rename = "2:3")]
-    Property_2_3,
-    #[serde(rename = "3:4")]
-    Property_3_4,
-    #[serde(rename = "9:16")]
-    Property_9_16,
-    #[serde(rename = "9:21")]
-    Property_9_21,
-    String(String),
 }
 
 /// FLUX1.1 [pro] ultra

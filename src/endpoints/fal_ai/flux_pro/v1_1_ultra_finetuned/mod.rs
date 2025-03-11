@@ -585,6 +585,25 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
+pub enum ImageSizeProperty {
+    #[default]
+    ImageSize(ImageSize),
+    #[serde(rename = "square_hd")]
+    SquareHd,
+    #[serde(rename = "square")]
+    Square,
+    #[serde(rename = "portrait_4_3")]
+    Portrait43,
+    #[serde(rename = "portrait_16_9")]
+    Portrait169,
+    #[serde(rename = "landscape_4_3")]
+    Landscape43,
+    #[serde(rename = "landscape_16_9")]
+    Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
 pub enum AspectRatioProperty {
     #[default]
     #[serde(rename = "21:9")]
@@ -606,25 +625,6 @@ pub enum AspectRatioProperty {
     #[serde(rename = "9:21")]
     Property_9_21,
     String(String),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum ImageSizeProperty {
-    #[default]
-    ImageSize(ImageSize),
-    #[serde(rename = "square_hd")]
-    SquareHd,
-    #[serde(rename = "square")]
-    Square,
-    #[serde(rename = "portrait_4_3")]
-    Portrait43,
-    #[serde(rename = "portrait_16_9")]
-    Portrait169,
-    #[serde(rename = "landscape_4_3")]
-    Landscape43,
-    #[serde(rename = "landscape_16_9")]
-    Landscape169,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]

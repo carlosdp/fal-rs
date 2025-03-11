@@ -80,17 +80,9 @@ pub struct VideoInput {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum FileSizeProperty {
+pub enum ContentTypeProperty {
     #[default]
-    Integer(i64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum WidthProperty {
-    #[default]
-    Integer(i64),
+    String(String),
     Null(serde_json::Value),
 }
 
@@ -104,6 +96,14 @@ pub enum FileNameProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
+pub enum FileSizeProperty {
+    #[default]
+    Integer(i64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
 pub enum HeightProperty {
     #[default]
     Integer(i64),
@@ -112,9 +112,9 @@ pub enum HeightProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
+pub enum WidthProperty {
     #[default]
-    String(String),
+    Integer(i64),
     Null(serde_json::Value),
 }
 

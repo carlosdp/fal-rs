@@ -1,7 +1,3 @@
-pub fn hardcoded_struct(reference: &str) -> bool {
-    matches!(reference, "File" | "Image")
-}
-
 pub fn snake_to_upper_camel(input: &str) -> String {
     let mut result = String::new();
     let mut capitalize_next = true;

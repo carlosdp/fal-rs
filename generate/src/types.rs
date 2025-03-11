@@ -100,12 +100,6 @@ pub fn schema_property_to_rust_type(
                     tracing::warn!("[additionalProperties] no title for object: {:?}", property);
                     "HashMap<String, serde_json::Value>".to_string()
                 }
-            } else if let Some(reference) = property["$ref"].as_str() {
-                if hardcoded_struct(reference) {
-                    reference.split("/").last().unwrap().to_string()
-                } else {
-                    "HashMap<String, serde_json::Value>".to_string()
-                }
             } else {
                 "HashMap<String, serde_json::Value>".to_string()
             }

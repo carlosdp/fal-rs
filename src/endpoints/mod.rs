@@ -1,5 +1,19 @@
 #[cfg(any(
     feature = "endpoints",
+    feature = "endpoints_easel-ai",
+    feature = "endpoints_easel-ai_advanced-face-swap"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_easel-ai",
+        feature = "endpoints_easel-ai_advanced-face-swap"
+    )))
+)]
+pub mod easel_ai;
+#[cfg(any(
+    feature = "endpoints",
     feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_sync-lipsync",
     feature = "endpoints_fal-ai_minimax-music",

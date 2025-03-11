@@ -77,6 +77,14 @@ pub struct ValidationError {
     pub ty: String,
 }
 
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum SeedProperty {
+    #[default]
+    Integer(i64),
+    Null(serde_json::Value),
+}
+
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct Timings {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -101,14 +109,6 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum SeedProperty {
-    #[default]
-    Integer(i64),
-    Null(serde_json::Value),
 }
 
 /// DeepSeek Janus-Pro

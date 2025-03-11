@@ -82,7 +82,7 @@ pub struct Ray2ImageToVideoRequest {
     #[serde(rename = "loop")]
     pub r#loop: Option<bool>,
     pub prompt: String,
-    /// The resolution of the generated video (720p costs 2x more)
+    /// The resolution of the generated video (720p costs 2x more, 1080p costs 4x more)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub resolution: Option<String>,
 }
@@ -107,7 +107,7 @@ pub struct Ray2TextToVideoRequest {
     #[serde(rename = "loop")]
     pub r#loop: Option<bool>,
     pub prompt: String,
-    /// The resolution of the generated video (720p costs 2x more)
+    /// The resolution of the generated video (720p costs 2x more, 1080p costs 4x more)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub resolution: Option<String>,
 }
