@@ -19,7 +19,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-fal = "0.2"
+fal = "0.3"
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ By default, endpoints are disabled. The FAL API has hundreds of endpoints, and a
 
 ```toml
 # In Cargo.toml
-fal = { version = "0.2", features = ["endpoints_fal-ai_flux"] }
+fal = { version = "0.3", features = ["endpoints_fal-ai_flux"] }
 ```
 
 **Note**: The features go a maximum of two "levels", so you can enable `fal-ai/flux`, which enables all endpoints under `fal-ai/flux`, or `fal-ai`, or all endpoints in the API.
@@ -38,14 +38,14 @@ or, I can enable *all* endpoints under the `fal-ai` owner:
 
 ```toml
 # In Cargo.toml
-fal = { version = "0.2", features = ["endpoints_fal-ai"] }
+fal = { version = "0.3", features = ["endpoints_fal-ai"] }
 ```
 
 or if I'm really crazy, I can just enable all endpoints in the API:
 
 ```toml
 # In Cargo.toml
-fal = { version = "0.2", features = ["endpoints"] }
+fal = { version = "0.3", features = ["endpoints"] }
 ```
 
 Once enabled, the endpoint can be called like this:
