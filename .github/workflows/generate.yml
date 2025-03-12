@@ -15,6 +15,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -34,34 +36,11 @@ jobs:
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Configure Git
-        if: steps.git-check.outputs.changes == 'true'
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Create branch
-        if: steps.git-check.outputs.changes == 'true'
-        run: |
-          branch_name="update/endpoints-$(date +%Y%m%d-%H%M%S)"
-          git checkout -b $branch_name
-          echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV
-
-      - name: Commit changes
-        if: steps.git-check.outputs.changes == 'true'
-        run: |
-          git add .
-          git commit -m "chore: update generated endpoints"
-          git push origin ${{ env.BRANCH_NAME }}
-
       - name: Create Pull Request
         if: steps.git-check.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
-          title: "chore: update generated endpoints"
-          body: |
-            This PR was automatically created by the Generate Endpoints workflow.
-
-            - Updates generated endpoints
-          branch: ${{ env.BRANCH_NAME }}
-          base: main
+          commit-message: "chore: update generated endpoints"
+          title: Update Endpoints
+          body: Automated update of generated endpoints
+          branch: update-endpoints
