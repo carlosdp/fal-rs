@@ -27,6 +27,9 @@ jobs:
       - name: Generate endpoints
         run: cargo run -p generate-endpoints
 
+      - name: cargo fmt
+        run: cargo fmt
+
       - name: Check for changes
         id: git-check
         run: |
