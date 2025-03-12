@@ -119,25 +119,17 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum WidthProperty {
-    #[default]
-    Integer(i64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum SeedProperty {
-    #[default]
-    Integer(i64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileNameProperty {
+pub enum AddonsProperty {
     #[default]
     String(String),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum BboxConditionProperty {
+    #[default]
+    Array(Vec<i64>),
     Null(serde_json::Value),
 }
 
@@ -151,7 +143,7 @@ pub enum ContentTypeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum AddonsProperty {
+pub enum FileNameProperty {
     #[default]
     String(String),
     Null(serde_json::Value),
@@ -175,9 +167,17 @@ pub enum HeightProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum BboxConditionProperty {
+pub enum SeedProperty {
     #[default]
-    Array(Vec<i64>),
+    Integer(i64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum WidthProperty {
+    #[default]
+    Integer(i64),
     Null(serde_json::Value),
 }
 

@@ -85,17 +85,18 @@ pub enum ContentTypeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
+pub enum FileNameProperty {
+    #[default]
+    String(String),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
 pub enum FileSizeProperty {
     #[default]
     Integer(i64),
     Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, Default)]
-pub struct Timings {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "type")]
-    pub ty: Option<serde_json::Value>,
 }
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
@@ -106,12 +107,11 @@ pub enum SeedProperty {
     Null(serde_json::Value),
 }
 
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileNameProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct Timings {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(rename = "type")]
+    pub ty: Option<serde_json::Value>,
 }
 
 /// TransPixar

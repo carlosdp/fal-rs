@@ -637,14 +637,6 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum IpAdapterImageUrlProperty {
-    #[default]
-    String(String),
-    Array(Vec<String>),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
     #[default]
     ImageSize(ImageSize),
@@ -660,6 +652,14 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum IpAdapterImageUrlProperty {
+    #[default]
+    String(String),
+    Array(Vec<String>),
 }
 
 /// Stable Diffusion with LoRAs

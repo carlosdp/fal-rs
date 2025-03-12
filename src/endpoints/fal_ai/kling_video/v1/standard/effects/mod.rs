@@ -80,6 +80,21 @@ pub struct KlingV1I2VOutput {
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
+pub struct ProImageToVideoRequest {
+    /// The aspect ratio of the generated video frame
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub aspect_ratio: Option<String>,
+    /// The duration of the generated video in seconds
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub duration: Option<String>,
+    pub image_url: String,
+    pub prompt: String,
+    /// URL of the image to be used for the end of the video
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tail_image_url: Option<String>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct T2VOutput {
     /// The generated video
     /// {"url":"https://v2.fal.media/files/fb33a862b94d4d7195e610e4cbc5d392_output.mp4"}

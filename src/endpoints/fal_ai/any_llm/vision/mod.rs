@@ -73,7 +73,7 @@ pub struct VisionInput {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum SystemPromptProperty {
+pub enum ErrorProperty {
     #[default]
     String(String),
     Null(serde_json::Value),
@@ -81,7 +81,7 @@ pub enum SystemPromptProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ErrorProperty {
+pub enum SystemPromptProperty {
     #[default]
     String(String),
     Null(serde_json::Value),

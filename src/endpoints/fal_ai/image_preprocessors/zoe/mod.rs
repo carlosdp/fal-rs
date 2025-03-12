@@ -234,6 +234,14 @@ pub struct ZoeOutput {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
+pub enum ContentTypeProperty {
+    #[default]
+    String(String),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
 pub enum FileNameProperty {
     #[default]
     String(String),
@@ -250,15 +258,7 @@ pub enum FileSizeProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum WidthProperty {
+pub enum HeightProperty {
     #[default]
     Integer(i64),
     Null(serde_json::Value),
@@ -266,7 +266,7 @@ pub enum WidthProperty {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum HeightProperty {
+pub enum WidthProperty {
     #[default]
     Integer(i64),
     Null(serde_json::Value),

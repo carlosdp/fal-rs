@@ -615,14 +615,6 @@ pub struct ValidationError {
 
 #[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
 #[allow(non_camel_case_types)]
-pub enum ScaleProperty {
-    #[default]
-    Object(HashMap<String, serde_json::Value>),
-    Number(f64),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
 pub enum ImageSizeProperty {
     #[default]
     ImageSize(ImageSize),
@@ -638,6 +630,14 @@ pub enum ImageSizeProperty {
     Landscape43,
     #[serde(rename = "landscape_16_9")]
     Landscape169,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ScaleProperty {
+    #[default]
+    Object(HashMap<String, serde_json::Value>),
+    Number(f64),
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]

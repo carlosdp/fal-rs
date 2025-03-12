@@ -258,6 +258,9 @@ pub fn generate_request_module(node: &Node) -> String {
 
             let mut extra_types = HashMap::new();
 
+            let mut input_types = input_types.clone();
+            input_types.sort_by_key(|ty| ty["title"].as_str().unwrap().to_owned());
+
             let input_structs = input_types
                 .iter()
                 .map(|input_type| {
@@ -269,9 +272,12 @@ pub fn generate_request_module(node: &Node) -> String {
                 })
                 .collect::<Vec<String>>()
                 .join("\n");
+            let mut extra_types = extra_types.into_iter().collect::<Vec<_>>();
+            extra_types.sort_by_key(|(k, _)| k.clone());
+
             let extra_types_str = extra_types
-                .iter()
-                .map(|(_, (_, item))| item.clone())
+                .into_iter()
+                .map(|(_, (_, item))| item)
                 .collect::<Vec<String>>()
                 .join("\n\n");
 

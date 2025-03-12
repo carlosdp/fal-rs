@@ -2087,6 +2087,34 @@ pub mod wan_i2v;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_wan-i2v-lora"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_wan-i2v-lora"
+    )))
+)]
+pub mod wan_i2v_lora;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_wan-pro"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_wan-pro"
+    )))
+)]
+pub mod wan_pro;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_wan-t2v"
 ))]
 #[cfg_attr(

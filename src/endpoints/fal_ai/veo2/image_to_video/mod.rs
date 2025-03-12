@@ -80,9 +80,9 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-/// Veo 2
+/// Veo 2 (Image to Video)
 ///
-/// Category: text-to-video
+/// Category: image-to-video
 ///
 ///
 ///
