@@ -74,9 +74,9 @@ pub mod easel_ai;
     feature = "endpoints_fal-ai_wan",
     feature = "endpoints_fal-ai_wan-t2v",
     feature = "endpoints_fal-ai_wan-i2v",
-    feature = "endpoints_fal-ai_wan-i2v-lora",
     feature = "endpoints_fal-ai_wan-pro",
     feature = "endpoints_fal-ai_skyreels-i2v",
+    feature = "endpoints_fal-ai_vidu",
     feature = "endpoints_fal-ai_video-upscaler",
     feature = "endpoints_fal-ai_auto-caption",
     feature = "endpoints_fal-ai_mmaudio-v2",
@@ -171,7 +171,8 @@ pub mod easel_ai;
     feature = "endpoints_fal-ai_imagen3",
     feature = "endpoints_fal-ai_post-processing",
     feature = "endpoints_fal-ai_video-prompt-generator",
-    feature = "endpoints_fal-ai_eye-correct"
+    feature = "endpoints_fal-ai_eye-correct",
+    feature = "endpoints_fal-ai_topaz"
 ))]
 #[cfg_attr(
     docsrs,
@@ -237,9 +238,9 @@ pub mod easel_ai;
         feature = "endpoints_fal-ai_wan",
         feature = "endpoints_fal-ai_wan-t2v",
         feature = "endpoints_fal-ai_wan-i2v",
-        feature = "endpoints_fal-ai_wan-i2v-lora",
         feature = "endpoints_fal-ai_wan-pro",
         feature = "endpoints_fal-ai_skyreels-i2v",
+        feature = "endpoints_fal-ai_vidu",
         feature = "endpoints_fal-ai_video-upscaler",
         feature = "endpoints_fal-ai_auto-caption",
         feature = "endpoints_fal-ai_mmaudio-v2",
@@ -334,7 +335,8 @@ pub mod easel_ai;
         feature = "endpoints_fal-ai_imagen3",
         feature = "endpoints_fal-ai_post-processing",
         feature = "endpoints_fal-ai_video-prompt-generator",
-        feature = "endpoints_fal-ai_eye-correct"
+        feature = "endpoints_fal-ai_eye-correct",
+        feature = "endpoints_fal-ai_topaz"
     )))
 )]
 pub mod fal_ai;

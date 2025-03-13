@@ -65,10 +65,16 @@ pub struct ImageToVideoRequest {
     /// The aspect ratio of the generated video frame
     #[serde(skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_scale: Option<f64>,
     /// The duration of the generated video in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<String>,
     pub image_url: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     pub prompt: String,
 }
 
@@ -84,10 +90,16 @@ pub struct ProImageToVideoRequest {
     /// The aspect ratio of the generated video frame
     #[serde(skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_scale: Option<f64>,
     /// The duration of the generated video in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<String>,
     pub image_url: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     pub prompt: String,
     /// URL of the image to be used for the end of the video
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -106,9 +118,15 @@ pub struct TextToVideoRequest {
     /// The aspect ratio of the generated video frame
     #[serde(skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_scale: Option<f64>,
     /// The duration of the generated video in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     pub prompt: String,
 }
 
@@ -127,6 +145,10 @@ pub struct V1ImageToVideoRequest {
     /// The aspect ratio of the generated video frame
     #[serde(skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_scale: Option<f64>,
     /// The duration of the generated video in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<String>,
@@ -136,6 +158,8 @@ pub struct V1ImageToVideoRequest {
     /// URL of the image to be used for the video
     /// "https://h2.inkwai.com/bs2/upload-ylab-stunt/se/ai_portal_queue_mmu_image_upscale_aiweb/3214b798-e1b4-4b00-b7af-72b5b0417420_raw_image_0.jpg"
     pub image_url: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     /// The prompt for the video
     /// "The astronaut stood up and walked away"
     pub prompt: String,
@@ -159,9 +183,15 @@ pub struct V1TextToVideoRequest {
     /// Camera control parameters
     #[serde(skip_serializing_if = "Option::is_none")]
     pub camera_control: Option<String>,
+    /// The CFG (Classifier Free Guidance) scale is a measure of how close you want
+    /// the model to stick to your prompt.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cfg_scale: Option<f64>,
     /// The duration of the generated video in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
     pub duration: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     pub prompt: String,
 }
 
@@ -188,7 +218,10 @@ pub struct VideoEffectsRequest {
     /// The effect scene to use for the video generation
     /// "hug"
     pub effect_scene: String,
-    /// URL of images.
+    /// URL of the image to be used for the squish and expansion video
+    /// "https://h2.inkwai.com/bs2/upload-ylab-stunt/se/ai_portal_queue_mmu_image_upscale_aiweb/3214b798-e1b4-4b00-b7af-72b5b0417420_raw_image_0.jpg"
+    pub image_url: String,
+    /// URL of images to be used for hug, kiss or heart_gesture video.
     /// ["https://storage.googleapis.com/falserverless/juggernaut_examples/VHXMavzPyI27zi6JseyL4.png","https://storage.googleapis.com/falserverless/juggernaut_examples/QEW5VrzccxGva7mPfEXjf.png"]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub input_image_urls: Option<Vec<Option<String>>>,
