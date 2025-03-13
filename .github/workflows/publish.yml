@@ -38,6 +38,15 @@ jobs:
           cargo bump ${{ github.event.inputs.version_bump }}
           version=$(cargo pkgid | cut -d# -f2 | cut -d: -f2)
           echo "NEW_VERSION=$version" >> $GITHUB_ENV
+          # Extract major.minor version for README updates
+          major_minor=$(echo $version | cut -d. -f1,2)
+          echo "MAJOR_MINOR=$major_minor" >> $GITHUB_ENV
+
+      - name: Update README versions
+        run: |
+          # Use perl for in-place replacement of version strings in README
+          perl -i -pe 's/fal = "[\d\.]+"/fal = "${{ env.MAJOR_MINOR }}"/' README.md
+          perl -i -pe 's/fal = \{ version = "[\d\.]+"/fal = { version = "${{ env.MAJOR_MINOR }}"/' README.md
 
       - name: Publish to crates.io
         env:
@@ -58,3 +67,6 @@ jobs:
           git tag "v${{ env.NEW_VERSION }}"
           git push origin main
           git push origin "v${{ env.NEW_VERSION }}"
+
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v2
