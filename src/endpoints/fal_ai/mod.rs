@@ -1975,6 +1975,20 @@ pub mod t2v_turbo;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_topaz"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_topaz"
+    )))
+)]
+pub mod topaz;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_transpixar"
 ))]
 #[cfg_attr(
@@ -2059,6 +2073,20 @@ pub mod video_upscaler;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_vidu"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_vidu"
+    )))
+)]
+pub mod vidu;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_wan"
 ))]
 #[cfg_attr(
@@ -2084,20 +2112,6 @@ pub mod wan;
     )))
 )]
 pub mod wan_i2v;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_wan-i2v-lora"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_wan-i2v-lora"
-    )))
-)]
-pub mod wan_i2v_lora;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",

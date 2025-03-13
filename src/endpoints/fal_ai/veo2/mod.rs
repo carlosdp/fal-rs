@@ -52,6 +52,9 @@ pub struct ImageToVideoInput {
     /// The aspect ratio of the generated video
     #[serde(skip_serializing_if = "Option::is_none")]
     pub aspect_ratio: Option<String>,
+    /// The duration of the generated video in seconds
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub duration: Option<String>,
     /// URL of the input image to animate. Should be 720p or higher resolution.
     /// "https://fal.media/files/elephant/6fq8JDSjb1osE_c3J_F2H.png"
     pub image_url: String,
