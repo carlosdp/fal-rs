@@ -170,10 +170,14 @@ pub mod easel_ai;
     feature = "endpoints_fal-ai_elevenlabs",
     feature = "endpoints_fal-ai_janus",
     feature = "endpoints_fal-ai_imagen3",
+    feature = "endpoints_fal-ai_gemini-flash-edit",
     feature = "endpoints_fal-ai_post-processing",
     feature = "endpoints_fal-ai_video-prompt-generator",
     feature = "endpoints_fal-ai_eye-correct",
-    feature = "endpoints_fal-ai_topaz"
+    feature = "endpoints_fal-ai_topaz",
+    feature = "endpoints_fal-ai_csm-1b",
+    feature = "endpoints_fal-ai_pika",
+    feature = "endpoints_fal-ai_invisible-watermark"
 ))]
 #[cfg_attr(
     docsrs,
@@ -335,10 +339,14 @@ pub mod easel_ai;
         feature = "endpoints_fal-ai_elevenlabs",
         feature = "endpoints_fal-ai_janus",
         feature = "endpoints_fal-ai_imagen3",
+        feature = "endpoints_fal-ai_gemini-flash-edit",
         feature = "endpoints_fal-ai_post-processing",
         feature = "endpoints_fal-ai_video-prompt-generator",
         feature = "endpoints_fal-ai_eye-correct",
-        feature = "endpoints_fal-ai_topaz"
+        feature = "endpoints_fal-ai_topaz",
+        feature = "endpoints_fal-ai_csm-1b",
+        feature = "endpoints_fal-ai_pika",
+        feature = "endpoints_fal-ai_invisible-watermark"
     )))
 )]
 pub mod fal_ai;

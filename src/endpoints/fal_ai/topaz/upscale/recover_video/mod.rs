@@ -145,11 +145,11 @@ pub enum UpscaleFactorProperty {
 ///
 ///
 ///
-/// Upscale videos using Topaz Video AI.
+/// Upscale and recover low quality input videos with high compression or blur.
 ///
-/// Uses Proteus v4 for upscaling and optionally Apollo v8 for frame interpolation.
-/// Supports up to 8x upscaling and 120 FPS output. Frame interpolation is automatically
-/// enabled when target_fps is set.
-pub fn video(params: VideoUpscaleRequest) -> FalRequest<VideoUpscaleRequest, VideoUpscaleOutput> {
-    FalRequest::new("fal-ai/topaz/upscale/video", params)
+/// Uses Proteus v4 model with specialized settings for compression recovery.
+pub fn recover_video(
+    params: RecoverUpscaleRequest,
+) -> FalRequest<RecoverUpscaleRequest, VideoUpscaleOutput> {
+    FalRequest::new("fal-ai/topaz/upscale/recover-video", params)
 }

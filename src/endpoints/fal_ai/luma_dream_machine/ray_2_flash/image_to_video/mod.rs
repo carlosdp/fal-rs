@@ -5,49 +5,6 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_luma-dream-machine"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_luma-dream-machine"
-    )))
-)]
-pub mod image_to_video;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_luma-dream-machine"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_luma-dream-machine"
-    )))
-)]
-pub mod ray_2;
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_luma-dream-machine"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_luma-dream-machine"
-    )))
-)]
-pub mod ray_2_flash;
-
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
@@ -98,7 +55,7 @@ pub struct ImageToVideoRequest {
     pub prompt: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Ray2I2VOutput {
     /// URL of the generated video
     /// {"url":"https://v3.fal.media/files/zebra/9aDde3Te2kuJYHdR0Kz8R_output.mp4"}
@@ -155,7 +112,7 @@ pub struct Ray2TextToVideoRequest {
     pub resolution: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct T2VOutput {
     /// The generated video
     /// {"url":"https://v2.fal.media/files/807e842c734f4127a36de9262a2d292c_output.mp4"}
@@ -186,6 +143,17 @@ pub struct ValidationError {
 ///
 /// Category: text-to-video
 /// Machine Type: A100
-pub fn luma_dream_machine(params: TextToVideoRequest) -> FalRequest<TextToVideoRequest, T2VOutput> {
-    FalRequest::new("fal-ai/luma-dream-machine", params)
+///
+///
+/// Luma's state of the art Ray2 model for image-to-video generation.
+///
+/// Takes initial and/or final images and generates a video that starts from
+/// and/or ends with those images.
+pub fn image_to_video(
+    params: Ray2ImageToVideoRequest,
+) -> FalRequest<Ray2ImageToVideoRequest, Ray2I2VOutput> {
+    FalRequest::new(
+        "fal-ai/luma-dream-machine/ray-2-flash/image-to-video",
+        params,
+    )
 }

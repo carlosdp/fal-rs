@@ -1,42 +1,42 @@
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_topaz"
+    feature = "endpoints_fal-ai_pika"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
         feature = "endpoints",
         feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_topaz"
+        feature = "endpoints_fal-ai_pika"
     )))
 )]
-pub mod recover_video;
+pub mod pikadditions;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_topaz"
+    feature = "endpoints_fal-ai_pika"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
         feature = "endpoints",
         feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_topaz"
+        feature = "endpoints_fal-ai_pika"
     )))
 )]
-pub mod v4x_generative_upscale;
+pub mod pikaswaps;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_topaz"
+    feature = "endpoints_fal-ai_pika"
 ))]
 #[cfg_attr(
     docsrs,
     doc(cfg(any(
         feature = "endpoints",
         feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_topaz"
+        feature = "endpoints_fal-ai_pika"
     )))
 )]
-pub mod video;
+pub mod turbo;

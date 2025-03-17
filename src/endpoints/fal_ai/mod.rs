@@ -253,6 +253,20 @@ pub mod creative_upscaler;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_csm-1b"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_csm-1b"
+    )))
+)]
+pub mod csm_1b;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_ddcolor"
 ))]
 #[cfg_attr(
@@ -855,6 +869,20 @@ pub mod fooocus;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_gemini-flash-edit"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_gemini-flash-edit"
+    )))
+)]
+pub mod gemini_flash_edit;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_got-ocr"
 ))]
 #[cfg_attr(
@@ -1062,6 +1090,20 @@ pub mod imageutils;
     )))
 )]
 pub mod inpaint;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_invisible-watermark"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_invisible-watermark"
+    )))
+)]
+pub mod invisible_watermark;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
@@ -1538,6 +1580,20 @@ pub mod omnigen_v1;
     )))
 )]
 pub mod photomaker;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_pika"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_pika"
+    )))
+)]
+pub mod pika;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",

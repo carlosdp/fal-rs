@@ -56,6 +56,10 @@ pub struct WanI2VRequest {
     /// URL of the input image.
     /// "https://fal.media/files/elephant/8kkhB12hEZI2kkbU8pZPA_test.jpeg"
     pub image_url: String,
+    /// Negative prompt for video generation.
+    /// "bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
     /// Number of frames to generate. Must be between 81 to 100 (inclusive).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub num_frames: Option<i64>,

@@ -45,7 +45,11 @@ pub struct FillInput {
     pub paste_back: Option<bool>,
     /// The prompt to generate an image from.
     /// "A knight in shining armour holding a greatshield with 'FAL' on it"
-    pub prompt: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub prompt: Option<String>,
+    /// Resizes the image back to the original size. Use when you wish to preserve the exact image size as the originally provided image.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub resize_to_original: Option<bool>,
     /// The same seed and the same prompt given to the same version of the model
     /// will output the same image every time.
     #[serde(skip_serializing_if = "Option::is_none")]

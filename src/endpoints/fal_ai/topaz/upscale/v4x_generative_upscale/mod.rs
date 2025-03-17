@@ -145,11 +145,12 @@ pub enum UpscaleFactorProperty {
 ///
 ///
 ///
-/// Upscale videos using Topaz Video AI.
+/// Upscale AI-generated videos for maximum detail generation and preservation.
 ///
-/// Uses Proteus v4 for upscaling and optionally Apollo v8 for frame interpolation.
-/// Supports up to 8x upscaling and 120 FPS output. Frame interpolation is automatically
-/// enabled when target_fps is set.
-pub fn video(params: VideoUpscaleRequest) -> FalRequest<VideoUpscaleRequest, VideoUpscaleOutput> {
-    FalRequest::new("fal-ai/topaz/upscale/video", params)
+/// Uses Rhea-1 model specifically designed for AI-generated content. This model always internally
+/// upscales to 4x the input size, then scales to the target resolution.
+pub fn v4x_generative_upscale(
+    params: StrongAIUpscaleRequest,
+) -> FalRequest<StrongAIUpscaleRequest, VideoUpscaleOutput> {
+    FalRequest::new("fal-ai/topaz/upscale/4x-generative-upscale", params)
 }

@@ -47,7 +47,7 @@ pub struct MiniMaxTextToImageRequest {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub num_images: Option<i64>,
     /// Text prompt for image generation (max 1500 characters)
-    /// "men Dressing in white t shirt, full-body stand front view image, outdoor, Venice beach sign, full-body image, Los Angeles, Fashion photography of 90s, documentary, Film grain, photorealistic"
+    /// "Man dressed in white t shirt, full-body stand front view image, outdoor, Venice beach sign, full-body image, Los Angeles, Fashion photography of 90s, documentary, Film grain, photorealistic"
     pub prompt: String,
     /// Whether to enable automatic prompt optimization
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -145,11 +145,10 @@ pub enum UpscaleFactorProperty {
 ///
 ///
 ///
-/// Upscale videos using Topaz Video AI.
+/// Apply slow motion to videos, optionally with upscaling.
 ///
-/// Uses Proteus v4 for upscaling and optionally Apollo v8 for frame interpolation.
-/// Supports up to 8x upscaling and 120 FPS output. Frame interpolation is automatically
-/// enabled when target_fps is set.
-pub fn video(params: VideoUpscaleRequest) -> FalRequest<VideoUpscaleRequest, VideoUpscaleOutput> {
-    FalRequest::new("fal-ai/topaz/upscale/video", params)
+/// Uses Apollo v8 model to slow down videos up to 8x. Can also upscale the video
+/// simultaneously if upscale_factor is specified.
+pub fn video(params: SlowMotionRequest) -> FalRequest<SlowMotionRequest, VideoUpscaleOutput> {
+    FalRequest::new("fal-ai/topaz/slowmotion/video", params)
 }

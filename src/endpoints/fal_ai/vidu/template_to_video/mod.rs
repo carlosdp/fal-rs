@@ -77,26 +77,26 @@ pub struct ReferenceToVideoRequest {
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct StartEndToVideoOutput {
     /// The generated transition video between start and end frames
-    /// {"url":"https://storage.googleapis.com/falserverless/web-examples/vidu/new-examples/startendvideo.mp4"}
+    /// {"url":"https://storage.googleapis.com/falserverless/web-examples/vidu/2-car.mp4"}
     pub video: File,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct StartEndToVideoRequest {
     /// URL of the image to use as the last frame
-    /// "https://storage.googleapis.com/falserverless/web-examples/vidu/new-examples/end1.png"
+    /// "https://storage.googleapis.com/falserverless/web-examples/vidu/2-carbody.png"
     pub end_image_url: String,
     /// The movement amplitude of objects in the frame
     #[serde(skip_serializing_if = "Option::is_none")]
     pub movement_amplitude: Option<String>,
     /// Text prompt for video generation, max 1500 characters
-    /// "Roses turn into a woman. Petals fall, and the woman emerges from the flower."
+    /// "Transform the car frame into a complete vehicle."
     pub prompt: String,
     /// Random seed for generation
     #[serde(skip_serializing_if = "Option::is_none")]
     pub seed: Option<i64>,
     /// URL of the image to use as the first frame
-    /// "https://storage.googleapis.com/falserverless/web-examples/vidu/new-examples/start1.png"
+    /// "https://storage.googleapis.com/falserverless/web-examples/vidu/2-carchasis.png"
     pub start_image_url: String,
 }
 
