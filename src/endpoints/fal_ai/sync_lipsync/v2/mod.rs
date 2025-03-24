@@ -5,21 +5,6 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_sync-lipsync"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_sync-lipsync"
-    )))
-)]
-pub mod v2;
-
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
@@ -63,7 +48,7 @@ pub struct LipSyncInput {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct LipSyncOutput {
     /// The generated video
     /// {"url":"https://v3.fal.media/files/rabbit/6gJV-z7RJsF0AxkZHkdgJ_output.mp4"}
@@ -86,7 +71,7 @@ pub struct LipSyncV2Input {
     pub video_url: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct LipSyncV2Output {
     /// The generated video
     /// {"url":"https://v3.fal.media/files/elephant/r5mUYNbrSeEhfr4etMIvE_output.mp4"}
@@ -106,6 +91,6 @@ pub struct ValidationError {
 /// Category: video-to-video
 ///
 /// License Type: commercial
-pub fn sync_lipsync(params: LipSyncInput) -> FalRequest<LipSyncInput, LipSyncOutput> {
-    FalRequest::new("fal-ai/sync-lipsync", params)
+pub fn v2(params: LipSyncV2Input) -> FalRequest<LipSyncV2Input, LipSyncV2Output> {
+    FalRequest::new("fal-ai/sync-lipsync/v2", params)
 }

@@ -5,21 +5,6 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_hunyuan-video-lora"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_hunyuan-video-lora"
-    )))
-)]
-pub mod video_to_video;
-
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct File {
     /// The mime type of the file.
@@ -144,8 +129,11 @@ pub struct ValidationError {
 ///
 /// Category: text-to-video
 /// Machine Type: H100
-pub fn hunyuan_video_lora(
-    params: HunyuanT2VRequest,
-) -> FalRequest<HunyuanT2VRequest, HunyuanT2VResponse> {
-    FalRequest::new("fal-ai/hunyuan-video-lora", params)
+///
+///
+/// Hunyuan Video API for fast video generation. Text-to-video and video-to-video modes are supported.
+pub fn video_to_video(
+    params: HunyuanV2VRequest,
+) -> FalRequest<HunyuanV2VRequest, HunyuanT2VResponse> {
+    FalRequest::new("fal-ai/hunyuan-video-lora/video-to-video", params)
 }

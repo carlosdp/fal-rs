@@ -10,15 +10,18 @@ pub struct File {
     /// The mime type of the file.
     /// "image/png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub content_type: Option<ContentTypeProperty>,
+    pub content_type: Option<String>,
+    /// File data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_data: Option<String>,
     /// The name of the file. It will be auto-generated if not provided.
     /// "z9RV14K95DvU.png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_name: Option<FileNameProperty>,
+    pub file_name: Option<String>,
     /// The size of the file in bytes.
     /// 4404019
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_size: Option<FileSizeProperty>,
+    pub file_size: Option<i64>,
     /// The URL where the file can be downloaded from.
     pub url: String,
 }
@@ -73,30 +76,6 @@ pub enum AudioProperty {
     #[default]
     File(File),
     String(String),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileNameProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileSizeProperty {
-    #[default]
-    Integer(i64),
-    Null(serde_json::Value),
 }
 
 /// CSM-1B

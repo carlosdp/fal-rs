@@ -18,6 +18,8 @@ pub struct BaseInput {
     pub frames_per_second: Option<i64>,
     /// URL of the input image.
     /// "https://storage.googleapis.com/falserverless/web-examples/wan-effects/cat.jpg"
+    /// "https://storage.googleapis.com/falserverless/web-examples/wan-effects/man_1.png"
+    /// "https://storage.googleapis.com/falserverless/web-examples/wan-effects/woman_2.png"
     pub image_url: String,
     /// The scale of the LoRA weight. Used to adjust effect intensity.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -30,7 +32,7 @@ pub struct BaseInput {
     pub num_inference_steps: Option<i64>,
     /// Random seed for reproducibility. If None, a random seed is chosen.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub seed: Option<i64>,
+    pub seed: Option<SeedProperty>,
     /// The subject to insert into the predefined prompt template for the selected effect.
     /// "a cute kitten"
     /// "Donald Trump"
@@ -44,18 +46,15 @@ pub struct File {
     /// The mime type of the file.
     /// "image/png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub content_type: Option<String>,
-    /// File data
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_data: Option<String>,
+    pub content_type: Option<ContentTypeProperty>,
     /// The name of the file. It will be auto-generated if not provided.
     /// "z9RV14K95DvU.png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_name: Option<String>,
+    pub file_name: Option<FileNameProperty>,
     /// The size of the file in bytes.
     /// 4404019
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_size: Option<i64>,
+    pub file_size: Option<FileSizeProperty>,
     /// The URL where the file can be downloaded from.
     pub url: String,
 }
@@ -80,6 +79,38 @@ pub struct WanEffectsOutput {
     /// The generated video
     /// {"url":"https://storage.googleapis.com/falserverless/web-examples/wan-effects/cat_video.mp4"}
     pub video: File,
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum ContentTypeProperty {
+    #[default]
+    String(String),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum FileNameProperty {
+    #[default]
+    String(String),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum FileSizeProperty {
+    #[default]
+    Integer(i64),
+    Null(serde_json::Value),
+}
+
+#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
+#[allow(non_camel_case_types)]
+pub enum SeedProperty {
+    #[default]
+    Integer(i64),
+    Null(serde_json::Value),
 }
 
 /// Wan Effects

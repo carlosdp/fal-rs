@@ -99,6 +99,9 @@ pub struct File {
     /// "image/png"
     #[serde(skip_serializing_if = "Option::is_none")]
     pub content_type: Option<String>,
+    /// File data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_data: Option<String>,
     /// The name of the file. It will be auto-generated if not provided.
     /// "z9RV14K95DvU.png"
     #[serde(skip_serializing_if = "Option::is_none")]

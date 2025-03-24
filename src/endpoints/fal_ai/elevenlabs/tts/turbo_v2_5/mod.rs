@@ -6,6 +6,13 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(Debug, Serialize, Deserialize, Default)]
+pub struct AudioInput {
+    /// The input audio file
+    /// "https://v3.fal.media/files/zebra/zJL_oRY8h5RWwjoK1w7tx_output.mp3"
+    pub url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct AudioIsolationRequest {
     /// URL of the audio file to isolate voice from
     /// "https://v3.fal.media/files/zebra/zJL_oRY8h5RWwjoK1w7tx_output.mp3"
@@ -17,15 +24,18 @@ pub struct File {
     /// The mime type of the file.
     /// "image/png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub content_type: Option<ContentTypeProperty>,
+    pub content_type: Option<String>,
+    /// File data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub file_data: Option<String>,
     /// The name of the file. It will be auto-generated if not provided.
     /// "z9RV14K95DvU.png"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_name: Option<FileNameProperty>,
+    pub file_name: Option<String>,
     /// The size of the file in bytes.
     /// 4404019
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub file_size: Option<FileSizeProperty>,
+    pub file_size: Option<i64>,
     /// The URL where the file can be downloaded from.
     pub url: String,
 }
@@ -47,7 +57,7 @@ pub struct SoundEffectOutput {
 pub struct SoundEffectRequest {
     /// Duration in seconds (0.5-22). If None, optimal duration will be determined from prompt.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub duration_seconds: Option<DurationSecondsProperty>,
+    pub duration_seconds: Option<f64>,
     /// How closely to follow the prompt (0-1). Higher values mean less variation.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub prompt_influence: Option<f64>,
@@ -72,7 +82,7 @@ pub struct SpeechToTextRequest {
     /// "deu"
     /// "jpn"
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub language_code: Option<LanguageCodeProperty>,
+    pub language_code: Option<String>,
     /// Tag audio events like laughter, applause, etc.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tag_audio_events: Option<bool>,
@@ -142,7 +152,7 @@ pub struct TranscriptionWord {
     pub end: f64,
     /// Speaker identifier if diarization was enabled
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub speaker_id: Option<SpeakerIdProperty>,
+    pub speaker_id: Option<String>,
     /// Start time in seconds
     pub start: f64,
     /// The transcribed word or audio event
@@ -160,52 +170,20 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum ContentTypeProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct VoiceCloningOutput {
+    /// The id of the cloned voice
+    /// "hWom0fkbma5jw98sykZx"
+    pub voice_id: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum DurationSecondsProperty {
-    #[default]
-    Number(f64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileNameProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum FileSizeProperty {
-    #[default]
-    Integer(i64),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum LanguageCodeProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
-}
-
-#[derive(Debug, Serialize, Deserialize, smart_default::SmartDefault)]
-#[allow(non_camel_case_types)]
-pub enum SpeakerIdProperty {
-    #[default]
-    String(String),
-    Null(serde_json::Value),
+#[derive(Debug, Serialize, Deserialize, Default)]
+pub struct VoiceCloningRequest {
+    /// List of audio files to use for voice cloning
+    pub audio_urls: Vec<AudioInput>,
+    /// Whether to remove background noise from the audio files
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub remove_background_noise: Option<bool>,
 }
 
 /// ElevenLabs Audio Isolation

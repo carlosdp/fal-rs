@@ -59,34 +59,40 @@ pub struct WanLoRAI2VRequest {
     /// true
     #[serde(skip_serializing_if = "Option::is_none")]
     pub enable_prompt_expansion: Option<bool>,
-    /// If set to true, the safety checker will be enabled.
-    /// true
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub enable_safety_checker: Option<bool>,
     /// Frames per second of the generated video. Must be between 5 to 24.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub frames_per_second: Option<i64>,
+    /// Classifier-free guidance scale. Higher values give better adherence to the prompt but may decrease quality.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub guide_scale: Option<f64>,
     /// URL of the input image.
-    /// "https://fal.media/files/elephant/8kkhB12hEZI2kkbU8pZPA_test.jpeg"
+    /// "https://storage.googleapis.com/falserverless/gallery/car_720p.png"
     pub image_url: String,
     /// LoRA weights to be used in the inference.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub loras: Option<Vec<Option<LoraWeight>>>,
-    /// Number of frames to generate. Must be between 81 to 100 (inclusive).
+    /// Negative prompt for video generation.
+    /// "bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub negative_prompt: Option<String>,
+    /// Number of frames to generate. Must be between 81 to 100 (inclusive). If the number of frames is greater than 81, the video will be generated with 1.25x more billing units.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub num_frames: Option<i64>,
     /// Number of inference steps for sampling. Higher values give better quality but take longer.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub num_inference_steps: Option<i64>,
     /// The text prompt to guide video generation.
-    /// "A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage."
+    /// "Cars race in slow motion."
     pub prompt: String,
-    /// Resolution of the generated video (480p or 720p).
+    /// If true, the video will be reversed.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub resolution: Option<String>,
+    pub reverse_video: Option<bool>,
     /// Random seed for reproducibility. If None, a random seed is chosen.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub seed: Option<i64>,
+    /// Shift parameter for video generation.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub shift: Option<f64>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -94,7 +100,7 @@ pub struct WanT2VResponse {
     /// The seed used for generation.
     pub seed: i64,
     /// The generated video file.
-    /// {"url":"https://v3.fal.media/files/lion/mF2VjLzSNyI-KTAuDQExX_tmpvkubnfyc.mp4"}
+    /// {"url":"https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4"}
     pub video: File,
 }
 
