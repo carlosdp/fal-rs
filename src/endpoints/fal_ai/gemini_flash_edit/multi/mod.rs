@@ -5,21 +5,6 @@ use serde::{Deserialize, Serialize};
 #[allow(unused_imports)]
 use std::collections::HashMap;
 
-#[cfg(any(
-    feature = "endpoints",
-    feature = "endpoints_fal-ai",
-    feature = "endpoints_fal-ai_gemini-flash-edit"
-))]
-#[cfg_attr(
-    docsrs,
-    doc(cfg(any(
-        feature = "endpoints",
-        feature = "endpoints_fal-ai",
-        feature = "endpoints_fal-ai_gemini-flash-edit"
-    )))
-)]
-pub mod multi;
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GeminiImageOutput {
     /// Text description or response from Gemini
@@ -134,9 +119,9 @@ pub enum WidthProperty {
 ///
 ///
 ///
-/// Generate or edit an image using Gemini
-pub fn gemini_flash_edit(
-    params: GeminiImageRequest,
-) -> FalRequest<GeminiImageRequest, GeminiImageOutput> {
-    FalRequest::new("fal-ai/gemini-flash-edit", params)
+/// Generate or edit images using Gemini with multiple input images
+pub fn multi(
+    params: GeminiMultiImageRequest,
+) -> FalRequest<GeminiMultiImageRequest, GeminiImageOutput> {
+    FalRequest::new("fal-ai/gemini-flash-edit/multi", params)
 }

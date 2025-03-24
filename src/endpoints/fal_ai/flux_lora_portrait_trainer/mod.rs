@@ -52,6 +52,7 @@ pub struct PublicInput {
     /// The captions can include a special string `[trigger]`. If a trigger_word is specified, it will replace `[trigger]` in the captions.
     pub images_data_url: String,
     /// Learning rate to use for training.
+    /// 0.0002
     #[serde(skip_serializing_if = "Option::is_none")]
     pub learning_rate: Option<f64>,
     /// If True, multiresolution training will be used.
@@ -62,7 +63,7 @@ pub struct PublicInput {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub resume_from_checkpoint: Option<String>,
     /// Number of steps to train the LoRA on.
-    /// 2500
+    /// 1000
     #[serde(skip_serializing_if = "Option::is_none")]
     pub steps: Option<i64>,
     /// If True, the subject will be cropped from the image.

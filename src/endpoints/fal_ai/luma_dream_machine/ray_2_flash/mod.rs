@@ -154,7 +154,7 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-/// Luma Ray 2
+/// Luma Ray 2 Flash
 ///
 /// Category: text-to-video
 /// Machine Type: A100

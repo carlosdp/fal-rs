@@ -88,7 +88,7 @@ pub struct SpeechToTextRequest {
     pub tag_audio_events: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Default)]
 pub struct TTSOutput {
     /// The generated audio file
     /// {"url":"https://v3.fal.media/files/zebra/zJL_oRY8h5RWwjoK1w7tx_output.mp3"}
@@ -170,7 +170,7 @@ pub struct ValidationError {
     pub ty: String,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct VoiceCloningOutput {
     /// The id of the cloned voice
     /// "hWom0fkbma5jw98sykZx"
@@ -192,12 +192,9 @@ pub struct VoiceCloningRequest {
 ///
 /// License Type: commercial
 ///
-/// ElevenLabs Audio Isolation: Extract clean voice from audio.
-///
-/// Isolates and enhances voice content from audio files, removing background noise,
-/// music, and other non-voice sounds.
-pub fn audio_isolation(
-    params: AudioIsolationRequest,
-) -> FalRequest<AudioIsolationRequest, TTSOutput> {
-    FalRequest::new("fal-ai/elevenlabs/audio-isolation", params)
+/// ElevenLabs Voice Cloning: Add a new voice to the system.
+pub fn clone_voice(
+    params: VoiceCloningRequest,
+) -> FalRequest<VoiceCloningRequest, VoiceCloningOutput> {
+    FalRequest::new("fal-ai/elevenlabs/clone-voice", params)
 }

@@ -897,6 +897,20 @@ pub mod got_ocr;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_hunyuan3d"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_hunyuan3d"
+    )))
+)]
+pub mod hunyuan3d;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_hunyuan-video"
 ))]
 #[cfg_attr(
@@ -1454,6 +1468,20 @@ pub mod minimax_image;
     )))
 )]
 pub mod minimax_music;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_mix-dehaze-net"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_mix-dehaze-net"
+    )))
+)]
+pub mod mix_dehaze_net;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
@@ -2031,6 +2059,20 @@ pub mod t2v_turbo;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_thera"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_thera"
+    )))
+)]
+pub mod thera;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_topaz"
 ))]
 #[cfg_attr(
@@ -2185,6 +2227,20 @@ pub mod wan_i2v;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_wan-i2v-lora"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_wan-i2v-lora"
+    )))
+)]
+pub mod wan_i2v_lora;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
     feature = "endpoints_fal-ai_wan-pro"
 ))]
 #[cfg_attr(
@@ -2210,6 +2266,20 @@ pub mod wan_pro;
     )))
 )]
 pub mod wan_t2v;
+#[cfg(any(
+    feature = "endpoints",
+    feature = "endpoints_fal-ai",
+    feature = "endpoints_fal-ai_wan-trainer"
+))]
+#[cfg_attr(
+    docsrs,
+    doc(cfg(any(
+        feature = "endpoints",
+        feature = "endpoints_fal-ai",
+        feature = "endpoints_fal-ai_wan-trainer"
+    )))
+)]
+pub mod wan_trainer;
 #[cfg(any(
     feature = "endpoints",
     feature = "endpoints_fal-ai",

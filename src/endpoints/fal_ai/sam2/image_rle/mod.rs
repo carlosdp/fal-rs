@@ -181,6 +181,9 @@ pub struct SAM2VideoRLEInput {
     /// [{"frame_index":0,"x_max":500,"x_min":300,"y_max":400,"y_min":0}]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub box_prompts: Option<Vec<Option<BoxPrompt>>>,
+    /// The URL of the mask to be applied initially.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mask_url: Option<String>,
     /// List of prompts to segment the video
     /// [{"frame_index":0,"label":1,"x":210,"y":350},{"frame_index":0,"label":1,"x":250,"y":220}]
     #[serde(skip_serializing_if = "Option::is_none")]

@@ -43,6 +43,9 @@ pub struct ImageSize {
 
 #[derive(Debug, Serialize, Deserialize, Default)]
 pub struct ImageToImageInput {
+    /// If set to true, the output cropped to the proper aspect ratio after generating.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub crop_output: Option<bool>,
     /// The list of embeddings to use.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub embeddings: Option<Vec<Option<Embedding>>>,
@@ -80,6 +83,14 @@ pub struct ImageToImageInput {
     /// The number of inference steps to perform.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub num_inference_steps: Option<i64>,
+    /// If set to true, the aspect ratio of the generated image will be preserved even
+    /// if the image size is too large. However, if the image is not a multiple of 32
+    /// in width or height, it will be resized to the nearest multiple of 32. By default,
+    /// this snapping to the nearest multiple of 32 will not preserve the aspect ratio.
+    /// Set crop_output to True, to crop the output to the proper aspect ratio
+    /// after generating.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub preserve_aspect_ratio: Option<bool>,
     /// The prompt to use for generating the image. Be as descriptive as possible for best results.
     /// "an island near sea, with seagulls, moon shining over the sea, light house, boats int he background, fish flying over the sea"
     pub prompt: String,
